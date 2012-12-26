@@ -130,7 +130,7 @@ class DbHelper{
         if($returnsql){
             return $return;
         }else{
-            if(count($return) > 0 && !isset($return['error']) && !isset($return['errno']) return $return[0];
+            if(count($return) > 0 && !isset($return['error']) && !isset($return['errno'])) return $return[0];
             return ($return['error'] && $return['errno']) ? $return : array();
         }
     }
