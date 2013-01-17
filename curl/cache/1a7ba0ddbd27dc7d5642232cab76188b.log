@@ -1,0 +1,2227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<title>新闻排行榜_网易新闻</title>
+<base target="_blank" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="author" content="网易" />
+<meta name="Copyright" content="网易版权所有" />
+<link href="http://img1.cache.netease.com/cnews/css07/style.css" rel="stylesheet" type="text/css" />
+<link href="http://img1.cache.netease.com/cnews/img09/channel_nav.css" rel="stylesheet" type="text/css"/>
+<link href="http://img1.cache.netease.com/cnews/img/subscibe0304/rank.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.gg735 {width:735px; overflow:hidden; float:left;}
+.gg210 {width:210px; overflow:hidden; float:right;}
+.channel h2 { width: auto; }
+</style>
+<script type="text/javascript" language="javascript" src="http://img1.cache.netease.com/cnews/js/ntes_jslib_1.x.js" charset="gb2312"></script>
+</head>
+<body>
+<link type="text/css" rel="stylesheet" media="screen" href="http://img1.cache.netease.com/common/css/common_nav_v1.0.7.css" />
+<script charset="gb2312" src="http://img3.cache.netease.com/cnews/js/ntes_jslib_1.x.js" language="javascript" type="text/javascript"></script>
+<div class="NTES-nav">
+	<span class="nav-link NTES-nav-link"><a href="http://www.163.com/">网易首页</a>-<a href="http://news.163.com/">新闻</a>-<a href="http://sports.163.com/">体育</a>-<a href="http://sports.163.com/nba/">NBA</a>-<a href="http://ent.163.com/">娱乐</a>-<a href="http://money.163.com/">财经</a>-<a href="http://money.163.com/stock/">股票</a>-<a href="http://auto.163.com/" id="_link_auto">汽车</a>-<a href="http://tech.163.com/">科技</a>-<a href="http://mobile.163.com/">手机</a>-<a href="http://lady.163.com/">女人</a>-<a href="http://bbs.163.com/">论坛</a>-<a href="http://v.163.com/">视频</a>-<a href="http://www.familydoctor.com.cn/"  rel="nofollow">健康</a>-<a href="http://house.163.com/" id="houseUrl">房产</a>-<a id="homeUrl" href="http://home.163.com/">家居</a>-<a href="http://edu.163.com/">教育</a>-<a href="http://book.163.com/">读书</a>-<a href="http://game.163.com/" id="_link_game">游戏</a>-<a href="http://caipiao.163.com/#from=dh">彩票</a>-<span class="nav-link-item" id="navMore">更多<span class="link-item-more" style="display: none;">
+			<a href="http://baoxian.163.com/car/index.html?from=dh">车险</a><a href="http://digi.163.com/">数码</a><a href="http://war.163.com/">军事</a><a href="http://fashion.163.com/">时尚</a><a href="http://travel.163.com/">旅游</a><a href="http://blog.163.com/?frompagenav">博客</a>
+		</span></span>|</span>
+	<div class="rightCon">
+		<div class="NTES-link code-num">
+			<span class="left"><a href="http://email.163.com/" class="cBlue"  rel="nofollow">免费邮箱</a> - <a href="http://reg.163.com/" class="cBlue"  rel="nofollow">通行证登录</a> | </span><a href="http://t.163.com/?f=catopmicoblogmsg" class="NTES-nav-wbLogin"  rel="nofollow">微博</a>
+		</div>
+	</div>
+	<a href="http://www.163.com/rss" class="NTES-nav-rss"  rel="nofollow">rss</a>
+</div>
+<script>
+//<![CDATA[
+NTES.ready( function($){
+$("#navMore").addEvent("click", function(e){
+	NTES($("#navMore .link-item-more")[0]).style.display = this.style.display == "block" ? "none" : "block";
+//	e.preventDefault();
+	e.cancelBubble = true;
+	document.onclick = function(){
+		NTES($("#navMore .link-item-more")[0]).style.display = "none";
+	}
+});
+	var P_INFO = NTES.cookie.get("P_INFO");
+	var S_INFO = NTES.cookie.get("S_INFO");
+	if(P_INFO){
+		var mailconfig = {
+			"163.com":"http://entry.mail.163.com/coremail/fcg/ntesdoor2?verifycookie=1&lightweight=1",
+			"126.com" : "http://entry.mail.126.com/cgi/ntesdoor?verifycookie=1&lightweight=1&style=-1",
+			"vip.126.com" : "http://reg.vip.126.com/enterMail.m",
+			"yeah.net" : "http://entry.yeah.net/cgi/ntesdoor?verifycookie=1&lightweight=1&style=-1",
+			"188" : "http://reg.mail.188.com/servlet/enter",
+			"vip.163.com" : "http://reg.vip.163.com/enterMail.m?enterVip=true-----------"
+		};
+		var passport =  P_INFO.substr(0, P_INFO.indexOf("|"));
+		var username =  passport.substr(0, P_INFO.indexOf("@"));
+		var logstate = P_INFO.split("|")[2];
+		var loginframe = "";
+		var url = "http://t.163.com/service/newMessage/" + passport + "/1/0/0/0/1";
+		var pspt = passport.length >= 6 ? passport.substr(0,6)+"…" : passport;
+		/@([^*]+)/.test(passport);
+		var logdomain = RegExp.$1;
+		if(P_INFO && S_INFO ) {
+			var entrylink_html = '<a href=\"http://reg.163.com/Main.jsp?username='+passport+'\">进入通行证</a>',
+				ntes_nav_html = '<div class="NTES-nav-link-chexian"><a href="http://www.163.com/">网易首页</a>-<a href="http://news.163.com/">新闻</a>-<a href="http://sports.163.com/">体育</a>-<a href="http://sports.163.com/nba/">NBA</a>-<a href="http://ent.163.com/">娱乐</a>-<a href="http://money.163.com/">财经</a>-<a href="http://money.163.com/stock/">股票</a>-<a href="http://auto.163.com/" id="_link_auto">汽车</a>-<a href="http://tech.163.com/">科技</a>-<a href="http://mobile.163.com/">手机</a>-<a href="http://lady.163.com/">女人</a>-<a href="http://bbs.163.com/">论坛</a>-<a href="http://v.163.com/">视频</a>-<a href="http://g.163.com/a?CID=13579&Values=505269036&Redirect=http://www.familydoctor.com.cn/">健康</a>-<a href="http://house.163.com/" id="houseUrl">房产</a>-<a id="homeUrl" href="http://home.163.com/">家居</a>-<a href="http://edu.163.com/">教育</a>-<a href="http://book.163.com/">读书</a>-<a href="http://game.163.com/" id="_link_game">游戏</a>|</div>';
+			if(mailconfig[logdomain] != undefined) {
+				entrylink_html += '<a href=\"'+mailconfig[logdomain]+'\">进入邮箱</a>';
+			}
+			if(logdomain == "popo.163.com" || mailconfig[logdomain] != undefined) {
+				entrylink_html += '<a href="http://blog.163.com/passportIn.do?entry=163">进入博客</a><a href="http://photo.163.com/?username='+passport+'\">进入相册</a>';
+			}
+			entrylink_html += '<a href="http://yuehui.163.com/">进入约会</a><a href="http://t.163.com">进入微博</a><a href="http://caipiao.163.com/#from=dh">进入彩票</a><a href="http://baoxian.163.com/car/index.html?from=dh">进入车险</a><a href="http://baoxian.163.com/#from=dh">进入保险</a><a href="http://mall.163.com/#from=dh">进入商城</a>';
+			if(logdomain == "163.com" || logdomain == "126.com" || logdomain == "yeah.net") {
+				loginframe = '<iframe allowTransparency=\"true\" style=\"width:45px; height:20px; float:left; *margin-top:2px; vertical-align: middle;\" id=\"ifrmNtesMailInfo\" border=\"0\" src=\"http://p.mail.163.com/mailinfo/shownewmsg_www_0819.htm\" frameBorder=\"0\" scrolling=\"no\"></iframe>';
+			}
+			var login_html = '<div class=\"ntes-usercenter\"><div class=\"ntes-usercenter-logined\"><strong id=\"ntes_usercenter_name\" class=\"ntes-usercenter-name\" title=\"欢迎你，'+passport+'\">'+pspt+'</strong></div><div id=\"ntes_usercenter_entry\" class=\"ntes-usercenter-entry\"><span class=\"user-entry\">'+entrylink_html+'</span></div></div><span class="left c-b3">(</span>'+loginframe+'<span class="left c-b3"> | </span><span id="wbLoginAfter"><a href="http://t.163.com/?f=catopmicoblogmsg" class="NTES-nav-wbLogin" style="color:#f6f6f6;" title="进入网易微博">微博</a></span><span class="left c-b3">) | </span><a class=\"ntes-usercenter-loginout left\" href=\"http://reg.163.com/Logout.jsp?username='+passport+'\" target=\"_self\">退出</a></div>';
+			$(".NTES-nav-link")[0].innerHTML = ntes_nav_html;
+			$(".NTES-link")[0].innerHTML = login_html;
+			$("#ntes_usercenter_name").addEvent("click", function(e){
+				$("#ntes_usercenter_entry").style.display = $("#ntes_usercenter_entry").style.display == "block" ? "none" : "block";
+				e.preventDefault();
+				e.cancelBubble = true;
+				document.onclick = function(){
+					$("#ntes_usercenter_entry").style.display = "none";
+				}
+			})
+			NTES.ajax.importJs(url, function() {
+				if (typeof window.resultStatus != "undefined") {
+					if (NTES("#wbLoginAfter")) {
+						var userId = resultStatus.userId;
+						var wbName = resultStatus.name;
+						var wbNameMod = wbName.replace(/[^\x00-\xff]/g,"*?");
+						var xxlen = wbNameMod.substr(0,10).indexOf("*") < 0 ? 0 : wbNameMod.substr(0,10).match(/\*/ig).length;
+						var wbNameEnd = (wbNameMod.length <= 10) ? "" : "…";
+						var totalCount = (parseInt(resultStatus.htlCount) < 100) ? parseInt(resultStatus.htlCount) : "99";
+						var totalCountEnd = (parseInt(resultStatus.htlCount) < 100) ? totalCount : totalCount+"+";
+						if(xxlen > 0){
+							if(wbNameMod.substr(9,1) == "?"){
+								wbName = wbName.substr(0,10-xxlen) + wbNameEnd;
+							}else{
+								wbName = wbName.substr(0,9-xxlen) + wbNameEnd;
+							}
+						}else{
+							wbName = wbName.substr(0,10) + wbNameEnd;
+						}
+						if (totalCount > 0) {
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/?f=catopmicoblogmsg.News' class='NTES-nav-wbMsg fB' style='color:#ba2636;' title='" + wbName + "新消息："+ totalCountEnd +"'>"+ totalCountEnd +"</a>";
+						}else{
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/?f=catopmicoblogmsg.enter' class='NTES-nav-wbLogin' style='color:#f6f6f6;' title='进入网易微博'>微博</a>";
+						}
+						if(userId == 0){
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/service/autoOpenAccount?autoFollow=1&needRedirect=1&f=catopmicoblogmsg.open' class='NTES-nav-wbLogin' style='color:#f6f6f6;' title='开通网易微博'>微博</a>";
+						}
+					};
+				};
+			}, "UTF-8");
+		};
+	}
+})
+//]]>
+</script>
+<div class="ad960_70">
+<div class="ad_750">
+<iframe src="http://g.163.com/r?site=netease&affiliate=163&cat=article&type=column750x70&location=1" width="750" height="70" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
+<div class="ad_200">
+<iframe src="http://g.163.com/r?site=netease&affiliate=163&cat=article&type=logo200x70&location=1" width="200" height="70" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
+</div>
+<!--
+<div class="box-ad">
+<div class="ad125"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic3.gif" /></div>
+<div class="ad660"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic4.gif" /></div>
+<div class="ad125"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic3.gif" /></div>
+</div>
+-->
+<span class="blank9"></span>
+<style type="text/css">
+/* 频道导航 */
+.channel {width:960px; height:32px; margin:0 auto; line-height:21px;}
+.channel h1 {width:107px; height:24px; float:left; overflow:hidden; margin:2px 19px 0 2px;}
+.channel h2 { float:left; margin-right:19px;}
+.channel h3 {float:left; margin-top:10px; line-height: 24px;}
+.channel .focus {float:left; overflow:hidden; text-align:left; margin-top:10px;}
+.channel .focus a {padding-right:6px;}
+.channel .weather {height:21px; float:right; padding:10px 0 0 0; overflow:hidden;width:120px;}
+</style>
+<!-- 导航栏开始 -->
+<div class="channel">
+    <h1><a href="http://news.163.com/" id="top"><img src="http://img1.cache.netease.com/cnews/img09/logo_107.gif" alt="网易新闻" width="107" height="24" /><br />网易新闻</a></h1>
+    <h2><a href="http://news.163.com/rank/"><img src="http://img1.cache.netease.com/cnews/img10/channelLogo2010/img_xwphb.jpg" height="26" alt="新闻排行榜" /></a></h2>
+    <h3 class="cBlack"><a href="http://www.163.com/">网易首页</a> > <a href="http://news.163.com/">新闻中心</a> > <a href="http://news.163.com/rank/">新闻排行榜</a></h3>
+    <div class="top_search">
+        <form target="_blank" id="formtop" name="nisearch_top" method="get" action="http://news.yodao.com/search">
+    <input type="hidden" value="news.163" name="keyfrom"/>  
+    <input type="hidden" value="user163" name="suser"/>
+    <input type="hidden" value="gbk" name="ue"/>
+    <label><span class="hidden">搜索</span><input type="text" class="textBox" value="请输入关键词" onfocus="this.value=''" id="searchInput_top" name="q"/></label>
+    <noscript><select name="site" class="left">
+    <option value="网易" selected="selected">新闻</option>
+    <option value="">网页</option>
+    </select></noscript> 
+    <div id="divSelect" class="left">
+    <input id="siteName" type="hidden" value="网易" name="site" /><div id="select_area" class="select_box"><span id="selected" class="search_site">新闻</span><div id="select_main" class="select_list"><a title="网易">新闻</a><a title="">网页</a></div></div>
+    </div>  
+    <input type="submit" class="btn" value="搜索" name="Submit"/><input type="hidden" value="page" id="in" name="in"/>
+    </form>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    (function NTES_Nav(){
+    function $_G(id){
+    return document.getElementById(id);
+    }
+    function clickselect(e){
+    e = e || window.event;
+    e.cancelBubble = true;
+    var name = this.innerHTML;
+    var txt = document.createTextNode(name);
+    selected.removeChild(selected.firstChild);
+    selected.appendChild(txt);
+    select_main.style.display = "none";
+    var title = this.getAttribute("title");
+    $_G("siteName").value = title;
+    if (title == "网易") {
+    document.nisearch_top.action = "http://news.yodao.com/search";
+    }
+    else {document.nisearch_top.action = "http://www.yodao.com/search";
+    }
+    }
+    function a_mouseover () {
+    this.className = "active";
+    }
+    function a_mouseout () {
+    this.className = "";
+    }
+    $_G("divSelect").innerHTML = '<input id="siteName" type="hidden" value="网易" name="site" /><div id="select_area" class="select_box"><span id="selected" class="search_site">新闻</span><div id="select_main" class="select_list"><a title="网易">新闻</a><a title="">网页</a></div></div>';
+    var select_area = $_G("select_area"), selected = $_G("selected"), select_main = $_G("select_main"), select_list = select_main.getElementsByTagName("a"), len = select_list.length;
+    select_area.onclick = select_main.onmouseover = function(){
+    select_main.style.display = "block";
+    }
+    select_main.onmouseout = function(){
+    select_main.style.display = "none";
+    }
+    for (var i = 0; i < len; i++) {
+    select_list[i].onclick = clickselect;
+    select_list[i].onmouseover = a_mouseover;
+    select_list[i].onmouseout = a_mouseout;
+    }
+    })();
+    //]]>
+    </script>
+</div>
+<!-- 导航栏结束 -->
+<!-- 二级导航开始 -->
+<div class="nav_channel">
+<span class="nav"><a href="http://news.163.com/latest/" class="firstNode">最新</a> <a href="http://news.163.com/rank/">排行</a> <a href="http://news.163.com/domestic/">国内</a> <a href="http://news.163.com/world/">国际</a> <a href="http://news.163.com/shehui/">社会</a> <a href="http://news.163.com/review/">评论</a> <a href="http://focus.news.163.com/">深度</a> <a href="http://war.news.163.com/">军事</a> <a href="http://history.news.163.com/">历史</a> <a href="http://discover.news.163.com/">探索</a> <a href="http://news.163.com/photo/">图片</a> <a href="http://blog.163.com/blogs/">博客</a> <a href="http://media.163.com/">媒体</a> <a href="http://v.news.163.com/">视频</a> <a href="http://popme.163.com/jdu/5433_090227.html">公益</a> <a href="http://help.3g.163.com/">手机版</a></span>
+<span class="rightS"></span>
+</div>
+<!-- 二级导航开始 --><div class="area areabg1">
+<div class="titleBar"><h2>校园</h2><div class="more">&nbsp;</div></div>
+<div class="area-half left">
+<div class="tabBox">
+<div class="title-tab"><h2>点击榜</h2><ul class="tabNav"><li class="active">1小时前点击排行</li><li>24小时点击排行</li><li>本周点击排行</li></ul></div>
+<div class="tabContents active">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th><th width="35">趋势</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://daxue.163.com/13/0116/17/8LC0NOD700913JC5.html">盘点韩国演艺圈的名校校花代表</a></td>
+<td class="cBlue">505971</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://daxue.163.com/13/0105/17/8KFMHGOO00913JC5.html">盘点那些无节操的校园神级PS</a></td>
+<td class="cBlue">499865</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://daxue.163.com/13/0110/21/8KSVGD4Q00913JC5.html">王宝强超贱表情走红 引网友神PS</a></td>
+<td class="cBlue">224706</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://daxue.163.com/13/0115/20/8L9NNU7000913JC5.html">女生演绎"十三钗" 风情万种不输谋女郎</a></td>
+<td class="cBlue">41593</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://daxue.163.com/13/0114/16/8L6OQ0SL00913JC5.html">揭秘国内最美校花Top30 奶茶妹妹第一</a></td>
+<td class="cBlue">12009</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://daxue.163.com/13/0111/17/8KV3KM4K00913JC5.html">30位网友晒爸妈校园旧照 帅哥美女云集</a></td>
+<td class="cBlue">8205</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://daxue.163.com/13/0116/10/8LB91G9L00913J5O.html">大学生醉驾逞能骑摩托撞汽车 "玩"掉名企工作</a></td>
+<td class="cBlue">1424</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://daxue.163.com/13/0116/11/8LBA2C8100913J5O.html">大学图书馆占座出奇招：桌面贴"招媳妇"告示</a></td>
+<td class="cBlue">1409</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://daxue.163.com/12/1224/15/8JGJ3C9L00913JC5.html">奶茶MM近照曝光 网友赞：像刘亦菲</a></td>
+<td class="cBlue">821</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://daxue.163.com/11/1231/15/7MK39QDJ00913J65.html">日本女留学生的“混乱”私生活(组图)</a></td>
+<td class="cBlue">588</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1227/17/8JOH433B00913J5O.html">大二男生为获网络积分 发布多张与女友淫秽图片</a></td>
+<td class="cBlue">536</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0107/18/8KKSE75400913JC5.html">大学囧图：男生宿舍上演甄嬛传</a></td>
+<td class="cBlue">334</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/10/8JQACPS500913J5O.html">南大"标准哥"惹麻烦 侵老师邮箱要被开除</a></td>
+<td class="cBlue">290</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/17/8LBVGS3N00913J5O.html">大学生给电动车充电 排插起火烧毁整间公寓</a></td>
+<td class="cBlue">254</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8JLDTT00913J5O.html">大学盗用学生名义贷款买房 致其难享首套房优惠</a></td>
+<td class="cBlue">192</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0103/20/8KARSGOS00913JC5.html">各国风情校花迷乱私生活 逮谁电谁</a></td>
+<td class="cBlue">164</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/09/8LDND1D800913J5O.html">山西大三学生拍《楼管阿姨》肖像组照走红网络</a></td>
+<td class="cBlue">156</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0113/18/8L4CM4KS00913JC5.html">盘点历年来那些走红网络的校园萌妹子</a></td>
+<td class="cBlue">148</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1226/17/8JLSRS3600913JC5.html">大学囧图：屌丝也是有故事的人儿</a></td>
+<td class="cBlue">145</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1025/17/8EM8MUP700913JC5.html">大学女生的那些极品破事(组图)</a></td>
+<td class="cBlue">111</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/11/8JQE5G2B00913JC5.html">日本校花大赛落幕 21岁大二美女封后</a></td>
+<td class="cBlue">106</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1101/13/8F7QV29Q00913JC5.html">网友实拍奶茶MM最新照：长变样了？</a></td>
+<td class="cBlue">101</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/17/8L9EOFCE00913J5R.html">新疆一高校校园现霸气横幅：处分包邮送到家</a></td>
+<td class="cBlue">91</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0906/14/8ANOCDSG00913JC5.html">中外"清凉型"校园女星 气质超凡脱俗</a></td>
+<td class="cBlue">82</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0302/16/7RJR9KFM00913JC5.html">成都理工大学内衣秀现场 爆乳露底尺度大</a></td>
+<td class="cBlue">81</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0802/17/87TV6TAQ00913JC5.html">90后电眼美女大学生 展清纯性感双面</a></td>
+<td class="cBlue">79</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1220/20/8J6ND7I800913JC5.html">网传小清新校花私照 清纯明媚大眼萌妹</a></td>
+<td class="cBlue">71</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/11/8LBAPEMI00913J5R.html">福建农林大学图书馆启用"选座系统"</a></td>
+<td class="cBlue">63</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0927/15/8CDV2HE300913JC5.html">实拍女大学生的疯狂宿舍生活（图）</a></td>
+<td class="cBlue">51</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/17/8JR1IVNJ00913JC5.html">糖水西施走红 清纯盖过奶茶妹</a></td>
+<td class="cBlue">48</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/11/8LDT6MPN00913J5R.html">山大期末考试出现神题：选出翘课最多的3名同学</a></td>
+<td class="cBlue">48</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1224/14/8JGDQ6J000913JC5.html">你中枪了吗？判断是否为女屌丝21个特征</a></td>
+<td class="cBlue">41</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/10/8KP5PT7B00913JC5.html">南方同学们冬天如何取暖 看各种神器</a></td>
+<td class="cBlue">40</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/11/8LDSQR6N00913J5O.html">火车邂逅男同学微博寻缘 人找到可女孩有男友了</a></td>
+<td class="cBlue">39</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0907/13/8AQ9B83T00913JC5.html">测乳间距弱爆了 唯美校花素颜靓翻天</a></td>
+<td class="cBlue">39</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1115/14/8GBV3U6400913JC5.html">校园里卖萌的楼管们</a></td>
+<td class="cBlue">38</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/09/8LDMFEMG00913J5O.html">女大学生打车遭司机骚扰续：已被注销营运资格</a></td>
+<td class="cBlue">37</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1229/15/8JTDD8M300913JC5.html">各种占座：霸气外漏 无人敢惹</a></td>
+<td class="cBlue">37</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/11/8LDTADK400913J5O.html">华科大校长“根叔”头像卡贴成高校热销年货</a></td>
+<td class="cBlue">36</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0726/11/87B8HBID00913JC5.html">90后大学生车模靠走秀赚学费（图）</a></td>
+<td class="cBlue">32</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0830/19/8A67EF7J00913JC5.html">军训惊现逆天装备 胶鞋内置科比战靴</a></td>
+<td class="cBlue">30</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/09/8LDM8V5M00913J5O.html">大学男生依赖父亲:见不着时定点呕吐如上闹钟</a></td>
+<td class="cBlue">29</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0724/15/876H2QLA00913JC5.html">泰国女生校服"紧""露" 被批太性感</a></td>
+<td class="cBlue">28</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1029/17/8F0I058U00913J5O.html">"奶茶MM"南京拍摄青奥短片 扎马尾甜美清纯(图</a></td>
+<td class="cBlue">26</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/15/8L6KSML400913J5R.html">江南大学2013年艺术类专业校考须网上报名、交费</a></td>
+<td class="cBlue">24</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0907/12/8AQ2I7KF00913JC5.html">揭秘NBA啦啦队潜规则 光鲜背后的辛酸</a></td>
+<td class="cBlue">24</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1127/09/8HACSHOP00913J5O.html">济宁职业学院回应郑媛媛不雅照:非团委副书记</a></td>
+<td class="cBlue">23</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0305/12/7RR4KFBA00913JC5.html">南京大屠杀前真实的"金陵十三钗"</a></td>
+<td class="cBlue">23</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1024/15/8EJDLOA400913JC5.html">女高中生化妆前和化妆后(组图)</a></td>
+<td class="cBlue">23</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0108/10/8KMKGBO100913JC5.html">北影毕业照海量曝光 许晴蒋雯丽同班</a></td>
+<td class="cBlue">22</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0401/15/7U0VSC2800913JC5.html">宅男最爱的全国各大高校校花私照</a></td>
+<td class="cBlue">21</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0920/11/8BRGIRLA00913J5O.html">翻版奶茶妹妹现军训 清纯微笑引嫉妒(图)</a></td>
+<td class="cBlue">19</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0815/11/88UR3FB900913JC5.html">重庆妹子刘怡潇 西南大学百变校花</a></td>
+<td class="cBlue">19</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/16/8L6LM4MT00913J5R.html">江南大学2013年艺术类专业本科招生简章</a></td>
+<td class="cBlue">18</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0106/15/8KHVC35V00913JC5.html">奶茶妹妹新年献惊艳歪脖舞</a></td>
+<td class="cBlue">17</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1219/14/8J3JDLAD00913JC5.html">北大男生教你翻一个高贵华丽的白眼</a></td>
+<td class="cBlue">16</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0807/15/88AIT77600913JC5.html">北体大翻版柳岩 身材火辣毫不逊色</a></td>
+<td class="cBlue">16</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/green.gif" alt="green" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1114/10/8G9198TG00913J5O.html">"考试表情图"走红网络 大学生热衷对号入座</a></td>
+<td class="cBlue">14</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1114/10/8G8UT3SJ00913J5O.html">“考试表情图”走红网络 大学生热衷对号入座</a></td>
+<td class="cBlue">13</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1019/18/8E6SCVFE00913JC5.html">中传“谋女郎”倪妮清新学生旧照</a></td>
+<td class="cBlue">12</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/10/8L60UQPB00913J5O.html">中山大学大三女生坠楼身亡 疑因学习压力大自杀</a></td>
+<td class="cBlue">11</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/11/8L8ONOP900913J5O.html">透视大学生宿舍人际关系：多重因素制约友谊</a></td>
+<td class="cBlue">11</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1218/14/8J0UVTBN00913JC5.html">囧图：总有一些同学的世界你不懂</a></td>
+<td class="cBlue">11</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/green.gif" alt="green" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/11/8LDT3PME00913J5O.html">网友吐槽：大学生假期实习咋能不被“卖”</a></td>
+<td class="cBlue">10</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1108/09/8FPFLD8G00913JC5.html">安放在胶囊公寓里的青春(组图)</a></td>
+<td class="cBlue">10</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/09/1201/10/5PEKVJUS00913J5O.html">调查：超八成北漂想过离开北京(组图)</a></td>
+<td class="cBlue">10</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8KFLAV00913J5O.html">省级"一把手"从大学毕业到正部级平均用26年</a></td>
+<td class="cBlue">10</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1130/18/8HJ38C7B00913JC5.html">猛！国内某大学老师竟持AK-47步枪授课</a></td>
+<td class="cBlue">10</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/green.gif" alt="green" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/11/1011/14/7G3EI1KF00913JC5.html">北影中戏历届校花今何在</a></td>
+<td class="cBlue">9</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/09/1205/18/5PPR7QS700913J66.html">网友称某大学校园犄角旮旯遍是避孕套(图)</a></td>
+<td class="cBlue">9</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1221/11/8J8DG07U00913JC5.html">全国首堂行为艺术课 学生吃生肉淋鸡蛋应考</a></td>
+<td class="cBlue">9</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/green.gif" alt="green" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1209/09/8I99GH4V00913J5O.html">台湾美女老师兼职当模特 拍性感照片引争议</a></td>
+<td class="cBlue">9</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0710/14/862CNUML00913JC5.html">为爱情休学一年 大四女生抱孩子拍毕业照</a></td>
+<td class="cBlue">9</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0906/10/8ANBAIF100913J66.html">北京语言大学</a></td>
+<td class="cBlue">8</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1220/20/8J6O94P400913K9P.html">中山大学开性教育课 学生提问一周自慰几次合适</a></td>
+<td class="cBlue">8</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0921/18/8BUPIBI300913JC5.html">台政大清纯萌妹虞成敬 网友叹想恋爱</a></td>
+<td class="cBlue">8</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1127/09/8HABPQON00913JC5.html">湖北大学生抗议公务员考试进行妇检</a></td>
+<td class="cBlue">8</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0802/16/87TQ0POF00913JC5.html">北体大美女黑丝写真 为奥运助阵加油</a></td>
+<td class="cBlue">8</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/14/8LBLP06K00913J5O.html">大学运动场课余时间对学生有偿开放引争议</a></td>
+<td class="cBlue">7</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0105/10/8KET4NKV00913J5O.html">河南商丘师院女生平安夜被老师强奸 教师被拘</a></td>
+<td class="cBlue">7</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0113/09/8L3BQAR500913J5O.html">女大学生称被的哥摸大腿 官方:系道德问题管不了</a></td>
+<td class="cBlue">7</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/11/0923/12/7EKUJH7A00913JC5.html">实拍军艺十大美女校花</a></td>
+<td class="cBlue">6</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/10/8KUBGS5000913J5R.html">科大安大微博“传情” 合肥学院“吃醋了”</a></td>
+<td class="cBlue">6</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1230/23/8K0QPMAC00913K9P.html">7名男子持刀入校砍伤学生 十几名教师挺身而出</a></td>
+<td class="cBlue">6</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/10/0726/09/6CGROI9V00913J5O.html">兄妹乱伦后 哥哥杀死妹妹男友</a></td>
+<td class="cBlue">5</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/10/8L6347O700913J5O.html">大学生盘点自习室"公敌" 占座与秀恩爱入选</a></td>
+<td class="cBlue">5</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/10/0407/09/63LHLUDM00913J5O.html">河北魏县选160名女教师做礼仪小姐引非议(图)</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/10/1116/14/6LK9BN0I00913J66.html">清华园第一座楼凌晨失火 木结构基本被烧毁</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1101/17/8F8ALO5800913J5R.html">女大学生开房被酒店男服务员偷拍敲诈</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1203/21/8HR4ATGL00913J60.html">美国两学生因打架被罚操场拉手坐1小时</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1225/10/8JIJ305P00913J5O.html">90后学生首次性活动为18岁 选择钟点房或日租房</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0817/10/893QNIG400913JC5.html">盘点：北京电影学院历届校花 (组图)</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/11/0105/10/6PKLHI8F00913KM9.html">大师上学日记：胡适爱打牌 季羡林讨厌考试</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1122/16/8GU9PUMM00913JC5.html">徐峥绯闻对象 网友捧为中戏90后校花</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1221/12/8J8ENF4I00913J5O.html">台湾15岁高中情侣在同学起哄下教室内发生关系</a></td>
+<td class="cBlue">4</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSPE1GI00913J5R.html">云南农业大学男生宿舍起火 床架被褥等都被烧毁</a></td>
+<td class="cBlue">3</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/10/8KUB793H00913J5R.html">画院院长用PS裸照胁迫奸淫28名女性 含幼女5人</a></td>
+<td class="cBlue">3</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/10/0322/11/62CJ1E6D00913J5O.html">90后女孩雇人"破处" 只为证明自己"非主流"(</a></td>
+<td class="cBlue">3</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/10/1231/11/6P7SO5A000913J5O.html">90后大学生人体模特：我也是被逼无奈(组图)</a></td>
+<td class="cBlue">3</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/10/0617/10/69CG59QH00913KA1.html">走进武大Cosplay：谁的生活这样狂</a></td>
+<td class="cBlue">3</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://daxue.163.com/13/0105/17/8KFMHGOO00913JC5.html">盘点那些无节操的校园神级PS</a></td>
+<td class="cBlue">2126867</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://daxue.163.com/13/0110/21/8KSVGD4Q00913JC5.html">王宝强超贱表情走红 引网友神PS</a></td>
+<td class="cBlue">986589</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://daxue.163.com/13/0115/20/8L9NNU7000913JC5.html">女生演绎"十三钗" 风情万种不输谋女郎</a></td>
+<td class="cBlue">670187</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://daxue.163.com/13/0116/17/8LC0NOD700913JC5.html">盘点韩国演艺圈的名校校花代表</a></td>
+<td class="cBlue">506124</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://daxue.163.com/13/0114/16/8L6OQ0SL00913JC5.html">揭秘国内最美校花Top30 奶茶妹妹第一</a></td>
+<td class="cBlue">463263</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://daxue.163.com/13/0111/17/8KV3KM4K00913JC5.html">30位网友晒爸妈校园旧照 帅哥美女云集</a></td>
+<td class="cBlue">72636</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://daxue.163.com/13/0107/18/8KKSE75400913JC5.html">大学囧图：男生宿舍上演甄嬛传</a></td>
+<td class="cBlue">3807</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://daxue.163.com/12/1224/15/8JGJ3C9L00913JC5.html">奶茶MM近照曝光 网友赞：像刘亦菲</a></td>
+<td class="cBlue">3599</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://daxue.163.com/11/1231/15/7MK39QDJ00913J65.html">日本女留学生的“混乱”私生活(组图)</a></td>
+<td class="cBlue">2960</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://daxue.163.com/12/1227/17/8JOH433B00913J5O.html">大二男生为获网络积分 发布多张与女友淫秽图片</a></td>
+<td class="cBlue">2150</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8JLDTT00913J5O.html">大学盗用学生名义贷款买房 致其难享首套房优惠</a></td>
+<td class="cBlue">2120</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/10/8KP5PT7B00913JC5.html">南方同学们冬天如何取暖 看各种神器</a></td>
+<td class="cBlue">1697</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/11/8LBA2C8100913J5O.html">大学图书馆占座出奇招：桌面贴"招媳妇"告示</a></td>
+<td class="cBlue">1671</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/10/8LB91G9L00913J5O.html">大学生醉驾逞能骑摩托撞汽车 "玩"掉名企工作</a></td>
+<td class="cBlue">1532</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/10/8JQACPS500913J5O.html">南大"标准哥"惹麻烦 侵老师邮箱要被开除</a></td>
+<td class="cBlue">1184</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0103/20/8KARSGOS00913JC5.html">各国风情校花迷乱私生活 逮谁电谁</a></td>
+<td class="cBlue">908</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/17/8L9EOFCE00913J5R.html">新疆一高校校园现霸气横幅：处分包邮送到家</a></td>
+<td class="cBlue">776</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1025/17/8EM8MUP700913JC5.html">大学女生的那些极品破事(组图)</a></td>
+<td class="cBlue">757</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0106/15/8KHVC35V00913JC5.html">奶茶妹妹新年献惊艳歪脖舞</a></td>
+<td class="cBlue">542</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1101/13/8F7QV29Q00913JC5.html">网友实拍奶茶MM最新照：长变样了？</a></td>
+<td class="cBlue">539</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0927/15/8CDV2HE300913JC5.html">实拍女大学生的疯狂宿舍生活（图）</a></td>
+<td class="cBlue">509</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1226/17/8JLSRS3600913JC5.html">大学囧图：屌丝也是有故事的人儿</a></td>
+<td class="cBlue">439</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0113/18/8L4CM4KS00913JC5.html">盘点历年来那些走红网络的校园萌妹子</a></td>
+<td class="cBlue">430</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0302/16/7RJR9KFM00913JC5.html">成都理工大学内衣秀现场 爆乳露底尺度大</a></td>
+<td class="cBlue">378</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1024/15/8EJDLOA400913JC5.html">女高中生化妆前和化妆后(组图)</a></td>
+<td class="cBlue">346</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1220/20/8J6ND7I800913JC5.html">网传小清新校花私照 清纯明媚大眼萌妹</a></td>
+<td class="cBlue">340</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/17/8JR1IVNJ00913JC5.html">糖水西施走红 清纯盖过奶茶妹</a></td>
+<td class="cBlue">329</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/17/8LBVGS3N00913J5O.html">大学生给电动车充电 排插起火烧毁整间公寓</a></td>
+<td class="cBlue">306</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1114/09/8G8U009V00913JC5.html">大学囧图：女玩家淡定游戏无视室友秀甜蜜</a></td>
+<td class="cBlue">301</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0108/10/8KMKGBO100913JC5.html">北影毕业照海量曝光 许晴蒋雯丽同班</a></td>
+<td class="cBlue">258</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/11/8LBAPEMI00913J5R.html">福建农林大学图书馆启用"选座系统"</a></td>
+<td class="cBlue">255</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1224/14/8JGDQ6J000913JC5.html">你中枪了吗？判断是否为女屌丝21个特征</a></td>
+<td class="cBlue">251</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0305/12/7RR4KFBA00913JC5.html">南京大屠杀前真实的"金陵十三钗"</a></td>
+<td class="cBlue">244</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8KFLAV00913J5O.html">省级"一把手"从大学毕业到正部级平均用26年</a></td>
+<td class="cBlue">239</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0906/14/8ANOCDSG00913JC5.html">中外"清凉型"校园女星 气质超凡脱俗</a></td>
+<td class="cBlue">230</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0802/17/87TV6TAQ00913JC5.html">90后电眼美女大学生 展清纯性感双面</a></td>
+<td class="cBlue">184</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1019/18/8E6SCVFE00913JC5.html">中传“谋女郎”倪妮清新学生旧照</a></td>
+<td class="cBlue">183</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0702/17/85E5DO8900913JC5.html">疯狂毕业季:我们一起疯的岁月(集锦)</a></td>
+<td class="cBlue">175</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1216/18/8IS6U5BU00913JC5.html">屌丝自拍出卖室友 那些令人捧腹的大学糗事</a></td>
+<td class="cBlue">173</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/15/8L6KSML400913J5R.html">江南大学2013年艺术类专业校考须网上报名、交费</a></td>
+<td class="cBlue">161</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1201/15/8HLBOBSL00913JC5.html">美女老师也拯救不了大学生了</a></td>
+<td class="cBlue">161</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/11/8JQE5G2B00913JC5.html">日本校花大赛落幕 21岁大二美女封后</a></td>
+<td class="cBlue">157</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/09/8LDND1D800913J5O.html">山西大三学生拍《楼管阿姨》肖像组照走红网络</a></td>
+<td class="cBlue">156</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1105/10/8FHPRKDV00913JC5.html">美女自拍照 宅男叹女神级校花在民间</a></td>
+<td class="cBlue">154</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1029/17/8F0I058U00913J5O.html">"奶茶MM"南京拍摄青奥短片 扎马尾甜美清纯(图</a></td>
+<td class="cBlue">152</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1113/20/8G7ESKKE00913JC5.html">网友推高校"标准脸"  你像哪个大学的？</a></td>
+<td class="cBlue">146</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0830/19/8A67EF7J00913JC5.html">军训惊现逆天装备 胶鞋内置科比战靴</a></td>
+<td class="cBlue">144</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0907/13/8AQ9B83T00913JC5.html">测乳间距弱爆了 唯美校花素颜靓翻天</a></td>
+<td class="cBlue">141</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1130/18/8HJ38C7B00913JC5.html">猛！国内某大学老师竟持AK-47步枪授课</a></td>
+<td class="cBlue">137</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/11/8L8ONOP900913J5O.html">透视大学生宿舍人际关系：多重因素制约友谊</a></td>
+<td class="cBlue">124</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1207/17/8I4VP2R000913JC5.html">网传中国高校DOTA排行</a></td>
+<td class="cBlue">122</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1229/15/8JTDD8M300913JC5.html">各种占座：霸气外漏 无人敢惹</a></td>
+<td class="cBlue">109</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1218/14/8J0UVTBN00913JC5.html">囧图：总有一些同学的世界你不懂</a></td>
+<td class="cBlue">106</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1206/15/8I24QOVP00913JC5.html">这样游戏不累吗？玩家的高难度动作</a></td>
+<td class="cBlue">105</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/17/8L9EL1TH00913J5O.html">大学生不知书信格式 收发室百张贺卡"无家归"</a></td>
+<td class="cBlue">104</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1119/14/8GM9DUJE00913JC5.html">大四女生图片记录生活 小清新戳泪点</a></td>
+<td class="cBlue">95</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1016/15/8DUSDKCQ00913JC5.html">大学生假期放纵 称"神一样的存在"（图）</a></td>
+<td class="cBlue">85</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1127/09/8HACSHOP00913J5O.html">济宁职业学院回应郑媛媛不雅照:非团委副书记</a></td>
+<td class="cBlue">80</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0817/10/893QNIG400913JC5.html">盘点：北京电影学院历届校花 (组图)</a></td>
+<td class="cBlue">78</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/11/1215/16/7LB2MKP000913JC5.html">文章白百合唐嫣 中戏02级表演系的同学们</a></td>
+<td class="cBlue">77</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0726/11/87B8HBID00913JC5.html">90后大学生车模靠走秀赚学费（图）</a></td>
+<td class="cBlue">73</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/16/8L6LM4MT00913J5R.html">江南大学2013年艺术类专业本科招生简章</a></td>
+<td class="cBlue">71</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0822/17/89HGNMF800913J5O.html">国民校花大尺度来袭 极致诱惑(图)</a></td>
+<td class="cBlue">65</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0807/15/88AIT77600913JC5.html">北体大翻版柳岩 身材火辣毫不逊色</a></td>
+<td class="cBlue">60</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1025/16/8EM5BSEE00913J5O.html">国内保镖学校训练堪比特种部队(图)</a></td>
+<td class="cBlue">60</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1009/16/8DCU6RT000913JC5.html">走进大学男生“伪娘团”的真实生活</a></td>
+<td class="cBlue">59</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1123/18/8H0VU64100913JC5.html">30位大四美眉晒大学遗憾 你中枪了没？</a></td>
+<td class="cBlue">56</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1203/18/8HQPNQHQ00913JC5.html">人类已经无法阻止美院学生做模型了</a></td>
+<td class="cBlue">56</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0907/18/8AQQEKHU00913JC5.html">北大民国时旧照 诉说博雅沉静之美</a></td>
+<td class="cBlue">56</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0221/16/7QQ5QEPQ00913J5O.html">台湾少女地铁里发起"无裤日" 引男乘客骚动</a></td>
+<td class="cBlue">53</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1114/10/8G9198TG00913J5O.html">"考试表情图"走红网络 大学生热衷对号入座</a></td>
+<td class="cBlue">51</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/11/8LDT6MPN00913J5R.html">山大期末考试出现神题：选出翘课最多的3名同学</a></td>
+<td class="cBlue">48</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSP7J2800913J5O.html">女生宿舍现雷人标语：用男星照片叫自己起床</a></td>
+<td class="cBlue">48</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0531/11/82R291RQ00913JC5.html">"求强奸""求你妹" 大学重口味毕业照</a></td>
+<td class="cBlue">48</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1127/18/8HBA6J0300913JC5.html">谢娜大学私密照曝光 为塑型曾臀部绑枕头</a></td>
+<td class="cBlue">48</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8LE5KH00913J5O.html">四川校园保安含笑打死流浪狗 微博争议后被停职</a></td>
+<td class="cBlue">47</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0912/15/8B796AL200913JC5.html">最励志大学生活指南 别被大学给上了</a></td>
+<td class="cBlue">45</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/09/1201/10/5PEKVJUS00913J5O.html">调查：超八成北漂想过离开北京(组图)</a></td>
+<td class="cBlue">43</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0314/15/7SIL6D9Q00913JC5.html">中国超模大赛现场 美女泳装大PK</a></td>
+<td class="cBlue">42</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1112/14/8G4APLSL00913JC5.html">盘点中国美女教师 清纯可爱</a></td>
+<td class="cBlue">42</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1115/14/8GBV3U6400913JC5.html">校园里卖萌的楼管们</a></td>
+<td class="cBlue">41</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0401/15/7U0VSC2800913JC5.html">宅男最爱的全国各大高校校花私照</a></td>
+<td class="cBlue">41</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/11/8LDSQR6N00913J5O.html">火车邂逅男同学微博寻缘 人找到可女孩有男友了</a></td>
+<td class="cBlue">39</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/11/0909/18/7DHESA8D00913JC5.html">央视16位美女主播的真实学历</a></td>
+<td class="cBlue">39</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1211/14/8IETUO7500913JC5.html">"最帅主播"胡悦鑫中学照曝光 神似韩庚</a></td>
+<td class="cBlue">39</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/10/1231/11/6P7SO5A000913J5O.html">90后大学生人体模特：我也是被逼无奈(组图)</a></td>
+<td class="cBlue">38</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0113/16/7NLN33VQ00913KMB.html">二代奶茶MM被保送清华 错过《十三钗》　　　</a></td>
+<td class="cBlue">37</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/09/8LDMFEMG00913J5O.html">女大学生打车遭司机骚扰续：已被注销营运资格</a></td>
+<td class="cBlue">37</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0117/11/8LDTADK400913J5O.html">华科大校长“根叔”头像卡贴成高校热销年货</a></td>
+<td class="cBlue">36</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0919/18/8BPKNC5K00913JC5.html">浙江传媒学院新生报到 美女如云(图)</a></td>
+<td class="cBlue">36</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0906/10/8ANBAIF100913J66.html">北京语言大学</a></td>
+<td class="cBlue">35</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1114/10/8G8UT3SJ00913J5O.html">“考试表情图”走红网络 大学生热衷对号入座</a></td>
+<td class="cBlue">35</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1230/23/8K0QPMAC00913K9P.html">7名男子持刀入校砍伤学生 十几名教师挺身而出</a></td>
+<td class="cBlue">35</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0817/18/894LEHB900913JC5.html">街拍日本女生校裙 再短也不怕走光</a></td>
+<td class="cBlue">35</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1101/17/8F8ALO5800913J5R.html">女大学生开房被酒店男服务员偷拍敲诈</a></td>
+<td class="cBlue">34</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0821/15/89EN1U4V00913JC5.html">屌丝男寝要逆天 霸气三国杀Cosplay</a></td>
+<td class="cBlue">34</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/10/8JQAJ45E00913J5O.html">"华师萌厨娘"红校园 男生专门跑来喝她的豆浆</a></td>
+<td class="cBlue">34</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1209/09/8I99GH4V00913J5O.html">台湾美女老师兼职当模特 拍性感照片引争议</a></td>
+<td class="cBlue">32</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1221/11/8J8DG07U00913JC5.html">全国首堂行为艺术课 学生吃生肉淋鸡蛋应考</a></td>
+<td class="cBlue">32</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0107/11/8KK5GB1400913J5O.html">调查称学信网存致命漏洞 学历能“套号”</a></td>
+<td class="cBlue">32</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://daxue.163.com/13/0105/17/8KFMHGOO00913JC5.html">盘点那些无节操的校园神级PS</a></td>
+<td class="cBlue">32525020</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://daxue.163.com/13/0110/21/8KSVGD4Q00913JC5.html">王宝强超贱表情走红 引网友神PS</a></td>
+<td class="cBlue">5059418</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://daxue.163.com/13/0114/16/8L6OQ0SL00913JC5.html">揭秘国内最美校花Top30 奶茶妹妹第一</a></td>
+<td class="cBlue">2742339</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://daxue.163.com/13/0111/17/8KV3KM4K00913JC5.html">30位网友晒爸妈校园旧照 帅哥美女云集</a></td>
+<td class="cBlue">1897820</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://daxue.163.com/13/0107/18/8KKSE75400913JC5.html">大学囧图：男生宿舍上演甄嬛传</a></td>
+<td class="cBlue">1107931</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://daxue.163.com/13/0109/10/8KP5PT7B00913JC5.html">南方同学们冬天如何取暖 看各种神器</a></td>
+<td class="cBlue">735843</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://daxue.163.com/13/0115/20/8L9NNU7000913JC5.html">女生演绎"十三钗" 风情万种不输谋女郎</a></td>
+<td class="cBlue">670247</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://daxue.163.com/13/0116/17/8LC0NOD700913JC5.html">盘点韩国演艺圈的名校校花代表</a></td>
+<td class="cBlue">506124</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://daxue.163.com/13/0108/10/8KMKGBO100913JC5.html">北影毕业照海量曝光 许晴蒋雯丽同班</a></td>
+<td class="cBlue">388217</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://daxue.163.com/13/0106/15/8KHVC35V00913JC5.html">奶茶妹妹新年献惊艳歪脖舞</a></td>
+<td class="cBlue">329771</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0103/20/8KARSGOS00913JC5.html">各国风情校花迷乱私生活 逮谁电谁</a></td>
+<td class="cBlue">103009</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0113/18/8L4CM4KS00913JC5.html">盘点历年来那些走红网络的校园萌妹子</a></td>
+<td class="cBlue">42728</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/10/8KUB793H00913J5R.html">画院院长用PS裸照胁迫奸淫28名女性 含幼女5人</a></td>
+<td class="cBlue">33935</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0113/09/8L3BQAR500913J5O.html">女大学生称被的哥摸大腿 官方:系道德问题管不了</a></td>
+<td class="cBlue">24835</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1224/15/8JGJ3C9L00913JC5.html">奶茶MM近照曝光 网友赞：像刘亦菲</a></td>
+<td class="cBlue">20024</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1227/17/8JOH433B00913J5O.html">大二男生为获网络积分 发布多张与女友淫秽图片</a></td>
+<td class="cBlue">18220</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/11/1231/15/7MK39QDJ00913J65.html">日本女留学生的“混乱”私生活(组图)</a></td>
+<td class="cBlue">14144</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSP7J2800913J5O.html">女生宿舍现雷人标语：用男星照片叫自己起床</a></td>
+<td class="cBlue">13597</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/10/8JQACPS500913J5O.html">南大"标准哥"惹麻烦 侵老师邮箱要被开除</a></td>
+<td class="cBlue">9432</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1114/09/8G8U009V00913JC5.html">大学囧图：女玩家淡定游戏无视室友秀甜蜜</a></td>
+<td class="cBlue">7451</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1226/17/8JLSRS3600913JC5.html">大学囧图：屌丝也是有故事的人儿</a></td>
+<td class="cBlue">5348</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/11/8KUDCA5E00913J5O.html">报告称清华北大浙大3校校友财富合计近6千亿元</a></td>
+<td class="cBlue">4434</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/15/8KPOO67K00913J5O.html">广东一学院雷人文件:学生开房将被认定为买娼</a></td>
+<td class="cBlue">3829</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1025/17/8EM8MUP700913JC5.html">大学女生的那些极品破事(组图)</a></td>
+<td class="cBlue">3541</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1101/13/8F7QV29Q00913JC5.html">网友实拍奶茶MM最新照：长变样了？</a></td>
+<td class="cBlue">3025</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/08/8KU57B8L00913J5O.html">保洁员高校辅导学生高数6年 曾被误认为教授</a></td>
+<td class="cBlue">2986</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1019/18/8E6SCVFE00913JC5.html">中传“谋女郎”倪妮清新学生旧照</a></td>
+<td class="cBlue">2590</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/10/8KUBGS5000913J5R.html">科大安大微博“传情” 合肥学院“吃醋了”</a></td>
+<td class="cBlue">2505</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8JLDTT00913J5O.html">大学盗用学生名义贷款买房 致其难享首套房优惠</a></td>
+<td class="cBlue">2200</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0302/16/7RJR9KFM00913JC5.html">成都理工大学内衣秀现场 爆乳露底尺度大</a></td>
+<td class="cBlue">1924</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1216/18/8IS6U5BU00913JC5.html">屌丝自拍出卖室友 那些令人捧腹的大学糗事</a></td>
+<td class="cBlue">1877</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/17/8JR1IVNJ00913JC5.html">糖水西施走红 清纯盖过奶茶妹</a></td>
+<td class="cBlue">1810</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1024/15/8EJDLOA400913JC5.html">女高中生化妆前和化妆后(组图)</a></td>
+<td class="cBlue">1770</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/11/8LBA2C8100913J5O.html">大学图书馆占座出奇招：桌面贴"招媳妇"告示</a></td>
+<td class="cBlue">1671</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/10/8LB91G9L00913J5O.html">大学生醉驾逞能骑摩托撞汽车 "玩"掉名企工作</a></td>
+<td class="cBlue">1532</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0830/19/8A67EF7J00913JC5.html">军训惊现逆天装备 胶鞋内置科比战靴</a></td>
+<td class="cBlue">1523</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1224/14/8JGDQ6J000913JC5.html">你中枪了吗？判断是否为女屌丝21个特征</a></td>
+<td class="cBlue">1482</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0927/15/8CDV2HE300913JC5.html">实拍女大学生的疯狂宿舍生活（图）</a></td>
+<td class="cBlue">1417</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1113/20/8G7ESKKE00913JC5.html">网友推高校"标准脸"  你像哪个大学的？</a></td>
+<td class="cBlue">1320</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/10/8KUCQN2S00913J5O.html">网友自编2012微博考卷 不少高校学生纷纷"挂科</a></td>
+<td class="cBlue">1177</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1220/20/8J6ND7I800913JC5.html">网传小清新校花私照 清纯明媚大眼萌妹</a></td>
+<td class="cBlue">1112</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0907/18/8AQQEKHU00913JC5.html">北大民国时旧照 诉说博雅沉静之美</a></td>
+<td class="cBlue">1100</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0906/14/8ANOCDSG00913JC5.html">中外"清凉型"校园女星 气质超凡脱俗</a></td>
+<td class="cBlue">1050</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1218/14/8J0UVTBN00913JC5.html">囧图：总有一些同学的世界你不懂</a></td>
+<td class="cBlue">1028</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0702/17/85E5DO8900913JC5.html">疯狂毕业季:我们一起疯的岁月(集锦)</a></td>
+<td class="cBlue">870</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/17/8L9EOFCE00913J5R.html">新疆一高校校园现霸气横幅：处分包邮送到家</a></td>
+<td class="cBlue">855</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1130/18/8HJ38C7B00913JC5.html">猛！国内某大学老师竟持AK-47步枪授课</a></td>
+<td class="cBlue">853</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0802/17/87TV6TAQ00913JC5.html">90后电眼美女大学生 展清纯性感双面</a></td>
+<td class="cBlue">782</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0907/13/8AQ9B83T00913JC5.html">测乳间距弱爆了 唯美校花素颜靓翻天</a></td>
+<td class="cBlue">702</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1029/17/8F0I058U00913J5O.html">"奶茶MM"南京拍摄青奥短片 扎马尾甜美清纯(图</a></td>
+<td class="cBlue">658</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0807/15/88AIT77600913JC5.html">北体大翻版柳岩 身材火辣毫不逊色</a></td>
+<td class="cBlue">648</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSPC1N300913J5R.html">中山大学60余学生食堂就餐后腹泻 相关部门介入</a></td>
+<td class="cBlue">636</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/17/8KPUL1NV00913J5O.html">懂天文晓地理"小黄鸡"走红 网友：天才在民间</a></td>
+<td class="cBlue">591</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0817/10/893QNIG400913JC5.html">盘点：北京电影学院历届校花 (组图)</a></td>
+<td class="cBlue">577</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1127/09/8HACSHOP00913J5O.html">济宁职业学院回应郑媛媛不雅照:非团委副书记</a></td>
+<td class="cBlue">568</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0108/14/8KN0IQ8000913J5R.html">武汉一所高校辅导员岗只招未婚男 称方便管理</a></td>
+<td class="cBlue">563</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1123/18/8H0VU64100913JC5.html">30位大四美眉晒大学遗憾 你中枪了没？</a></td>
+<td class="cBlue">550</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0906/10/8ANBAIF100913J66.html">北京语言大学</a></td>
+<td class="cBlue">545</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1105/10/8FHPRKDV00913JC5.html">美女自拍照 宅男叹女神级校花在民间</a></td>
+<td class="cBlue">524</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/08/8L5RMAE800913J5R.html">台湾5名教授被曝卖学历:不用上课就能毕业</a></td>
+<td class="cBlue">498</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/16/8KV1JG8A00913J5R.html">古都洛阳  见证中域实力</a></td>
+<td class="cBlue">481</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1206/15/8I24QOVP00913JC5.html">这样游戏不累吗？玩家的高难度动作</a></td>
+<td class="cBlue">465</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1201/15/8HLBOBSL00913JC5.html">美女老师也拯救不了大学生了</a></td>
+<td class="cBlue">447</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0108/17/8KNDVQET00913J5O.html">理科男追女《碎了一地》令网友捧腹 约会送锤子</a></td>
+<td class="cBlue">436</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0201/14/7P6DQGEM00913J5O.html">厦门两校花秒杀奶茶MM 称自己才是最清纯</a></td>
+<td class="cBlue">427</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1122/16/8GU9PUMM00913JC5.html">徐峥绯闻对象 网友捧为中戏90后校花</a></td>
+<td class="cBlue">416</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1127/18/8HBA6J0300913JC5.html">谢娜大学私密照曝光 为塑型曾臀部绑枕头</a></td>
+<td class="cBlue">408</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0221/16/7QQ5QEPQ00913J5O.html">台湾少女地铁里发起"无裤日" 引男乘客骚动</a></td>
+<td class="cBlue">393</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/18/8KQ0P1SJ00913J5O.html">山西大学生考试作弊 “米粒”耳机取不出</a></td>
+<td class="cBlue">379</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/15/8L6KSML400913J5R.html">江南大学2013年艺术类专业校考须网上报名、交费</a></td>
+<td class="cBlue">377</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0726/11/87B8HBID00913JC5.html">90后大学生车模靠走秀赚学费（图）</a></td>
+<td class="cBlue">365</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8KFLAV00913J5O.html">省级"一把手"从大学毕业到正部级平均用26年</a></td>
+<td class="cBlue">360</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1207/17/8I4VP2R000913JC5.html">网传中国高校DOTA排行</a></td>
+<td class="cBlue">360</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/11/8JQE5G2B00913JC5.html">日本校花大赛落幕 21岁大二美女封后</a></td>
+<td class="cBlue">359</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0105/10/8KET4NKV00913J5O.html">河南商丘师院女生平安夜被老师强奸 教师被拘</a></td>
+<td class="cBlue">350</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0907/12/8AQ2I7KF00913JC5.html">揭秘NBA啦啦队潜规则 光鲜背后的辛酸</a></td>
+<td class="cBlue">348</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1121/18/8GRS4HG100913JC5.html">女生作弊花样百出 老师组织裸体考试</a></td>
+<td class="cBlue">338</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0107/11/8KK5GB1400913J5O.html">调查称学信网存致命漏洞 学历能“套号”</a></td>
+<td class="cBlue">334</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/16/8KPSKRI700913J5R.html">山东大学校长首次回应拆除“山字”校门疑问</a></td>
+<td class="cBlue">333</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0710/14/862CNUML00913JC5.html">为爱情休学一年 大四女生抱孩子拍毕业照</a></td>
+<td class="cBlue">322</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1114/10/8G9198TG00913J5O.html">"考试表情图"走红网络 大学生热衷对号入座</a></td>
+<td class="cBlue">311</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0817/18/894LEHB900913JC5.html">街拍日本女生校裙 再短也不怕走光</a></td>
+<td class="cBlue">310</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/17/8LBVGS3N00913J5O.html">大学生给电动车充电 排插起火烧毁整间公寓</a></td>
+<td class="cBlue">306</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1203/18/8HQPNQHQ00913JC5.html">人类已经无法阻止美院学生做模型了</a></td>
+<td class="cBlue">306</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/11/8L8ONOP900913J5O.html">透视大学生宿舍人际关系：多重因素制约友谊</a></td>
+<td class="cBlue">305</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/10/8L60UQPB00913J5O.html">中山大学大三女生坠楼身亡 疑因学习压力大自杀</a></td>
+<td class="cBlue">298</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1119/14/8GM9DUJE00913JC5.html">大四女生图片记录生活 小清新戳泪点</a></td>
+<td class="cBlue">297</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/09/8KU88V2600913J5R.html">联合国微博称政法大学招生存性别歧视</a></td>
+<td class="cBlue">290</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1204/15/8HT2IQO900913J5O.html">济南几乎所有高校都有艾滋病毒感染者</a></td>
+<td class="cBlue">289</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0919/18/8BPKNC5K00913JC5.html">浙江传媒学院新生报到 美女如云(图)</a></td>
+<td class="cBlue">287</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/10/8L62GH0300913J5O.html">期末考试密集 高校各种怪招防作弊</a></td>
+<td class="cBlue">281</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0802/16/87TQ0POF00913JC5.html">北体大美女黑丝写真 为奥运助阵加油</a></td>
+<td class="cBlue">279</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSP9PQV00913J5O.html">12名女大学生组队挑战5000米雪山 预计24日</a></td>
+<td class="cBlue">279</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/0305/12/7RR4KFBA00913JC5.html">南京大屠杀前真实的"金陵十三钗"</a></td>
+<td class="cBlue">276</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/11/1215/16/7LB2MKP000913JC5.html">文章白百合唐嫣 中戏02级表演系的同学们</a></td>
+<td class="cBlue">272</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/11/8LBAPEMI00913J5R.html">福建农林大学图书馆启用"选座系统"</a></td>
+<td class="cBlue">255</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1209/09/8I99GH4V00913J5O.html">台湾美女老师兼职当模特 拍性感照片引争议</a></td>
+<td class="cBlue">254</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/18/8L6TP3PU00913J5O.html">神菜"随便"现身高校食堂 成学生常吃菜肴</a></td>
+<td class="cBlue">254</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1009/16/8DCU6RT000913JC5.html">走进大学男生“伪娘团”的真实生活</a></td>
+<td class="cBlue">253</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/18/8L6TTGHA00913J5O.html">大学生街头回收旧文胸 变废为宝献爱脑瘫孩子</a></td>
+<td class="cBlue">250</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="area-half right">
+<div class="tabBox">
+<div class="title-tab"><h2>跟贴榜</h2><ul class="tabNav"><li class="active">今日跟贴排行</li><li>本周跟贴排行</li><li>本月跟贴排行</li></ul></div>
+<div class="tabContents active">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://daxue.163.com/13/0116/17/8LC0NOD700913JC5.html">盘点韩国演艺圈的名校校花代表</a></td>
+<td class="cBlue">9</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://daxue.163.com/13/0114/16/8L6OQ0SL00913JC5.html">揭秘国内最美校花Top30 奶茶妹妹第一</a></td>
+<td class="cBlue">101</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://daxue.163.com/13/0110/21/8KSVGD4Q00913JC5.html">王宝强超贱表情走红 引网友神PS</a></td>
+<td class="cBlue">80</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://daxue.163.com/13/0113/09/8L3BQAR500913J5O.html">女大学生称被的哥摸大腿 官方:系道德问题管不了</a></td>
+<td class="cBlue">68</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://daxue.163.com/13/0111/17/8KV3KM4K00913JC5.html">30位网友晒爸妈校园旧照 帅哥美女云集</a></td>
+<td class="cBlue">56</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://daxue.163.com/13/0111/10/8KUB793H00913J5R.html">画院院长用PS裸照胁迫奸淫28名女性 含幼女5人</a></td>
+<td class="cBlue">15</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://daxue.163.com/13/0115/20/8L9NNU7000913JC5.html">女生演绎"十三钗" 风情万种不输谋女郎</a></td>
+<td class="cBlue">15</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://daxue.163.com/13/0111/11/8KUDCA5E00913J5O.html">报告称清华北大浙大3校校友财富合计近6千亿元</a></td>
+<td class="cBlue">12</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://daxue.163.com/13/0116/10/8LB91G9L00913J5O.html">大学生醉驾逞能骑摩托撞汽车 "玩"掉名企工作</a></td>
+<td class="cBlue">9</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://daxue.163.com/13/0116/17/8LC0NOD700913JC5.html">盘点韩国演艺圈的名校校花代表</a></td>
+<td class="cBlue">9</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://daxue.163.com/13/0113/18/8L4CM4KS00913JC5.html">盘点历年来那些走红网络的校园萌妹子</a></td>
+<td class="cBlue">6</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/08/8KU57B8L00913J5O.html">保洁员高校辅导学生高数6年 曾被误认为教授</a></td>
+<td class="cBlue">4</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSP7J2800913J5O.html">女生宿舍现雷人标语：用男星照片叫自己起床</a></td>
+<td class="cBlue">3</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8JLDTT00913J5O.html">大学盗用学生名义贷款买房 致其难享首套房优惠</a></td>
+<td class="cBlue">3</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/11/8L65CS5P00913J5O.html">铁道部规定代售学生票禁收手续费 多数学生不知</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/11/8LBA2C8100913J5O.html">大学图书馆占座出奇招：桌面贴"招媳妇"告示</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSP9PQV00913J5O.html">12名女大学生组队挑战5000米雪山 预计24日</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSPC1N300913J5R.html">中山大学60余学生食堂就餐后腹泻 相关部门介入</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/10/8L60UQPB00913J5O.html">中山大学大三女生坠楼身亡 疑因学习压力大自杀</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/10/8L6347O700913J5O.html">大学生盘点自习室"公敌" 占座与秀恩爱入选</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/18/8L6TTGHA00913J5O.html">大学生街头回收旧文胸 变废为宝献爱脑瘫孩子</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8LE5KH00913J5O.html">四川校园保安含笑打死流浪狗 微博争议后被停职</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/17/8L9EL21E00913J5O.html">大学生不知书信格式 收发室百张贺卡"无家归"(2</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/17/8L9EOFCE00913J5R.html">新疆一高校校园现霸气横幅：处分包邮送到家</a></td>
+<td class="cBlue">1</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://daxue.163.com/13/0105/17/8KFMHGOO00913JC5.html">盘点那些无节操的校园神级PS</a></td>
+<td class="cBlue">526</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://daxue.163.com/12/1225/10/8JIJ305P00913J5O.html">90后学生首次性活动为18岁 选择钟点房或日租房</a></td>
+<td class="cBlue">178</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://daxue.163.com/13/0106/15/8KHVC35V00913JC5.html">奶茶妹妹新年献惊艳歪脖舞</a></td>
+<td class="cBlue">164</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://daxue.163.com/12/1224/15/8JGJ3C9L00913JC5.html">奶茶MM近照曝光 网友赞：像刘亦菲</a></td>
+<td class="cBlue">161</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://daxue.163.com/12/1221/12/8J8ENF4I00913J5O.html">台湾15岁高中情侣在同学起哄下教室内发生关系</a></td>
+<td class="cBlue">117</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://daxue.163.com/13/0114/16/8L6OQ0SL00913JC5.html">揭秘国内最美校花Top30 奶茶妹妹第一</a></td>
+<td class="cBlue">101</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://daxue.163.com/12/1220/20/8J6ND7I800913JC5.html">网传小清新校花私照 清纯明媚大眼萌妹</a></td>
+<td class="cBlue">100</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://daxue.163.com/12/1228/17/8JR1IVNJ00913JC5.html">糖水西施走红 清纯盖过奶茶妹</a></td>
+<td class="cBlue">93</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://daxue.163.com/12/1220/20/8J6O94P400913K9P.html">中山大学开性教育课 学生提问一周自慰几次合适</a></td>
+<td class="cBlue">87</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://daxue.163.com/13/0102/08/8K6VA0UL00913J5O.html">重庆一大学生因跟帖被刑拘 因到春节要"凑数"</a></td>
+<td class="cBlue">80</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/21/8KSVGD4Q00913JC5.html">王宝强超贱表情走红 引网友神PS</a></td>
+<td class="cBlue">80</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/10/8KP5PT7B00913JC5.html">南方同学们冬天如何取暖 看各种神器</a></td>
+<td class="cBlue">80</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0113/09/8L3BQAR500913J5O.html">女大学生称被的哥摸大腿 官方:系道德问题管不了</a></td>
+<td class="cBlue">68</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1227/17/8JOH433B00913J5O.html">大二男生为获网络积分 发布多张与女友淫秽图片</a></td>
+<td class="cBlue">59</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/17/8KV3KM4K00913JC5.html">30位网友晒爸妈校园旧照 帅哥美女云集</a></td>
+<td class="cBlue">56</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1219/14/8J3JDLAD00913JC5.html">北大男生教你翻一个高贵华丽的白眼</a></td>
+<td class="cBlue">53</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1220/20/8J6NLJ2300913JC5.html">周董12年专辑封面 送给80后的中学时代</a></td>
+<td class="cBlue">50</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/10/8JQAGPJI00913J5O.html">广西某高校老师圣诞节送学生避孕套引热议</a></td>
+<td class="cBlue">44</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/18/8JR4TK0A00913J5R.html">复旦大学成立麻将社 网友：终于找到组织了</a></td>
+<td class="cBlue">44</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0104/17/8KD2DC6J00913J5O.html">女大学生亡父照片所存手机被盗 小偷知情后归还</a></td>
+<td class="cBlue">34</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0107/08/8KJS2OMP00913J5O.html">方舟子曝武汉大学法学院院长抄袭论文</a></td>
+<td class="cBlue">33</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0104/08/8KC4GLL800913J5O.html">男生参加1000米体能测试倒地 学校垫付40万</a></td>
+<td class="cBlue">32</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0105/10/8KET4NKV00913J5O.html">河南商丘师院女生平安夜被老师强奸 教师被拘</a></td>
+<td class="cBlue">27</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0106/14/8KHTOUTH00913J5O.html">饭馆传菜工自学通过司法考试 曾因贫困放弃大学</a></td>
+<td class="cBlue">27</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1220/20/8J6OBEG400913K9P.html">两名15岁女学生想去北京找杨幂 校门口失踪</a></td>
+<td class="cBlue">26</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1226/10/8JL5OFQU00913J5O.html">新疆大学生为消除误解请同学免费吃切糕</a></td>
+<td class="cBlue">24</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/11/8JQE5G2B00913JC5.html">日本校花大赛落幕 21岁大二美女封后</a></td>
+<td class="cBlue">21</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1221/11/8J8DG07U00913JC5.html">全国首堂行为艺术课 学生吃生肉淋鸡蛋应考</a></td>
+<td class="cBlue">20</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0107/18/8KKSE75400913JC5.html">大学囧图：男生宿舍上演甄嬛传</a></td>
+<td class="cBlue">20</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/10/8JQACPS500913J5O.html">南大"标准哥"惹麻烦 侵老师邮箱要被开除</a></td>
+<td class="cBlue">20</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1228/10/8JQAJ45E00913J5O.html">"华师萌厨娘"红校园 男生专门跑来喝她的豆浆</a></td>
+<td class="cBlue">17</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0103/20/8KARSGOS00913JC5.html">各国风情校花迷乱私生活 逮谁电谁</a></td>
+<td class="cBlue">16</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/10/8KUB793H00913J5R.html">画院院长用PS裸照胁迫奸淫28名女性 含幼女5人</a></td>
+<td class="cBlue">15</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/20/8L9NNU7000913JC5.html">女生演绎"十三钗" 风情万种不输谋女郎</a></td>
+<td class="cBlue">15</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/15/8KPOO67K00913J5O.html">广东一学院雷人文件:学生开房将被认定为买娼</a></td>
+<td class="cBlue">14</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1226/17/8JLSRS3600913JC5.html">大学囧图：屌丝也是有故事的人儿</a></td>
+<td class="cBlue">13</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1230/23/8K0QPMAC00913K9P.html">7名男子持刀入校砍伤学生 十几名教师挺身而出</a></td>
+<td class="cBlue">13</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1218/14/8J0UVTBN00913JC5.html">囧图：总有一些同学的世界你不懂</a></td>
+<td class="cBlue">12</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/11/8KUDCA5E00913J5O.html">报告称清华北大浙大3校校友财富合计近6千亿元</a></td>
+<td class="cBlue">12</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0106/20/8KIIADOK00913J5O.html">调查称大学生每年倒掉食物可养活约1000万人</a></td>
+<td class="cBlue">12</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1219/15/8J3JU68100913J5O.html">台湾一男教师偷拍女学生沐浴被判刑2年</a></td>
+<td class="cBlue">11</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/10/8LB91G9L00913J5O.html">大学生醉驾逞能骑摩托撞汽车 "玩"掉名企工作</a></td>
+<td class="cBlue">9</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/17/8LC0NOD700913JC5.html">盘点韩国演艺圈的名校校花代表</a></td>
+<td class="cBlue">9</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1224/14/8JGDQ6J000913JC5.html">你中枪了吗？判断是否为女屌丝21个特征</a></td>
+<td class="cBlue">7</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0105/11/8KF16T2K00913J5O.html">大一学生发帖称李宇春整容死亡 被起诉索赔10万</a></td>
+<td class="cBlue">7</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1226/11/8JL8AUIP00913J5O.html">调查称侵害大学生犯罪 盗窃强奸最多</a></td>
+<td class="cBlue">7</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0107/11/8KK4LSVF00913J5O.html">痴情大学生双膝下跪求爱被拒 围观者起哄</a></td>
+<td class="cBlue">6</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0113/18/8L4CM4KS00913JC5.html">盘点历年来那些走红网络的校园萌妹子</a></td>
+<td class="cBlue">6</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0107/20/8KL5861P00913J5O.html">北京"血头"组织学生卖血牟利 不偷不抢这是买卖</a></td>
+<td class="cBlue">6</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1231/18/8K2RIFQU00913J5R.html">高校发"阿玛尼"包奖励学生 称是山寨版售价95</a></td>
+<td class="cBlue">5</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0105/09/8KEQ4ABR00913J5O.html">高校学生婚姻观调查：女大学生更看重住房</a></td>
+<td class="cBlue">5</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0108/10/8KMKGBO100913JC5.html">北影毕业照海量曝光 许晴蒋雯丽同班</a></td>
+<td class="cBlue">4</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0111/08/8KU57B8L00913J5O.html">保洁员高校辅导学生高数6年 曾被误认为教授</a></td>
+<td class="cBlue">4</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1229/13/8JT7C61Q00913J5O.html">西安大三学生10万元自制飞机 成功试飞</a></td>
+<td class="cBlue">3</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8JLDTT00913J5O.html">大学盗用学生名义贷款买房 致其难享首套房优惠</a></td>
+<td class="cBlue">3</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSP7J2800913J5O.html">女生宿舍现雷人标语：用男星照片叫自己起床</a></td>
+<td class="cBlue">3</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0108/18/8KNF22O800913J5O.html">福建一大学生17楼坠亡 传因期末考试挂六科</a></td>
+<td class="cBlue">3</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0108/14/8KN0IQ8000913J5R.html">武汉一所高校辅导员岗只招未婚男 称方便管理</a></td>
+<td class="cBlue">3</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1231/20/8K335TEC00913J5O.html">"技术帝"入侵老师邮箱偷考卷 公布过程或被开除</a></td>
+<td class="cBlue">3</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1219/15/8J3MKB4800913J5O.html">骗子冒充富家女搭讪 女大学生被骗走千元</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0116/11/8LBA2C8100913J5O.html">大学图书馆占座出奇招：桌面贴"招媳妇"告示</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/11/8L65CS5P00913J5O.html">铁道部规定代售学生票禁收手续费 多数学生不知</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0109/18/8KQ0P1SJ00913J5O.html">山西大学生考试作弊 “米粒”耳机取不出</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0106/14/8KHT0ENU00913J5O.html">上海交大女教师校内被班车碾压 尚未脱离危险</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1226/14/8JLI9PUM00913J5R.html">数据显示湖北大学毕业生平均月薪2500元</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1224/10/8JFVF5NF00913J5O.html">高校发布2012十大网络用语 屌丝逆袭入列</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1221/21/8J9FFTOJ00913J5O.html">调查称90后大学生最头疼寝室关系 仅四成满意</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1220/20/8J6NHA6000913JC5.html">武大现末日拥抱团 免费送诺亚方舟登船卡</a></td>
+<td class="cBlue">2</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1219/15/8J3JQAN600913J5O.html">大学生欲逃离传销窝点被打死 两传销头目获死刑</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1221/18/8J92VKTT00913J5O.html">沈阳4名中专女生殴打侮辱同学 获缓刑并赔12万</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1224/14/8JGEHOVT00913J5O.html">大学生心中抱怨五花八门：对象总逼着我喝牛奶</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1227/10/8JNOFDAD00913J5O.html">武汉女大学生举报41家企业“仅招男性”(图)</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/12/1227/11/8JNQ842F00913JC5.html">大学生新娘赴海拔4900米边防哨所完婚</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0105/10/8KERHDFH00913J5O.html">男子高校门口徘徊 见女生就抱住强吻</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0105/15/8KFCSD0L00913J5O.html">大二男生疑被嘲笑相貌丑陋 怒持刀疯狂砍杀同学</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0106/15/8KHVO1AH00913J5O.html">调查称90后求职者不看重高薪酬 追求幸福感</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0106/17/8KI6UDRD00913J5O.html">上海交大原校长退休28年仍带博士生</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0107/17/8KKQCE5300913J5R.html">香港浸会大学理学院授课式研究生课程介绍</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0108/14/8KN12GRJ00913J5O.html">在校大学生猥亵女生后将其杀害被核准死缓</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSP9PQV00913J5O.html">12名女大学生组队挑战5000米雪山 预计24日</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0110/19/8KSPC1N300913J5R.html">中山大学60余学生食堂就餐后腹泻 相关部门介入</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/10/8L60UQPB00913J5O.html">中山大学大三女生坠楼身亡 疑因学习压力大自杀</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/10/8L6347O700913J5O.html">大学生盘点自习室"公敌" 占座与秀恩爱入选</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0114/18/8L6TTGHA00913J5O.html">大学生街头回收旧文胸 变废为宝献爱脑瘫孩子</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/10/8L8LE5KH00913J5O.html">四川校园保安含笑打死流浪狗 微博争议后被停职</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/17/8L9EL21E00913J5O.html">大学生不知书信格式 收发室百张贺卡"无家归"(2</a></td>
+<td class="cBlue">1</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://daxue.163.com/13/0115/17/8L9EOFCE00913J5R.html">新疆一高校校园现霸气横幅：处分包邮送到家</a></td>
+<td class="cBlue">1</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<style type="text/css">
+.channel-end,.channelEnd-rightS,.channelEnd-link,.channelEnd-top {background:url(http://img3.cache.netease.com/cnews/img09/endnav_bg1001.jpg);}
+.channel-end {width:960px;height:37px;overflow:hidden;margin:10px auto 0;line-height:38px;background-position:left -67px;background-repeat:repeat;}
+.channelEnd-rightS {display:block;float:right;width:8px;height:37px;overflow:hidden;background-position:right -141px;background-repeat:no-repeat;}
+.channelEnd-link {float:left;height:37px;line-height:37px;overflow:hidden;color:#1E50A2;background-position:left -30px;background-repeat:no-repeat;}
+.channelEnd-link a {float:none;padding:0 5px;font-weight:normal;background:none;}
+.channelEnd-link .firstNode {margin-left:8px; background:none;}
+.channelEnd-top {display:block;float:right;width:80px;height:37px;overflow:hidden;line-height:37px;text-indent:10px;background-position:left -30px;background-repeat:no-repeat;}
+</style>
+<div class="channel-end">
+	<span class="channelEnd-link cBlue">
+    	<a class="firstNode" href="http://www.163.com/" rel="nofollow">网易首页</a>-<a href="http://news.163.com/" rel="nofollow">新闻</a>-<a href="http://sports.163.com/" rel="nofollow">体育</a>-<a href="http://ent.163.com/" rel="nofollow">娱乐</a>-<a href="http://money.163.com/" rel="nofollow">财经</a>-<a href="http://auto.163.com/" rel="nofollow">汽车</a>-<a href="http://tech.163.com" rel="nofollow">科技</a>-<a href="http://digi.163.com/" rel="nofollow">数码</a>-<a href="http://mobile.163.com/" rel="nofollow">手机</a>-<a href="http://lady.163.com/" rel="nofollow">女人</a>-<a href="http://house.163.com/" rel="nofollow">房产</a>-<a href="http://game.163.com/" rel="nofollow">游戏</a>-<a href="http://book.163.com/" rel="nofollow">读书</a>-<a href="http://edu.163.com/" rel="nofollow">教育</a>-<a href="http://travel.163.com/" rel="nofollow">旅游</a>-<a href="http://bbs.163.com/" rel="nofollow">论坛</a>-<a href="http://v.163.com/" rel="nofollow">视频</a>-<a href="http://blog.163.com/blogs/" rel="nofollow">博客</a>-<a href="http://t.163.com/" rel="nofollow">微博</a>-<a href="http://help.3g.163.com/" rel="nofollow">手机版</a>
+    </span>
+    <span class="channelEnd-rightS"></span>
+    <span class="channelEnd-top cBlue"><a href="#top" target="_self" rel="nofollow">返回顶部&uarr;</a></span>
+</div>
+<div class="foot">
+<div class="text"><a href="http://www.bjjubao.org/index.htm">北京互联网违法不良信息举报</a>　<a href="http://t.163.com/zt/feedback">意见反馈</a>　<a href="http://news.163.com/sitemap.html">新闻地图</a>　<a href="http://news.163.com/special/i/000117JD/index_history.html">历史回顾</a></div>
+<a href="http://corp.163.com/">About NetEase</a> - <a href="http://gb.corp.163.com/gb/about/overview.html">公司简介</a> - <a href="http://gb.corp.163.com/gb/contactus.html">联系方法</a> - <a href="http://corp.163.com/gb/job/job.html">招聘信息</a> - <a href="http://help.163.com/ ">客户服务</a> - <a href="http://gb.corp.163.com/gb/legal.html">隐私政策</a> - <a href="http://emarketing.biz.163.com/">网络营销</a> - <a href="http://sitemap.163.com/">网站地图</a><br />
+网易公司版权所有<br />
+
+<span class="cRed">&copy;1997-2013</span>
+</div>
+<!-- 弹窗代码 -->
+<!-- 代码 -->
+
+<!-- 即时消息 -->
+<script>
+(function(){	
+	var version = window.navigator.appVersion;
+	var isIE6 = (version.indexOf("MSIE 6.0") != -1 || version.indexOf("MSIE 5.5") != -1)? true:false;
+	showQR(450, "http://img3.cache.netease.com/news/2012/qr_newapp.png");
+	function showQR(top, imgUrl){
+		var QRbox= document.createElement("div");
+		var QRboxCSS ={
+			width: "110px",
+			height: "147px",
+			position: "fixed",
+			_position: "absolute",
+			top: top + "px",
+			right: "3px",
+			display:"block"
+		};
+		for(var key in QRboxCSS){
+			QRbox.style[key] = QRboxCSS[key];
+		}
+	 	if(isIE6){
+	 		QRbox.style.position = "absolute";
+	 	}
+	 	
+		QRbox.innerHTML="<a href='http://3g.163.com/links/3977' target='_blank'></a>";
+		var link =QRbox.getElementsByTagName("a")[0];
+		var linkCSS = {
+			display:"block",
+			width: "100%",
+			height: "100%",
+			backgroundImage: "url("+imgUrl+")",
+			backgroundPosition: "0px 0px"
+		};
+		for(var key in linkCSS){
+			link.style[key] = linkCSS[key]
+		}
+		document.body.appendChild(QRbox);
+		var linkEventMap = {
+			"mouseover": function(){
+				link.style.backgroundPosition = "-110px 0px";
+			},
+			"mouseout": function(){
+				link.style.backgroundPosition = "0px 0px";
+			}
+		}
+		for(var evt in linkEventMap){
+			var func = linkEventMap[evt];
+			addEvent(evt, link, func);
+		}
+		addEvent("scroll", window, function(){
+			if(isIE6){
+				QRbox.style.top = getScrollTop() + top + "px";
+			}
+		})
+	}
+	function addEvent(evt, elem, callback){
+		if(elem.addEventListener){
+			elem.addEventListener(evt, callback, false)
+		} else {
+			elem.attachEvent && elem.attachEvent("on"+evt, callback);
+		} 
+	}
+	function getScrollTop(){
+	    if(typeof pageYOffset!= 'undefined'){
+	        //most browsers
+	        return pageYOffset;
+	    }
+	    else{
+	        var B= document.body; //IE 'quirks'
+	        var D= document.documentElement; //IE with doctype
+	        D= (D.clientHeight)? D: B;
+	        return D.scrollTop;
+	    }
+	}
+})();
+(function(){function e(e,n,r,i){var r=r||500,s=i||function(){},o,u=parseInt(t(e,"height"),10);e.toggled?o=e.originalHeight:(o=u,e.originalHeight=o);var a=Math.round(r/o);n=="show"&&(e.style.height="0"),e.style.display="block",e.toggled=!0;var f=o;for(var l=f;l>=0;l--)(function(t){var r=n=="show"?t*a:(f-t)*a;setTimeout(function(){(t==0&&n=="hide"||t==f&&n=="show")&&s(),e.style.height=t+"px";var r=t/f;e.style.opacity=r,e.style.filter="alpha(opacity="+r*100+")"},r)})(l)}function t(e,t){if(e.style[t])return e.style[t];if(e.currentStyle)return e.currentStyle[t];if(document.defaultView&&document.defaultView.getComputedStyle){t=t.replace(/([A-Z])/g,"-$1"),t=t.toLowerCase();var n=document.defaultView.getComputedStyle(e,"");return n&&n.getPropertyValue(t)}return null}function n(e,t,n){var r=function(e,t){try{return e.contains?e!=t&&e.contains(t):!!(e.compareDocumentPosition(t)&16)}catch(n){}},i=function(e){var t=e.currentTarget,i=e.relatedTarget;!r(t,i)&&t!=i&&n.call(e.currentTarget,e)};e.addEventListener?t=="mouseenter"?e.addEventListener("mouseover",i,!1):t=="mouseleave"?e.addEventListener("mouseout",i,!1):e.addEventListener(t,n,!1):e.attachEvent("on"+t,n)}function r(t){var r=this;r.cfg=t;var i=function(){n(r.cfg.closeBtn,"click",function(){r.close()}),n(r.cfg.wrap,"mouseenter",function(){r._timingClose("stop")}),n(r.cfg.wrap,"mouseleave",function(){r._timingClose("start",3)}),n(window,"focus",function(){r._pollStop=!1}),n(window,"blur",function(){r._pollStop=!0}),window[r.cfg.pollCallback]=r._push,window[r.cfg.contentCallback]=r._fillContent,r.start()},s=function(e,t){var n="popush_scriptloader";document.getElementById(n)!==null&&document.body.removeChild(document.getElementById(n));var i=document.createElement("script");i.id=n,i.type="text/javascript",i.async=!0,i.src=r.cfg.preventCache?e+"?"+Math.round(Math.random()*1e10):e,i.onload=t||function(){return!1},document.body.appendChild(i)},o=function(){var e=location.host.split(".").reverse()[2],t="?id="+r.cfg.id+"&cname="+e+"&rnd="+Math.round(Math.random()*1e10);(new Image).src=(r.cfg.countUrl||"count.php")+t};r._getDisplayState=function(){return!r._state||r._state=="hide"?"hide":"show"},r._display=function(t){if(r._getDisplayState()==t)return!1;e(r.cfg.contentWrap,t),r._state=t},r._timingClose=function(e,t){if(r._getDisplayState()=="hide")return!1;var t=t||r.cfg.hideAfter;e=="start"?r._closeTimer=setTimeout(function(){r._display("hide")},t*1e3):e=="stop"&&typeof r._closeTimer!="undefined"&&clearTimeout(r._closeTimer)},r.close=function(){if(!-[1,]&&!window.XMLHttpRequest){r.cfg.wrap.style.display="none";return !1;}r._getDisplayState()=="show"?r._display("hide"):r.cfg.wrap.style.display="none"},r._fillContent=function(e){r.contentCache=e,r.cfg.contentWrap.innerHTML=e,r._display("show"),r._timingClose("start")},r.manualShow=function(){if(r._getDisplayState()=="show")return!1;r.contentCache?r._fillContent(r.contentCache):s(r.cfg.contentUrl)},r._push=function(e){var t=Math.round((new Date).valueOf()/1e3),n=parseInt(e,10),i=t-n,u=NTES.cookie.get("PopPushData");if(u==n)return!1;if(r.cfg.oldTime&&i>r.cfg.oldTime)return!1;s(r.cfg.contentUrl),NTES.cookie.set("PopPushData",e,"30m",".163.com","/"),o()},r._poll=function(){r._pollStop||s(r.cfg.pollUrl)},r.start=function(){r._pollStop=!1,r._poll(),window.setInterval(r._poll,r.cfg.pollCycle*1e3)},i()}window.PopPush=r})()
+</script>
+<style type="text/css">
+#instant-news{width:270px;position:fixed;left:40px;bottom:0;z-index:10;
+_position: absolute;
+_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-172));
+}
+#instant-news-close{color:#B6C4D3;font-size:18px;font-weight:400;position:absolute;top:5px;right:4px;text-align:center;cursor:pointer;margin:0;padding:0;_display:none;}
+#instant-news-content{height:170px;padding:0;border-bottom:1px solid #A6B7C9;overflow:hidden;display:none;}
+</style>
+<div id="instant-news"><div id="instant-news-close">×</div><div id="instant-news-content"></div></div>
+<script>
+(function(N){
+    var t = N.cookie.get("PopPushData");
+    if(t && t != "") N.cookie.set("PopPushData", parseInt(t, 10), "30m", ".163.com", "/");
+})(window.NTES);
+var instant_news_push = new PopPush({
+    id: "instantnews",
+    wrap: document.getElementById('instant-news'),
+    contentWrap: document.getElementById('instant-news-content'),
+    closeBtn: document.getElementById('instant-news-close'),
+    pollUrl: "http://www.163.com/special/0077450P/hot_pop_js.js",
+    pollCallback: "latestInstantNews",
+    contentUrl: "http://temp.163.com/special/00804IKG/instant_news_content_cb.js",
+    contentCallback: "instantNewsContent",
+    pollCycle: 90,
+    hideAfter: 30,
+    oldTime: 7200,
+    countUrl: "http://temp.163.com/special/hot_pop_content/",
+    preventCache: false
+});
+</script>
+<script type="text/javascript">
+//<![CDATA[
+for ( var i=0; i<$("div.tabBox").length; i++){
+	var tab = new NTES.ui.Slide( $($("div.tabBox")[i]).$("ul.tabNav > li"), $($("div.tabBox")[i]).$("div.tabContents"), "active", "mouseover");
+}
+//有道搜索Start
+function goyoudao(){
+		var SoForm = document.getElementById("yodaoForm");
+		var subc1=document.getElementById('subs1');
+		var subc2=document.getElementById('subs2');
+		var site=document.getElementById('site');
+                          if(document.getElementById("searchInput0").value=="" || document.getElementById("searchInput0").value.length==0)
+			{
+				alert("请输入关键字!");
+				return false;
+			}
+		if(subc1.checked){
+			site.value="网易";
+			SoForm.action="http://news.youdao.com/search"
+		}
+		else{
+			site.value="";
+			SoForm.action="http://www.youdao.com/search"
+		}
+		SoForm.submit();
+	    return true;
+	}
+//有道搜索End
+//]]>
+</script>
+<!-- START WRating v1.0 -->
+<script type="text/javascript" src="http://163.wrating.com/a1.js"></script>
+<script type="text/javascript">
+var vjAcc="860010-0502010100";
+var wrUrl="http://163.wrating.com/";
+vjTrack();
+</script>
+<noscript><img src="http://163.wrating.com/a.gif?c=860010-0502010100" width="1" height="1"/></noscript>
+<!-- END WRating v1.0 -->
+<!-- START NetEase Analytics 2006 -->
+    <script src="http://analytics.163.com/ntes.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+    _ntes_nacc = "news"; //站点ID。
+    neteaseTracker();
+    </script>
+<!-- END NetEase Analytics 2006 -->
+</body>
+</html>

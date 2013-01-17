@@ -1,0 +1,3161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<title>新闻排行榜_网易新闻</title>
+<base target="_blank" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="author" content="网易" />
+<meta name="Copyright" content="网易版权所有" />
+<link href="http://img1.cache.netease.com/cnews/css07/style.css" rel="stylesheet" type="text/css" />
+<link href="http://img1.cache.netease.com/cnews/img09/channel_nav.css" rel="stylesheet" type="text/css"/>
+<link href="http://img1.cache.netease.com/cnews/img/subscibe0304/rank.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="http://img1.cache.netease.com/cnews/js/ntes_jslib_1.x.js" charset="gb2312"></script>
+<style type="text/css">
+.gg735 {width:735px; overflow:hidden; float:left;}
+.gg210 {width:210px; overflow:hidden; float:right;}
+.channel h2 { width: auto; }
+</style>
+</head>
+<body>
+<link type="text/css" rel="stylesheet" media="screen" href="http://img1.cache.netease.com/common/css/common_nav_v1.0.7.css" />
+<script charset="gb2312" src="http://img3.cache.netease.com/cnews/js/ntes_jslib_1.x.js" language="javascript" type="text/javascript"></script>
+<div class="NTES-nav">
+	<span class="nav-link NTES-nav-link"><a href="http://www.163.com/">网易首页</a>-<a href="http://news.163.com/">新闻</a>-<a href="http://sports.163.com/">体育</a>-<a href="http://sports.163.com/nba/">NBA</a>-<a href="http://ent.163.com/">娱乐</a>-<a href="http://money.163.com/">财经</a>-<a href="http://money.163.com/stock/">股票</a>-<a href="http://auto.163.com/" id="_link_auto">汽车</a>-<a href="http://tech.163.com/">科技</a>-<a href="http://mobile.163.com/">手机</a>-<a href="http://lady.163.com/">女人</a>-<a href="http://bbs.163.com/">论坛</a>-<a href="http://v.163.com/">视频</a>-<a href="http://www.familydoctor.com.cn/"  rel="nofollow">健康</a>-<a href="http://house.163.com/" id="houseUrl">房产</a>-<a id="homeUrl" href="http://home.163.com/">家居</a>-<a href="http://edu.163.com/">教育</a>-<a href="http://book.163.com/">读书</a>-<a href="http://game.163.com/" id="_link_game">游戏</a>-<a href="http://caipiao.163.com/#from=dh">彩票</a>-<span class="nav-link-item" id="navMore">更多<span class="link-item-more" style="display: none;">
+			<a href="http://baoxian.163.com/car/index.html?from=dh">车险</a><a href="http://digi.163.com/">数码</a><a href="http://war.163.com/">军事</a><a href="http://fashion.163.com/">时尚</a><a href="http://travel.163.com/">旅游</a><a href="http://blog.163.com/?frompagenav">博客</a>
+		</span></span>|</span>
+	<div class="rightCon">
+		<div class="NTES-link code-num">
+			<span class="left"><a href="http://email.163.com/" class="cBlue"  rel="nofollow">免费邮箱</a> - <a href="http://reg.163.com/" class="cBlue"  rel="nofollow">通行证登录</a> | </span><a href="http://t.163.com/?f=catopmicoblogmsg" class="NTES-nav-wbLogin"  rel="nofollow">微博</a>
+		</div>
+	</div>
+	<a href="http://www.163.com/rss" class="NTES-nav-rss"  rel="nofollow">rss</a>
+</div>
+<script>
+//<![CDATA[
+NTES.ready( function($){
+$("#navMore").addEvent("click", function(e){
+	NTES($("#navMore .link-item-more")[0]).style.display = this.style.display == "block" ? "none" : "block";
+//	e.preventDefault();
+	e.cancelBubble = true;
+	document.onclick = function(){
+		NTES($("#navMore .link-item-more")[0]).style.display = "none";
+	}
+});
+	var P_INFO = NTES.cookie.get("P_INFO");
+	var S_INFO = NTES.cookie.get("S_INFO");
+	if(P_INFO){
+		var mailconfig = {
+			"163.com":"http://entry.mail.163.com/coremail/fcg/ntesdoor2?verifycookie=1&lightweight=1",
+			"126.com" : "http://entry.mail.126.com/cgi/ntesdoor?verifycookie=1&lightweight=1&style=-1",
+			"vip.126.com" : "http://reg.vip.126.com/enterMail.m",
+			"yeah.net" : "http://entry.yeah.net/cgi/ntesdoor?verifycookie=1&lightweight=1&style=-1",
+			"188" : "http://reg.mail.188.com/servlet/enter",
+			"vip.163.com" : "http://reg.vip.163.com/enterMail.m?enterVip=true-----------"
+		};
+		var passport =  P_INFO.substr(0, P_INFO.indexOf("|"));
+		var username =  passport.substr(0, P_INFO.indexOf("@"));
+		var logstate = P_INFO.split("|")[2];
+		var loginframe = "";
+		var url = "http://t.163.com/service/newMessage/" + passport + "/1/0/0/0/1";
+		var pspt = passport.length >= 6 ? passport.substr(0,6)+"…" : passport;
+		/@([^*]+)/.test(passport);
+		var logdomain = RegExp.$1;
+		if(P_INFO && S_INFO ) {
+			var entrylink_html = '<a href=\"http://reg.163.com/Main.jsp?username='+passport+'\">进入通行证</a>',
+				ntes_nav_html = '<div class="NTES-nav-link-chexian"><a href="http://www.163.com/">网易首页</a>-<a href="http://news.163.com/">新闻</a>-<a href="http://sports.163.com/">体育</a>-<a href="http://sports.163.com/nba/">NBA</a>-<a href="http://ent.163.com/">娱乐</a>-<a href="http://money.163.com/">财经</a>-<a href="http://money.163.com/stock/">股票</a>-<a href="http://auto.163.com/" id="_link_auto">汽车</a>-<a href="http://tech.163.com/">科技</a>-<a href="http://mobile.163.com/">手机</a>-<a href="http://lady.163.com/">女人</a>-<a href="http://bbs.163.com/">论坛</a>-<a href="http://v.163.com/">视频</a>-<a href="http://g.163.com/a?CID=13579&Values=505269036&Redirect=http://www.familydoctor.com.cn/">健康</a>-<a href="http://house.163.com/" id="houseUrl">房产</a>-<a id="homeUrl" href="http://home.163.com/">家居</a>-<a href="http://edu.163.com/">教育</a>-<a href="http://book.163.com/">读书</a>-<a href="http://game.163.com/" id="_link_game">游戏</a>|</div>';
+			if(mailconfig[logdomain] != undefined) {
+				entrylink_html += '<a href=\"'+mailconfig[logdomain]+'\">进入邮箱</a>';
+			}
+			if(logdomain == "popo.163.com" || mailconfig[logdomain] != undefined) {
+				entrylink_html += '<a href="http://blog.163.com/passportIn.do?entry=163">进入博客</a><a href="http://photo.163.com/?username='+passport+'\">进入相册</a>';
+			}
+			entrylink_html += '<a href="http://yuehui.163.com/">进入约会</a><a href="http://t.163.com">进入微博</a><a href="http://caipiao.163.com/#from=dh">进入彩票</a><a href="http://baoxian.163.com/car/index.html?from=dh">进入车险</a><a href="http://baoxian.163.com/#from=dh">进入保险</a><a href="http://mall.163.com/#from=dh">进入商城</a>';
+			if(logdomain == "163.com" || logdomain == "126.com" || logdomain == "yeah.net") {
+				loginframe = '<iframe allowTransparency=\"true\" style=\"width:45px; height:20px; float:left; *margin-top:2px; vertical-align: middle;\" id=\"ifrmNtesMailInfo\" border=\"0\" src=\"http://p.mail.163.com/mailinfo/shownewmsg_www_0819.htm\" frameBorder=\"0\" scrolling=\"no\"></iframe>';
+			}
+			var login_html = '<div class=\"ntes-usercenter\"><div class=\"ntes-usercenter-logined\"><strong id=\"ntes_usercenter_name\" class=\"ntes-usercenter-name\" title=\"欢迎你，'+passport+'\">'+pspt+'</strong></div><div id=\"ntes_usercenter_entry\" class=\"ntes-usercenter-entry\"><span class=\"user-entry\">'+entrylink_html+'</span></div></div><span class="left c-b3">(</span>'+loginframe+'<span class="left c-b3"> | </span><span id="wbLoginAfter"><a href="http://t.163.com/?f=catopmicoblogmsg" class="NTES-nav-wbLogin" style="color:#f6f6f6;" title="进入网易微博">微博</a></span><span class="left c-b3">) | </span><a class=\"ntes-usercenter-loginout left\" href=\"http://reg.163.com/Logout.jsp?username='+passport+'\" target=\"_self\">退出</a></div>';
+			$(".NTES-nav-link")[0].innerHTML = ntes_nav_html;
+			$(".NTES-link")[0].innerHTML = login_html;
+			$("#ntes_usercenter_name").addEvent("click", function(e){
+				$("#ntes_usercenter_entry").style.display = $("#ntes_usercenter_entry").style.display == "block" ? "none" : "block";
+				e.preventDefault();
+				e.cancelBubble = true;
+				document.onclick = function(){
+					$("#ntes_usercenter_entry").style.display = "none";
+				}
+			})
+			NTES.ajax.importJs(url, function() {
+				if (typeof window.resultStatus != "undefined") {
+					if (NTES("#wbLoginAfter")) {
+						var userId = resultStatus.userId;
+						var wbName = resultStatus.name;
+						var wbNameMod = wbName.replace(/[^\x00-\xff]/g,"*?");
+						var xxlen = wbNameMod.substr(0,10).indexOf("*") < 0 ? 0 : wbNameMod.substr(0,10).match(/\*/ig).length;
+						var wbNameEnd = (wbNameMod.length <= 10) ? "" : "…";
+						var totalCount = (parseInt(resultStatus.htlCount) < 100) ? parseInt(resultStatus.htlCount) : "99";
+						var totalCountEnd = (parseInt(resultStatus.htlCount) < 100) ? totalCount : totalCount+"+";
+						if(xxlen > 0){
+							if(wbNameMod.substr(9,1) == "?"){
+								wbName = wbName.substr(0,10-xxlen) + wbNameEnd;
+							}else{
+								wbName = wbName.substr(0,9-xxlen) + wbNameEnd;
+							}
+						}else{
+							wbName = wbName.substr(0,10) + wbNameEnd;
+						}
+						if (totalCount > 0) {
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/?f=catopmicoblogmsg.News' class='NTES-nav-wbMsg fB' style='color:#ba2636;' title='" + wbName + "新消息："+ totalCountEnd +"'>"+ totalCountEnd +"</a>";
+						}else{
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/?f=catopmicoblogmsg.enter' class='NTES-nav-wbLogin' style='color:#f6f6f6;' title='进入网易微博'>微博</a>";
+						}
+						if(userId == 0){
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/service/autoOpenAccount?autoFollow=1&needRedirect=1&f=catopmicoblogmsg.open' class='NTES-nav-wbLogin' style='color:#f6f6f6;' title='开通网易微博'>微博</a>";
+						}
+					};
+				};
+			}, "UTF-8");
+		};
+	}
+})
+//]]>
+</script>
+<div class="ad960_70">
+<div class="ad_750">
+<iframe src="http://g.163.com/r?site=netease&affiliate=163&cat=article&type=column750x70&location=1" width="750" height="70" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
+<div class="ad_200">
+<iframe src="http://g.163.com/r?site=netease&affiliate=163&cat=article&type=logo200x70&location=1" width="200" height="70" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
+</div>
+<!--
+<div class="box-ad">
+<div class="ad125"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic3.gif" /></div>
+<div class="ad660"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic4.gif" /></div>
+<div class="ad125"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic3.gif" /></div>
+</div>
+-->
+<span class="blank9"></span>
+<style type="text/css">
+/* 频道导航 */
+.channel {width:960px; height:32px; margin:0 auto; line-height:21px;}
+.channel h1 {width:107px; height:24px; float:left; overflow:hidden; margin:2px 19px 0 2px;}
+.channel h2 { float:left; margin-right:19px;}
+.channel h3 {float:left; margin-top:10px; line-height: 24px;}
+.channel .focus {float:left; overflow:hidden; text-align:left; margin-top:10px;}
+.channel .focus a {padding-right:6px;}
+.channel .weather {height:21px; float:right; padding:10px 0 0 0; overflow:hidden;width:120px;}
+</style>
+<!-- 导航栏开始 -->
+<div class="channel">
+    <h1><a href="http://news.163.com/" id="top"><img src="http://img1.cache.netease.com/cnews/img09/logo_107.gif" alt="网易新闻" width="107" height="24" /><br />网易新闻</a></h1>
+    <h2><a href="http://news.163.com/rank/"><img src="http://img1.cache.netease.com/cnews/img10/channelLogo2010/img_xwphb.jpg" height="26" alt="新闻排行榜" /></a></h2>
+    <h3 class="cBlack"><a href="http://www.163.com/">网易首页</a> > <a href="http://news.163.com/">新闻中心</a> > <a href="http://news.163.com/rank/">新闻排行榜</a></h3>
+    <div class="top_search">
+        <form target="_blank" id="formtop" name="nisearch_top" method="get" action="http://news.yodao.com/search">
+    <input type="hidden" value="news.163" name="keyfrom"/>  
+    <input type="hidden" value="user163" name="suser"/>
+    <input type="hidden" value="gbk" name="ue"/>
+    <label><span class="hidden">搜索</span><input type="text" class="textBox" value="请输入关键词" onfocus="this.value=''" id="searchInput_top" name="q"/></label>
+    <noscript><select name="site" class="left">
+    <option value="网易" selected="selected">新闻</option>
+    <option value="">网页</option>
+    </select></noscript> 
+    <div id="divSelect" class="left">
+    <input id="siteName" type="hidden" value="网易" name="site" /><div id="select_area" class="select_box"><span id="selected" class="search_site">新闻</span><div id="select_main" class="select_list"><a title="网易">新闻</a><a title="">网页</a></div></div>
+    </div>  
+    <input type="submit" class="btn" value="搜索" name="Submit"/><input type="hidden" value="page" id="in" name="in"/>
+    </form>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    (function NTES_Nav(){
+    function $_G(id){
+    return document.getElementById(id);
+    }
+    function clickselect(e){
+    e = e || window.event;
+    e.cancelBubble = true;
+    var name = this.innerHTML;
+    var txt = document.createTextNode(name);
+    selected.removeChild(selected.firstChild);
+    selected.appendChild(txt);
+    select_main.style.display = "none";
+    var title = this.getAttribute("title");
+    $_G("siteName").value = title;
+    if (title == "网易") {
+    document.nisearch_top.action = "http://news.yodao.com/search";
+    }
+    else {document.nisearch_top.action = "http://www.yodao.com/search";
+    }
+    }
+    function a_mouseover () {
+    this.className = "active";
+    }
+    function a_mouseout () {
+    this.className = "";
+    }
+    $_G("divSelect").innerHTML = '<input id="siteName" type="hidden" value="网易" name="site" /><div id="select_area" class="select_box"><span id="selected" class="search_site">新闻</span><div id="select_main" class="select_list"><a title="网易">新闻</a><a title="">网页</a></div></div>';
+    var select_area = $_G("select_area"), selected = $_G("selected"), select_main = $_G("select_main"), select_list = select_main.getElementsByTagName("a"), len = select_list.length;
+    select_area.onclick = select_main.onmouseover = function(){
+    select_main.style.display = "block";
+    }
+    select_main.onmouseout = function(){
+    select_main.style.display = "none";
+    }
+    for (var i = 0; i < len; i++) {
+    select_list[i].onclick = clickselect;
+    select_list[i].onmouseover = a_mouseover;
+    select_list[i].onmouseout = a_mouseout;
+    }
+    })();
+    //]]>
+    </script>
+</div>
+<!-- 导航栏结束 -->
+<!-- 二级导航开始 -->
+<div class="nav_channel">
+<span class="nav"><a href="http://news.163.com/latest/" class="firstNode">最新</a> <a href="http://news.163.com/rank/">排行</a> <a href="http://news.163.com/domestic/">国内</a> <a href="http://news.163.com/world/">国际</a> <a href="http://news.163.com/shehui/">社会</a> <a href="http://news.163.com/review/">评论</a> <a href="http://focus.news.163.com/">深度</a> <a href="http://war.news.163.com/">军事</a> <a href="http://history.news.163.com/">历史</a> <a href="http://discover.news.163.com/">探索</a> <a href="http://news.163.com/photo/">图片</a> <a href="http://blog.163.com/blogs/">博客</a> <a href="http://media.163.com/">媒体</a> <a href="http://v.news.163.com/">视频</a> <a href="http://popme.163.com/jdu/5433_090227.html">公益</a> <a href="http://help.3g.163.com/">手机版</a></span>
+<span class="rightS"></span>
+</div>
+<!-- 二级导航开始 --><div class="area areabg1">
+<div class="titleBar"><h2>新闻</h2><div class="more">&nbsp;</div></div>
+<div class="area-half left">
+<div class="tabBox">
+<div class="title-tab"><h2>点击榜</h2><ul class="tabNav"><li class="active">1小时前点击排行</li><li>24小时点击排行</li><li>本周点击排行</li></ul></div>
+<div class="tabContents active">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th><th width="35">趋势</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://news.163.com/13/0117/11/8LDSJHI30001121M.html">鸠山参观南京大屠杀纪念馆 双手合十默哀</a></td>
+<td class="cBlue">537451</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://news.163.com/13/0117/03/8LD37E4E00014AED.html">媒体称解放军陆军共18个集团军 8个负责拱卫北京</a></td>
+<td class="cBlue">526455</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://world.163.com/13/0116/17/8LBU961O00014OQQ.html">一架直升机在伦敦市中心坠毁 已致2死13伤</a></td>
+<td class="cBlue">393478</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://news.163.com/13/0117/07/8LDGTN5S0001124J.html">广东佛山警方称180万元购4辆摩托车为方便开道</a></td>
+<td class="cBlue">351659</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://war.163.com/13/0117/08/8LDKKSUN00014OMD.html">中国远征军202名在缅阵亡将士灵位首次归国</a></td>
+<td class="cBlue">332648</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://news.163.com/13/0117/02/8LCUG4AC00014AED.html">安倍晋三呼吁越南与日本联手应对中国</a></td>
+<td class="cBlue">322045</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://news.163.com/13/0116/03/8LAFFH8300014AED.html">周克华女友全盘翻供 并不认为自己犯罪</a></td>
+<td class="cBlue">319839</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://news.163.com/13/0116/11/8LBC0L2N0001124J.html">国台办回应伊能静言论事件：台艺人在大陆应守法</a></td>
+<td class="cBlue">239202</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://news.163.com/13/0117/08/8LDHKUNB0001124J.html">深圳市委书记弃奥迪座驾换乘国产电动汽车</a></td>
+<td class="cBlue">228630</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://news.163.com/13/0117/07/8LDGNA7D00011229.html">央视借《国产凌凌漆》桥段播周星驰当选委员</a></td>
+<td class="cBlue">200160</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/09/8LDMVC3J00014OMD.html">台军或将演练钓鱼岛遭外敌强占时 反击夺岛</a></td>
+<td class="cBlue">194997</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDFMH7300014JB6.html">美国工程师用1/5薪水将工作外包给中国公司</a></td>
+<td class="cBlue">193909</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/20/8LC8L4KC0001124J.html">肺癌胃癌等20种疾病纳入农村大病保障</a></td>
+<td class="cBlue">191169</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD4PPJI00011229.html">一家三口为上访流浪京城20年 获人民日报关注</a></td>
+<td class="cBlue">161123</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDI5C5E00014OMD.html">环球时报：外媒称中国搭法军顺风车 很恶心</a></td>
+<td class="cBlue">145331</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUJ49M00014AED.html">山东潍坊出现麻刚沙所建居民楼 用材可捏碎</a></td>
+<td class="cBlue">141605</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDJDITA00014OMD.html">汉和：乌克兰军工进步小致中乌军事合作低迷</a></td>
+<td class="cBlue">139881</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/21/8LCE35ME00011229.html">陕西贫困县县委书记配百万豪车 称从企业借用</a></td>
+<td class="cBlue">130162</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQGDNS00011229.html">女子合租房裸睡引来陌生男子 误认男友与其亲热</a></td>
+<td class="cBlue">127192</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/00/8LCMUPCN0001121M.html">日本前首相鸠山在华承认钓鱼岛存领土争议</a></td>
+<td class="cBlue">112598</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/06/8LDC3EJH00014OMD.html">缅甸又一发炮弹落入云南 中缅边境贸易停滞</a></td>
+<td class="cBlue">111384</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCV8DG10001124J.html">外资银行集体质疑中国外贸数据造假:好得出奇</a></td>
+<td class="cBlue">108668</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDEEQC600014JB5.html">北京上海山西等8地代省(市)长月内将转正</a></td>
+<td class="cBlue">96680</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LAFSRA300014J34.html">陆军集团军番号昨起解密 团级仍用“某”替代</a></td>
+<td class="cBlue">89740</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDI5C8T00014OMD.html">中国在马里有2千侨民 是否出兵令人期待</a></td>
+<td class="cBlue">88038</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/07/8LDF2JQ400014OVF.html">媒体称解放军有18个集团军 8个负责拱卫北京</a></td>
+<td class="cBlue">88021</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://world.163.com/13/0117/07/8LDG59LR00014OQQ.html">美国日本停飞所有波音787客机</a></td>
+<td class="cBlue">82276</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/10/8LDP8KKA00014OMD.html">伊朗军方否认美F-22飞越伊朗领空未被发现</a></td>
+<td class="cBlue">76941</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDH794N00014JB5.html">铁道部12306专家承认部分抢票软件有效</a></td>
+<td class="cBlue">71432</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQG2020001124J.html">直击12306购票网站:热门车票5分钟被抢购一空</a></td>
+<td class="cBlue">70897</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDRPV5D0001121M.html">鸠山今向南京大屠杀纪念馆献花 被批日卖国贼</a></td>
+<td class="cBlue">62914</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/17/8LBU9CBN00014JB6.html">日媒称美要求日本不得射击飞临钓鱼岛中国飞机</a></td>
+<td class="cBlue">62514</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUG3NV00014AED.html">足协副主席韦迪被曝下课：正在工作时接到通知</a></td>
+<td class="cBlue">61268</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDI5AOE00014OMD.html">1987日本战机曾对苏联轰炸机进行警告射击</a></td>
+<td class="cBlue">55791</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCVLI9Q00014AED.html">英国伦敦遇难飞行员曾在007电影里开过飞机</a></td>
+<td class="cBlue">55026</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDENQAN00014JB6.html">18大后9省团委密集换届 新书记均系本省籍干部</a></td>
+<td class="cBlue">53814</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQLH1I0001124J.html">深圳人大主任谈“表哥”：现在好多人不敢戴表</a></td>
+<td class="cBlue">52917</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0115/19/8L9IVQV100014J0G.html">中日军机若再因钓鱼岛对峙：或会擦枪走火</a></td>
+<td class="cBlue">51787</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD1HLJC0001124J.html">深圳一造价近4800万元景观工程停工 称选址错误</a></td>
+<td class="cBlue">49019</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/12/8LBDGI4A00014OMD.html">马英九：未来美国武器照买 与大陆和解照走</a></td>
+<td class="cBlue">48855</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/09/8LDLVJ9600014OMD.html">法军在马里展开地面行动 出动30辆装甲车</a></td>
+<td class="cBlue">47789</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDHV6VM00014OMD.html">奥巴马开出控枪"猛药" 禁售大弹夹攻击武器</a></td>
+<td class="cBlue">46260</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCU6L0U0001124J.html">铁路部门详解“站票不半价”称车票构成复杂</a></td>
+<td class="cBlue">40200</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://data.163.com/13/0115/22/8L9TQN1400014MTN.html">23%中国人宁为手机放弃性爱</a></td>
+<td class="cBlue">38642</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/07/8LATD7NG00014OMD.html">少将：中国已夺取钓岛主动权 须防日本偷袭</a></td>
+<td class="cBlue">36069</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/08/8LAV83GE00014OMD.html">环球时报：打仗不是好事 不能轻易开战</a></td>
+<td class="cBlue">33567</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDT2M1K00011229.html">深圳景点鳄鱼因冬眠不动被游客扔石头砸死</a></td>
+<td class="cBlue">33275</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/06/8LDD0EMP00014OMD.html">人民日报:中国海洋强国梦不走西方老路</a></td>
+<td class="cBlue">32975</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD0NT9I00014AED.html">云南镇雄承认强行火化遇难者遗体为维稳</a></td>
+<td class="cBlue">31783</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/13/8LBIC7D800014OMD.html">美媒：中国对缅甸友好效果不佳或支持反对派</a></td>
+<td class="cBlue">29689</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDP35CH00011229.html">周克华案后头号大案：嫌犯持枪抢劫金店11次</a></td>
+<td class="cBlue">28628</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDHBIUR00014OMD.html">武直十飞行员新头盔亮相 可与机炮随动射击</a></td>
+<td class="cBlue">28400</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDISL7N00014OMD.html">鸠山17日向南京大屠杀纪念馆献花 被批日奸</a></td>
+<td class="cBlue">28250</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD4FAVQ0001121M.html">缅甸政府堵住通道致中缅边境上亿贸易停滞</a></td>
+<td class="cBlue">26296</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/09/8LDLLNH700014OMD.html">专家：中国应联合俄韩稳定菲越集中打击日本</a></td>
+<td class="cBlue">24178</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD65MBD0001124J.html">官员组团买地建楼资金链断裂 县政府门口贴检讨</a></td>
+<td class="cBlue">23851</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/16/8LBS6FRR00014OVB.html">80后女副市长叔叔为副厅长 官方否认靠裙带关系</a></td>
+<td class="cBlue">23427</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/09/8LDO1S3B00014OMD.html">外媒称解放军需要300架运20 够制造厂产10年</a></td>
+<td class="cBlue">22701</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/08/8LAVHNBI00014OMD.html">克钦独立军称破获缅甸布置在中国间谍小组</a></td>
+<td class="cBlue">22023</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCVUG5I00014JB5.html">奥巴马公布控枪对策：禁止销售攻击性枪支</a></td>
+<td class="cBlue">20995</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/08/8LDI3U5J0001124J.html">东莞鱼翅销量锐减四成 酒店老板：领导都不吃了</a></td>
+<td class="cBlue">17760</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/02/8LACQB0M00014AED.html">周克华作案录像首公布 女友受审称不知周是悍匪</a></td>
+<td class="cBlue">17379</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD3E3QE0001121M.html">朝鲜毛泽东班:会唱没有共产党就没有新中国</a></td>
+<td class="cBlue">16575</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/05/8LD8SGMI00014JB6.html">18颗冷冻人头现芝加哥机场 查明系用于科研</a></td>
+<td class="cBlue">16330</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD2PO3V00014JB6.html">韩国称中国雾霾致韩空气污染</a></td>
+<td class="cBlue">16074</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/05/8LD747IH0001121M.html">外交部:反对日本在钓鱼岛海域和空域侵权行为</a></td>
+<td class="cBlue">15236</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/08/8LB007F700014OMD.html">少将：日本伞兵若空降钓鱼岛可能会被喂鲨鱼</a></td>
+<td class="cBlue">15173</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/13/8LBGQU1K0001124J.html">深圳市长作报告 参会者陆续离席或玩手机</a></td>
+<td class="cBlue">14867</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCGGT3700011229.html">警察从警15年无身份 警服自己买警号为借用</a></td>
+<td class="cBlue">14846</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/11/8LBBTAGA00011229.html">网店出租男友春节回家 称礼节性接吻50元1次</a></td>
+<td class="cBlue">14708</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://data.163.com/13/0113/22/8L4P4HQH00014MTN.html">美国人到底有多“穷”</a></td>
+<td class="cBlue">14634</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L586SRR00011229.html">《非诚勿扰》女嘉宾杀夫 死者非牵手男嘉宾</a></td>
+<td class="cBlue">14579</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://discovery.163.com/13/0116/09/8LB51NR2000125LI.html">印度1亿人将参加朝圣节日沐浴 河水恐严重污染</a></td>
+<td class="cBlue">13983</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/01/8LA7KGET0001124J.html">张贵英当庭翻供 不确认被击毙者是周克华</a></td>
+<td class="cBlue">13946</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/23/8LCLA5LF00011229.html">网曝警察叼中华烟围殴记者：等下让你知道痛</a></td>
+<td class="cBlue">13469</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/09/8LDLQNI90001124J.html">网曝80后女副市长学历造假 叔叔为同省副厅长</a></td>
+<td class="cBlue">13386</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDG0V5S00011229.html">湖南校长护校殉职续：凶手相亲失败性情大变</a></td>
+<td class="cBlue">13273</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/09/8LDLBR5N00014JB6.html">内地政协广纳港区委员 何厚铧之子在沪当选</a></td>
+<td class="cBlue">13090</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUFLS700014AED.html">北京地铁4名男子因拥挤对打 乘客让出1节车厢</a></td>
+<td class="cBlue">11687</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD44O9J00011229.html">留学生因窃案受邀回英国作证 费用英警方埋单</a></td>
+<td class="cBlue">11301</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/16/8LBR2NQ400014JB5.html">辽宁1名车主溜车轧死自己获保险公司22万元赔偿</a></td>
+<td class="cBlue">10457</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/03/8LAENNCJ00014OMD.html">叙媒称总统长居军舰上 由俄罗斯负责安保</a></td>
+<td class="cBlue">10265</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDPV65O00014JB6.html">周立波骂完徐铮推卸责任 媒体一边倒批判(图)</a></td>
+<td class="cBlue">10151</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCTL23Q00014AED.html">教授：武汉城区上空有50多吨PM2.5</a></td>
+<td class="cBlue">9882</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCFQPR500014JB6.html">日本前首相鸠山访华 承认钓鱼岛存在领土争议</a></td>
+<td class="cBlue">9611</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/01/8LA8II6Q00014JB5.html">中央军委原秘书长杨白冰去世</a></td>
+<td class="cBlue">9422</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD6CU1600011229.html">女人大代表否认撞倒老人后亮证自行离开</a></td>
+<td class="cBlue">9388</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCVN7S200014AED.html">德夫妇潜伏20余年为俄搜集情报 亲生女儿不知情</a></td>
+<td class="cBlue">9357</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD0N1EG00011229.html">小学生捡到钱包后又弄丢 失主上门索要赔偿</a></td>
+<td class="cBlue">9206</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/09/8L8GSPTP0001124J.html">赴广州欲制造血案男子:老家死十个人都包得住</a></td>
+<td class="cBlue">9182</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/05/8LD8HPU100011229.html">河南1处高速入口路面现千枚螺丝钉 多辆车被扎</a></td>
+<td class="cBlue">8969</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/06/8LDCGQAA00011229.html">小贩被城管痛殴血流一地 官方称小贩先泼油</a></td>
+<td class="cBlue">8590</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD2DK5200014AED.html">武汉1名男子因违反禁酒家规被老婆打掉1颗牙</a></td>
+<td class="cBlue">8491</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCG42LG00011229.html">货车在山东出车祸 价值10万元柑橘被哄抢一空</a></td>
+<td class="cBlue">8151</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD2PNJ40001124J.html">农村20种大病名单</a></td>
+<td class="cBlue">7919</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/20/8LCANH0700014JB6.html">四川农民挖出乌木被判国有案原告诉讼被驳</a></td>
+<td class="cBlue">7895</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/07/8LAUML2V00014OMD.html">军事专家：中日不会因为一颗曳光弹立刻宣战</a></td>
+<td class="cBlue">7855</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/01/8LCRONN10001121M.html">法国将增兵马里 对叛军展开大规模地面作战</a></td>
+<td class="cBlue">7389</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD6CJP800011229.html">环卫工夫妇携1年积蓄乘黑车回老家被抢</a></td>
+<td class="cBlue">7132</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD55IBQ00011229.html">小三索千万元抚养费被驳 法官：破坏公序良俗</a></td>
+<td class="cBlue">7118</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://news.163.com/13/0116/02/8LACQB0M00014AED.html">周克华作案录像首公布 女友受审称不知周是悍匪</a></td>
+<td class="cBlue">2882978</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://news.163.com/13/0116/01/8LA7KGET0001124J.html">张贵英当庭翻供 不确认被击毙者是周克华</a></td>
+<td class="cBlue">2446821</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://news.163.com/13/0116/03/8LAFFH8300014AED.html">周克华女友全盘翻供 并不认为自己犯罪</a></td>
+<td class="cBlue">1936313</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://news.163.com/13/0116/11/8LBC0L2N0001124J.html">国台办回应伊能静言论事件：台艺人在大陆应守法</a></td>
+<td class="cBlue">1387425</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://news.163.com/13/0116/01/8LA8II6Q00014JB5.html">中央军委原秘书长杨白冰去世</a></td>
+<td class="cBlue">1199781</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://news.163.com/13/0115/19/8L9I9NDG0001124J.html">湖南新化发生校园惨案 校长阻止行凶被砍死</a></td>
+<td class="cBlue">1039086</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://news.163.com/13/0116/03/8LAFSRA300014J34.html">陆军集团军番号昨起解密 团级仍用“某”替代</a></td>
+<td class="cBlue">921579</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://news.163.com/13/0117/11/8LDSJHI30001121M.html">鸠山参观南京大屠杀纪念馆 双手合十默哀</a></td>
+<td class="cBlue">537451</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://news.163.com/13/0117/03/8LD37E4E00014AED.html">媒体称解放军陆军共18个集团军 8个负责拱卫北京</a></td>
+<td class="cBlue">528612</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://news.163.com/13/0116/17/8LBU9CBN00014JB6.html">日媒称美要求日本不得射击飞临钓鱼岛中国飞机</a></td>
+<td class="cBlue">368861</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/08/8LB055LJ0001124J.html">媒体称铁路系统全员加薪 月薪上涨360元至490</a></td>
+<td class="cBlue">363260</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDGTN5S0001124J.html">广东佛山警方称180万元购4辆摩托车为方便开道</a></td>
+<td class="cBlue">351659</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUG4AC00014AED.html">安倍晋三呼吁越南与日本联手应对中国</a></td>
+<td class="cBlue">324373</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/09/8LB35BCB0001124J.html">铁道部专家回应站票半价:有人坐空闲席位如何算</a></td>
+<td class="cBlue">311088</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/20/8LC8L4KC0001124J.html">肺癌胃癌等20种疾病纳入农村大病保障</a></td>
+<td class="cBlue">293815</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/11/8LBBTAGA00011229.html">网店出租男友春节回家 称礼节性接吻50元1次</a></td>
+<td class="cBlue">273325</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/15/8L96VT6T0001124J.html">兰考官员回应媒体指责：倒霉就倒霉在焦裕禄</a></td>
+<td class="cBlue">270519</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LATFA2C00011229.html">李承鹏深圳签售再次被骂汉奸 场外发生打斗</a></td>
+<td class="cBlue">260699</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/13/8LBGQU1K0001124J.html">深圳市长作报告 参会者陆续离席或玩手机</a></td>
+<td class="cBlue">233782</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/08/8LDHKUNB0001124J.html">深圳市委书记弃奥迪座驾换乘国产电动汽车</a></td>
+<td class="cBlue">228630</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/09/8LB3OMD00001124J.html">中央军委的沿袭变革</a></td>
+<td class="cBlue">208679</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/02/8LACLT3200014AED.html">女歌手经常网购被快递员认为有钱遭劫杀</a></td>
+<td class="cBlue">201940</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDGNA7D00011229.html">央视借《国产凌凌漆》桥段播周星驰当选委员</a></td>
+<td class="cBlue">200160</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDFMH7300014JB6.html">美国工程师用1/5薪水将工作外包给中国公司</a></td>
+<td class="cBlue">193909</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/16/8LBS6FRR00014OVB.html">80后女副市长叔叔为副厅长 官方否认靠裙带关系</a></td>
+<td class="cBlue">192933</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/00/8LA4M65E00014JB6.html">法院称2.9万元案卷复印费含复印机损耗费</a></td>
+<td class="cBlue">190352</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/02/8LACCJBC00014AED.html">周克华女友当庭翻供 称审讯笔录可能与事实不符</a></td>
+<td class="cBlue">166767</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD4PPJI00011229.html">一家三口为上访流浪京城20年 获人民日报关注</a></td>
+<td class="cBlue">162660</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/18/8LC1M3DV0001124J.html">山东胶州官员办公室受贿视频流出 当事人被停职</a></td>
+<td class="cBlue">158920</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/09/8L8GSPTP0001124J.html">赴广州欲制造血案男子:老家死十个人都包得住</a></td>
+<td class="cBlue">143174</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUJ49M00014AED.html">山东潍坊出现麻刚沙所建居民楼 用材可捏碎</a></td>
+<td class="cBlue">141668</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/21/8LCE35ME00011229.html">陕西贫困县县委书记配百万豪车 称从企业借用</a></td>
+<td class="cBlue">133093</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQGDNS00011229.html">女子合租房裸睡引来陌生男子 误认男友与其亲热</a></td>
+<td class="cBlue">127192</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCV8DG10001124J.html">外资银行集体质疑中国外贸数据造假:好得出奇</a></td>
+<td class="cBlue">115416</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/00/8LCMUPCN0001121M.html">日本前首相鸠山在华承认钓鱼岛存领土争议</a></td>
+<td class="cBlue">114391</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LADV43E00014JB6.html">日本称“飞机入侵”将按国际准则应对</a></td>
+<td class="cBlue">108655</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/14/8LBJKISU00014JB6.html">日本前首相鸠山由纪夫将参观南京大屠杀纪念馆</a></td>
+<td class="cBlue">107355</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDEEQC600014JB5.html">北京上海山西等8地代省(市)长月内将转正</a></td>
+<td class="cBlue">96680</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/09/8LB4CUN70001121M.html">中国记者证实日本可射击中国飞机报道不实</a></td>
+<td class="cBlue">96004</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/14/8L9296KQ0001121M.html">日本称若中国飞机进钓鱼岛将发信号弹警告</a></td>
+<td class="cBlue">95290</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/02/8L7O7O4K0001124J.html">报告称全球10大严重污染城市7个在中国</a></td>
+<td class="cBlue">87745</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L586SRR00011229.html">《非诚勿扰》女嘉宾杀夫 死者非牵手男嘉宾</a></td>
+<td class="cBlue">80995</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LAFFPVN00014AED.html">周克华抢劫后打电话让张贵英出门：发工资了</a></td>
+<td class="cBlue">77129</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LAUCHSJ0001124J.html">缅甸克钦独立军称破获缅政府军在中国间谍小组</a></td>
+<td class="cBlue">73563</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LATVIA200014JB6.html">媒体称升官无望者转投央企：当不了部长当董事长</a></td>
+<td class="cBlue">72327</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDH794N00014JB5.html">铁道部12306专家承认部分抢票软件有效</a></td>
+<td class="cBlue">71432</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQG2020001124J.html">直击12306购票网站:热门车票5分钟被抢购一空</a></td>
+<td class="cBlue">70897</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/19/8LC4TP080001121M.html">伊朗最高领袖已签署宗教敕令 禁止伊开发核武器</a></td>
+<td class="cBlue">70499</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/08/8LAVF68200014JB5.html">吉林“中国黄金第一矿”火灾迟报9小时</a></td>
+<td class="cBlue">69553</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCGGT3700011229.html">警察从警15年无身份 警服自己买警号为借用</a></td>
+<td class="cBlue">67179</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUG3NV00014AED.html">足协副主席韦迪被曝下课：正在工作时接到通知</a></td>
+<td class="cBlue">63300</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDRPV5D0001121M.html">鸠山今向南京大屠杀纪念馆献花 被批日卖国贼</a></td>
+<td class="cBlue">62914</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/10/8LB73JV30001124J.html">福建“房嫂”丈夫：房子都是我买的</a></td>
+<td class="cBlue">59467</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/17/8L9EM3U80001124J.html">浙江公证处领导被曝年薪百万元 司法局称没问题</a></td>
+<td class="cBlue">58870</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/13/8LBINCCP00011229.html">学子高三退学赴北大旁听11年 母亲被气精神分裂</a></td>
+<td class="cBlue">58669</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/14/8L9313N40001124J.html">台媒：中国成立钓鱼岛应变小组 习近平任组长</a></td>
+<td class="cBlue">57699</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/17/8L9CTHGU0001124J.html">解放军陆军集团军番号可公开 不再以“某”替代</a></td>
+<td class="cBlue">56579</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCVLI9Q00014AED.html">英国伦敦遇难飞行员曾在007电影里开过飞机</a></td>
+<td class="cBlue">55029</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDENQAN00014JB6.html">18大后9省团委密集换届 新书记均系本省籍干部</a></td>
+<td class="cBlue">53814</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQLH1I0001124J.html">深圳人大主任谈“表哥”：现在好多人不敢戴表</a></td>
+<td class="cBlue">52917</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/13/8LBHRE4G00011229.html">新华社评李承鹏签售遭大骂:徒增社会暴戾之气</a></td>
+<td class="cBlue">52062</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LAE3JK100011229.html">兰州男子携盐酸夜闯交警队 3名警察遭灼伤(图)</a></td>
+<td class="cBlue">50197</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0107/00/8KIU39FK0001124J.html">《南方周末》近十五年新年献词1998-2013</a></td>
+<td class="cBlue">49990</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD1HLJC0001124J.html">深圳一造价近4800万元景观工程停工 称选址错误</a></td>
+<td class="cBlue">49256</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCU6L0U0001124J.html">铁路部门详解“站票不半价”称车票构成复杂</a></td>
+<td class="cBlue">40221</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/09/8LB3A1V90001124J.html">网友吁火车站票半价 央视评论员:站票该比坐票贵</a></td>
+<td class="cBlue">38695</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/08/8LB0I0N100011229.html">流浪汉在中共中央机关旧址内烧火做饭被驱走</a></td>
+<td class="cBlue">38158</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/06/8LAOH0MS00011229.html">男子欲拍照赞城管冒严寒执法 被城管抢走手机</a></td>
+<td class="cBlue">37351</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/02/8LAAERHR00014AED.html">顾客偷避孕套被超市保安敲诈4000元私了</a></td>
+<td class="cBlue">36476</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/18/8LC4HBDU00014JB5.html">国务院：春节前为8953.4万困难群众发放生活补</a></td>
+<td class="cBlue">36186</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/13/8L8UMV570001124J.html">周克华女友正受审 律师称其智商与常人有区别</a></td>
+<td class="cBlue">36128</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L55FRU900011229.html">新疆小贩洛阳公路拦车强卖切糕：1刀下去550元</a></td>
+<td class="cBlue">35041</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCG42LG00011229.html">货车在山东出车祸 价值10万元柑橘被哄抢一空</a></td>
+<td class="cBlue">34728</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/14/8LBLURH500011229.html">夫妻相守67年今年1月14日同日离世 感动网友</a></td>
+<td class="cBlue">34621</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCEU7JN00014J34.html">两名男子持枪抢金店趁浓雾逃脱 百万黄金埋山中</a></td>
+<td class="cBlue">34037</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/03/8L7U42D80001124J.html">长沙规划局原副局长10年敛财2亿元换6个情妇</a></td>
+<td class="cBlue">33449</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDT2M1K00011229.html">深圳景点鳄鱼因冬眠不动被游客扔石头砸死</a></td>
+<td class="cBlue">33275</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/23/8LA0MA2600011229.html">河南公司被曝加工病死鸡卖给肯德基麦当劳</a></td>
+<td class="cBlue">32971</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LATB5E200011229.html">女子被政府羁押后死亡 家属欲查看判决书3年未果</a></td>
+<td class="cBlue">32517</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD0NT9I00014AED.html">云南镇雄承认强行火化遇难者遗体为维稳</a></td>
+<td class="cBlue">31790</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/12/8LBDT1G700014JB6.html">杨毅回应伊能静涉“南周”言论或影响其工作传言</a></td>
+<td class="cBlue">31598</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/16/8L9931M00001124J.html">台涉外部门：大陆地区是“中华民国”固有领土</a></td>
+<td class="cBlue">31309</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/19/8L9L82QV00014JB5.html">甘肃称侦破达赖集团策划自焚杀人案抓获7人</a></td>
+<td class="cBlue">29110</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDP35CH00011229.html">周克华案后头号大案：嫌犯持枪抢劫金店11次</a></td>
+<td class="cBlue">28628</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/17/8L9EFJRF00011229.html">男子痴迷红歌几十年 曾卖房借钱组团赴京演出</a></td>
+<td class="cBlue">28478</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD4FAVQ0001121M.html">缅甸政府堵住通道致中缅边境上亿贸易停滞</a></td>
+<td class="cBlue">27388</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/02/8LACB49A00014AED.html">大学生凑600元钱雇吊车救下被困树枝喜鹊</a></td>
+<td class="cBlue">27325</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/22/8L9THJIB00011229.html">陈光标表演胸口过汽车宣传环保 称在少林寺练过</a></td>
+<td class="cBlue">26848</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/22/8L9T1GCE0001124J.html">李克强：推进城镇化不能人为造城</a></td>
+<td class="cBlue">26189</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0107/00/8KJ0NO5Q0001124J.html">南周微博称特刊封面导言系该报负责人草拟</a></td>
+<td class="cBlue">25183</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/19/8LC5T84V00011229.html">夫妻收10元帮民工购车票被拘 律师称不构成倒卖</a></td>
+<td class="cBlue">24816</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD65MBD0001124J.html">官员组团买地建楼资金链断裂 县政府门口贴检讨</a></td>
+<td class="cBlue">23914</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LATU95Q0001124J.html">国家级贫困县75万元奖励拳王 称其他方面可节省</a></td>
+<td class="cBlue">23697</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCVUG5I00014JB5.html">奥巴马公布控枪对策：禁止销售攻击性枪支</a></td>
+<td class="cBlue">23620</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LASBQ9S0001124J.html">杨白冰1989年11月9日增补为中央书记处书记</a></td>
+<td class="cBlue">23123</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/16/8L9AUASA00014AED.html">广东东莞父子当街遛两百斤重大蟒蛇</a></td>
+<td class="cBlue">22884</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/02/8LADJDH900011229.html">吉林延吉团伙拐卖20名外籍妇女被抓 主犯曾被拐</a></td>
+<td class="cBlue">21929</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/18/8L9HPOAM0001124J.html">广东汕尾政法委书记陈增新严重违纪被双开</a></td>
+<td class="cBlue">21315</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/15/8L95GKTE00014JB5.html">刘云山出任中央党校校长 为学员颁发毕业证书</a></td>
+<td class="cBlue">21221</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/21/8L9QT5V000014JB6.html">瑞典女清洁工偷开火车过瘾 火车失控撞大楼</a></td>
+<td class="cBlue">21148</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://news.163.com/13/0116/02/8LACQB0M00014AED.html">周克华作案录像首公布 女友受审称不知周是悍匪</a></td>
+<td class="cBlue">2882978</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://news.163.com/13/0116/01/8LA7KGET0001124J.html">张贵英当庭翻供 不确认被击毙者是周克华</a></td>
+<td class="cBlue">2446821</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://news.163.com/13/0110/10/8KROOTOH0001124J.html">香港立法会否决弹劾特首梁振英议案</a></td>
+<td class="cBlue">2159638</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://news.163.com/13/0110/19/8KSO2AAG00014JB6.html">日媒称中国10余架战斗机接近钓鱼岛</a></td>
+<td class="cBlue">2099859</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://news.163.com/13/0116/03/8LAFFH8300014AED.html">周克华女友全盘翻供 并不认为自己犯罪</a></td>
+<td class="cBlue">1936313</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://news.163.com/13/0112/19/8L1SAA9J0001124J.html">1月12日空气污染最严重的前10个城市</a></td>
+<td class="cBlue">1854070</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://news.163.com/13/0110/13/8KS1VIL100011229.html">北京丰台发生持刀劫持人质事件 劫持者被控制</a></td>
+<td class="cBlue">1827930</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://news.163.com/13/0112/23/8L2BBFTR00014JB6.html">陈光标戴绿帽与朗朗南京街头免费派发自行车</a></td>
+<td class="cBlue">1409102</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://news.163.com/13/0116/11/8LBC0L2N0001124J.html">国台办回应伊能静言论事件：台艺人在大陆应守法</a></td>
+<td class="cBlue">1387425</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://news.163.com/13/0114/02/8L586SRR00011229.html">《非诚勿扰》女嘉宾杀夫 死者非牵手男嘉宾</a></td>
+<td class="cBlue">1380614</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/13/8L3S59US0001124J.html">富士康江西工厂千人不满薪资待遇上街游行(图)</a></td>
+<td class="cBlue">1377689</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/09/8L8GSPTP0001124J.html">赴广州欲制造血案男子:老家死十个人都包得住</a></td>
+<td class="cBlue">1376591</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/01/8LA8II6Q00014JB5.html">中央军委原秘书长杨白冰去世</a></td>
+<td class="cBlue">1199781</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/19/8L9I9NDG0001124J.html">湖南新化发生校园惨案 校长阻止行凶被砍死</a></td>
+<td class="cBlue">1107514</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L55FRU900011229.html">新疆小贩洛阳公路拦车强卖切糕：1刀下去550元</a></td>
+<td class="cBlue">1065714</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/10/8KUB4AME00014JB6.html">安倍晋三：钓鱼岛问题无谈判余地</a></td>
+<td class="cBlue">1044149</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/01/8KQQFMJ00001124J.html">长沙救助站称与暗访记者肢体接触不违规</a></td>
+<td class="cBlue">1028209</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/09/8KRMJCTS0001124J.html">记者再诉暗访长沙救助站遭殴致脑震荡</a></td>
+<td class="cBlue">958464</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LAFSRA300014J34.html">陆军集团军番号昨起解密 团级仍用“某”替代</a></td>
+<td class="cBlue">921579</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/10/8KUCLBNN0001124J.html">云南昭通山体滑坡埋46人 已致42人遇难</a></td>
+<td class="cBlue">882970</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/02/8L7O7O4K0001124J.html">报告称全球10大严重污染城市7个在中国</a></td>
+<td class="cBlue">827074</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/03/8L7U42D80001124J.html">长沙规划局原副局长10年敛财2亿元换6个情妇</a></td>
+<td class="cBlue">788841</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/12/8KRV7FRI0001124J.html">长沙发生枪案致2人伤 警方称系债务纠纷</a></td>
+<td class="cBlue">768323</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/08/8L0MGR8E00014JB5.html">云南镇雄山体滑坡46名被埋人员全部遇难</a></td>
+<td class="cBlue">765937</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/04/8L0ASG4J0001124J.html">周克华包养女友1周花费1万 自称哈佛毕业</a></td>
+<td class="cBlue">756457</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0109/17/8KPUDTHS00011229.html">中国首富女儿30岁未交过男友：难辨追求者动机</a></td>
+<td class="cBlue">675020</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/15/8L96VT6T0001124J.html">兰考官员回应媒体指责：倒霉就倒霉在焦裕禄</a></td>
+<td class="cBlue">671952</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/14/8L9296KQ0001121M.html">日本称若中国飞机进钓鱼岛将发信号弹警告</a></td>
+<td class="cBlue">671843</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/09/8L3DGNDI00014JB6.html">33城市空气遭遇严重污染 雾霾天气向南部扩张</a></td>
+<td class="cBlue">661633</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/06/8L3124MC0001124J.html">湖南上访母亲唐慧将检举2名警察奸淫其女儿</a></td>
+<td class="cBlue">644489</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/14/8L9313N40001124J.html">台媒：中国成立钓鱼岛应变小组 习近平任组长</a></td>
+<td class="cBlue">641997</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/02/8KTEF6PF00014AED.html">郑州经适房黑幕:仅1/3留给市民 其余被层层扣留</a></td>
+<td class="cBlue">614733</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/18/8L6SLL2300014JB6.html">商务部：私家车报废年限限制取消</a></td>
+<td class="cBlue">594422</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L582D8U00014AED.html">雾锁京城 16个空气监测站指数爆表</a></td>
+<td class="cBlue">571241</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/23/8KT5PMGB00014JB5.html">中联办：“中央撤换香港特首”是无稽之谈</a></td>
+<td class="cBlue">566850</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/12/8KUJ2L5100011229.html">广州荔湾200多名环卫工罢工围警车要求涨薪</a></td>
+<td class="cBlue">550177</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDSJHI30001121M.html">鸠山参观南京大屠杀纪念馆 双手合十默哀</a></td>
+<td class="cBlue">537451</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0DR6D60001124J.html">雷政富不雅视频爆料人：女主角被镀金为名校生</a></td>
+<td class="cBlue">528792</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD37E4E00014AED.html">媒体称解放军陆军共18个集团军 8个负责拱卫北京</a></td>
+<td class="cBlue">528612</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/16/8KUVMJGR0001124J.html">国防部:军机抵近钓鱼岛为应对日机跟踪</a></td>
+<td class="cBlue">528168</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/16/8KV0SAJB00014JB5.html">日媒：中国飞机现钓鱼岛空域 日自卫队战机拦截</a></td>
+<td class="cBlue">527984</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/09/8L602GH300011229.html">外国人划伤近10辆车 称因车辆占用人行道</a></td>
+<td class="cBlue">520649</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/07/8KRFQNHQ00011229.html">港大教师疑与内地女星有染 其妻杀子后自杀</a></td>
+<td class="cBlue">502745</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/21/8L23DKMB00014JB6.html">中东部雾霾加剧 多地PM2.5指数濒临“爆表”</a></td>
+<td class="cBlue">481112</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/08/8L5QD8P00001124J.html">河南兰考县长回应无福利院却斥资2千万盖楼质疑</a></td>
+<td class="cBlue">475704</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/08/8L5RK71E0001124J.html">总参谋部:2013年要强化打仗思想 做好打仗准备</a></td>
+<td class="cBlue">454546</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/00/8L50UQG20001121M.html">印度再曝公交车轮奸案 司机及售票员参与施暴</a></td>
+<td class="cBlue">447823</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/17/8L6RD2U600011229.html">夫妻收10元帮人订火车票被拘 购票者为其喊冤</a></td>
+<td class="cBlue">441106</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/00/8L7JJ0EU0001124J.html">报告称北上广等四地PM2.5一年或致死8500人</a></td>
+<td class="cBlue">432273</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/10/8L8L5ORU00014JB6.html">日驻华使馆首次要求在华日本人少出门避污染</a></td>
+<td class="cBlue">432140</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/18/8L6VNJHJ0001124J.html">外交部回应解放军进驻中缅边境报道</a></td>
+<td class="cBlue">422783</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/02/8KTG8DOF00014AED.html">京城富商指使弟兄8年杀8人 贿赂警方帮其脱罪</a></td>
+<td class="cBlue">413111</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0C10ME00011229.html">尿毒病人用厨具等自制血透机维持生命13年(图)</a></td>
+<td class="cBlue">407039</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/09/8L3C9FFU00011229.html">少女武汉地铁内大跳钢管舞 乘客围观拍照(图）</a></td>
+<td class="cBlue">406473</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/02/8KTG4FT100014AED.html">郑州“房妹”家庭涉嫌倒卖数百套经适房</a></td>
+<td class="cBlue">400205</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L02U57M00014AED.html">国防部：两架歼-10战机起飞监视日战机</a></td>
+<td class="cBlue">398809</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/17/8LBU9CBN00014JB6.html">日媒称美要求日本不得射击飞临钓鱼岛中国飞机</a></td>
+<td class="cBlue">368861</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/17/8L9CTHGU0001124J.html">解放军陆军集团军番号可公开 不再以“某”替代</a></td>
+<td class="cBlue">366970</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/08/8LB055LJ0001124J.html">媒体称铁路系统全员加薪 月薪上涨360元至490</a></td>
+<td class="cBlue">363260</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0105/04/8KE7OVUI0001124J.html">香港示威者升殖民地时期旗帜自称非中国人(图)</a></td>
+<td class="cBlue">353272</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDGTN5S0001124J.html">广东佛山警方称180万元购4辆摩托车为方便开道</a></td>
+<td class="cBlue">351659</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/02/8L2KSIGI00014AED.html">云南景颇族人:缅甸政府军不停火将越境帮克钦族</a></td>
+<td class="cBlue">343697</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/05/8L5HJHGC0001124J.html">广东生猪供应商运500头猪堵政府大门抗议乱收费</a></td>
+<td class="cBlue">337241</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/08/8L0OML3U0001124J.html">云南镇雄山体滑坡：女儿趴在父亲背上一同遇难</a></td>
+<td class="cBlue">334134</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/11/8KRRCRO500014JB6.html">吉尔吉斯斯坦居民与中国工人群殴 18名华人受伤</a></td>
+<td class="cBlue">330035</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUG4AC00014AED.html">安倍晋三呼吁越南与日本联手应对中国</a></td>
+<td class="cBlue">324373</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L57BQOE00014AED.html">湖南上访妈妈今日到省政法委检举警察奸淫女儿</a></td>
+<td class="cBlue">316354</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L0149DA0001124J.html">社科院报告显示中国社会陷入信任危机</a></td>
+<td class="cBlue">311751</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/09/8LB35BCB0001124J.html">铁道部专家回应站票半价:有人坐空闲席位如何算</a></td>
+<td class="cBlue">311088</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L04041C0001124J.html">温州穿制服搂抱“三陪女”安监所长被停职</a></td>
+<td class="cBlue">307755</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/10/8L3H1S4R0001124J.html">太原市公安局长李亚力渎职被建议撤职</a></td>
+<td class="cBlue">305535</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/11/8KRTFCFF0001121M.html">AV女优向父亲公开道歉：很对不起走上这条路</a></td>
+<td class="cBlue">304711</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/08/8KRJCR550001124J.html">兰考包记者食宿1桌菜花五六百 称招待好是责任</a></td>
+<td class="cBlue">302790</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/20/8LC8L4KC0001124J.html">肺癌胃癌等20种疾病纳入农村大病保障</a></td>
+<td class="cBlue">293815</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/07/8L89GV0B00014JB6.html">交通部：9省市大客车须装北斗导航 系政治任务</a></td>
+<td class="cBlue">285700</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/11/8LBBTAGA00011229.html">网店出租男友春节回家 称礼节性接吻50元1次</a></td>
+<td class="cBlue">273325</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/03/8KR21L4A00011229.html">北京一处大楼被指酷似半截“大肠”</a></td>
+<td class="cBlue">267387</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/04/8L2QHIKL0001124J.html">中国黄金回应“黄金生锈”：符合国家标准</a></td>
+<td class="cBlue">261167</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LATFA2C00011229.html">李承鹏深圳签售再次被骂汉奸 场外发生打斗</a></td>
+<td class="cBlue">260699</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/06/8KRD0SBA0001124J.html">人民日报征集最反感官话 “高度重视”入选</a></td>
+<td class="cBlue">258657</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/03/8KTJP3EK00011229.html">网曝温州官员穿制服抱三陪女 当事人称是朋友</a></td>
+<td class="cBlue">254590</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/02/8L2JFQ620001124J.html">陕西农民工下跪讨薪续：开发商曾花百万元请明星</a></td>
+<td class="cBlue">248155</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/18/8L4A2L5700014JB5.html">湖南交通运输厅原副厅长被刑拘 多名高官落马</a></td>
+<td class="cBlue">240369</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/09/8L6070CO0001124J.html">人民日报：“厚德载雾自强不吸”非全面小康</a></td>
+<td class="cBlue">238895</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/21/8L4LSPNG0001124J.html">日本王牌空降部队进行“收复离岛”演习</a></td>
+<td class="cBlue">236431</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L01EPVU00014JB5.html">东莞公安局副局长哥哥入股500元揽千万元项目</a></td>
+<td class="cBlue">233840</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/13/8LBGQU1K0001124J.html">深圳市长作报告 参会者陆续离席或玩手机</a></td>
+<td class="cBlue">233782</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/06/8L0HIH4R0001121M.html">云南边民屋顶插国旗避轰炸 目睹缅甸战机被击落</a></td>
+<td class="cBlue">228829</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/08/8LDHKUNB0001124J.html">深圳市委书记弃奥迪座驾换乘国产电动汽车</a></td>
+<td class="cBlue">228630</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/21/8L4N2FDR00011229.html">作家李承鹏签售新书现场遭掌掴扔菜刀</a></td>
+<td class="cBlue">224241</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/09/8L8G16P00001124J.html">报告称北京富人最多宁夏等四省最少 仅1%未婚</a></td>
+<td class="cBlue">224181</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/16/8L6O1E3T00011229.html">网传高铁辐射严重致乘务员不孕 铁道部否认</a></td>
+<td class="cBlue">222283</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/14/8KUOC71S0001124J.html">云南镇雄滑坡事故最惨1家7人死亡</a></td>
+<td class="cBlue">220014</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/11/8L8Q4DNG0001124J.html">解放军报:坦克班长演习中一炮命中两辆坦克</a></td>
+<td class="cBlue">219146</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/08/8L5QSFFV00014JB5.html">研究生落选事业编环卫工 称"死也要死在编制里"</a></td>
+<td class="cBlue">218022</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/16/8L9931M00001124J.html">台涉外部门：大陆地区是“中华民国”固有领土</a></td>
+<td class="cBlue">217887</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0109/14/8KPL1JFB0001124J.html">广州市公安局副局长祁晓林自缢身亡</a></td>
+<td class="cBlue">217184</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0BBDLM0001124J.html">多地空气重度污染 指数突破测量上限</a></td>
+<td class="cBlue">214079</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/03/8L7TIP1I0001124J.html">周克华女友被控窝藏今日受审 律师欲作无罪辩护</a></td>
+<td class="cBlue">212678</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/15/8L4074J300011229.html">《非诚勿扰》前女嘉宾新婚两月砍死丈夫</a></td>
+<td class="cBlue">212341</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="area-half right">
+<div class="tabBox">
+<div class="title-tab"><h2>跟贴榜</h2><ul class="tabNav"><li class="active">今日跟贴排行</li><li>本周跟贴排行</li><li>本月跟贴排行</li></ul></div>
+<div class="tabContents active">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://news.163.com/13/0116/20/8LC8L4KC0001124J.html">肺癌胃癌等20种疾病纳入农村大病保障</a></td>
+<td class="cBlue">5151</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://news.163.com/13/0116/17/8LBU9CBN00014JB6.html">日媒称美要求日本不得射击飞临钓鱼岛中国飞机</a></td>
+<td class="cBlue">4546</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://news.163.com/13/0117/07/8LDGTN5S0001124J.html">广东佛山警方称180万元购4辆摩托车为方便开道</a></td>
+<td class="cBlue">4524</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://news.163.com/13/0116/16/8LBS6FRR00014OVB.html">80后女副市长叔叔为副厅长 官方否认靠裙带关系</a></td>
+<td class="cBlue">4417</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://news.163.com/13/0116/13/8LBHRE4G00011229.html">新华社评李承鹏签售遭大骂:徒增社会暴戾之气</a></td>
+<td class="cBlue">3883</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://news.163.com/13/0116/14/8LBJKISU00014JB6.html">日本前首相鸠山由纪夫将参观南京大屠杀纪念馆</a></td>
+<td class="cBlue">3725</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://news.163.com/13/0117/04/8LD4PPJI00011229.html">一家三口为上访流浪京城20年 获人民日报关注</a></td>
+<td class="cBlue">3069</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://news.163.com/13/0116/18/8LC1M3DV0001124J.html">山东胶州官员办公室受贿视频流出 当事人被停职</a></td>
+<td class="cBlue">3069</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://news.163.com/13/0116/19/8LC5T84V00011229.html">夫妻收10元帮民工购车票被拘 律师称不构成倒卖</a></td>
+<td class="cBlue">2879</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://news.163.com/13/0117/02/8LCV8DG10001124J.html">外资银行集体质疑中国外贸数据造假:好得出奇</a></td>
+<td class="cBlue">2729</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/08/8LDHKUNB0001124J.html">深圳市委书记弃奥迪座驾换乘国产电动汽车</a></td>
+<td class="cBlue">2683</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDGNA7D00011229.html">央视借《国产凌凌漆》桥段播周星驰当选委员</a></td>
+<td class="cBlue">2637</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUG4AC00014AED.html">安倍晋三呼吁越南与日本联手应对中国</a></td>
+<td class="cBlue">2363</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/19/8LC4TP080001121M.html">伊朗最高领袖已签署宗教敕令 禁止伊开发核武器</a></td>
+<td class="cBlue">2358</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUJ49M00014AED.html">山东潍坊出现麻刚沙所建居民楼 用材可捏碎</a></td>
+<td class="cBlue">2133</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/19/8LC69FLI00011229.html">警方称帮民工购票夫妻非法加价牟利应受查处</a></td>
+<td class="cBlue">2117</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDFMH7300014JB6.html">美国工程师用1/5薪水将工作外包给中国公司</a></td>
+<td class="cBlue">1978</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/00/8LCMUPCN0001121M.html">日本前首相鸠山在华承认钓鱼岛存领土争议</a></td>
+<td class="cBlue">1821</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/21/8LCE35ME00011229.html">陕西贫困县县委书记配百万豪车 称从企业借用</a></td>
+<td class="cBlue">1801</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCG42LG00011229.html">货车在山东出车祸 价值10万元柑橘被哄抢一空</a></td>
+<td class="cBlue">1617</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQG2020001124J.html">直击12306购票网站:热门车票5分钟被抢购一空</a></td>
+<td class="cBlue">1569</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD0NT9I00014AED.html">云南镇雄承认强行火化遇难者遗体为维稳</a></td>
+<td class="cBlue">1360</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQLH1I0001124J.html">深圳人大主任谈“表哥”：现在好多人不敢戴表</a></td>
+<td class="cBlue">1240</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCU6L0U0001124J.html">铁路部门详解“站票不半价”称车票构成复杂</a></td>
+<td class="cBlue">1194</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/18/8LC4BEMO0001124J.html">外交部：中国对日方的行动保持高度警惕</a></td>
+<td class="cBlue">1044</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDP35CH00011229.html">周克华案后头号大案：嫌犯持枪抢劫金店11次</a></td>
+<td class="cBlue">1000</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDSJHI30001121M.html">鸠山参观南京大屠杀纪念馆 双手合十默哀</a></td>
+<td class="cBlue">981</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDU393I0001124J.html">郑州发生车祸致7人死亡20余人受伤</a></td>
+<td class="cBlue">977</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDT2M1K00011229.html">深圳景点鳄鱼因冬眠不动被游客扔石头砸死</a></td>
+<td class="cBlue">922</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUK4QG00011229.html">北京地铁4男子上演2V2对打:从北京站打到朝阳门</a></td>
+<td class="cBlue">772</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/11/8LDRPV5D0001121M.html">鸠山今向南京大屠杀纪念馆献花 被批日卖国贼</a></td>
+<td class="cBlue">710</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCVUG5I00014JB5.html">奥巴马公布控枪对策：禁止销售攻击性枪支</a></td>
+<td class="cBlue">665</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/13/8LBIC7D800014OMD.html">美媒：中国对缅甸友好效果不佳或支持反对派</a></td>
+<td class="cBlue">616</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD407BA00014JHT.html">【另一面】强买强卖，政府撑腰造就“霸道北斗”</a></td>
+<td class="cBlue">570</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/06/8LDD0EMP00014OMD.html">人民日报:中国海洋强国梦不走西方老路</a></td>
+<td class="cBlue">548</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/17/8LBVBROQ00014JB6.html">国务院：春节前为8953.4万人发放一次性生活补</a></td>
+<td class="cBlue">526</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDQGDNS00011229.html">女子合租房裸睡引来陌生男子 误认男友与其亲热</a></td>
+<td class="cBlue">525</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/18/8LC4HBDU00014JB5.html">国务院：春节前为8953.4万困难群众发放生活补</a></td>
+<td class="cBlue">507</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCGGT3700011229.html">警察从警15年无身份 警服自己买警号为借用</a></td>
+<td class="cBlue">489</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD2PO3V00014JB6.html">韩国称中国雾霾致韩空气污染</a></td>
+<td class="cBlue">453</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDKKSUN00014OMD.html">中国远征军202名在缅阵亡将士灵位首次归国</a></td>
+<td class="cBlue">362</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDG0V5S00011229.html">湖南校长护校殉职续：凶手相亲失败性情大变</a></td>
+<td class="cBlue">330</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCEU7JN00014J34.html">两名男子持枪抢金店趁浓雾逃脱 百万黄金埋山中</a></td>
+<td class="cBlue">327</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDGQEHF0001124J.html">福建“房嫂”被曝外还有2套房 2011年已转卖</a></td>
+<td class="cBlue">322</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCTUKVI00011229.html">新华社谴责掌掴李承鹏者：徒增社会暴戾之气</a></td>
+<td class="cBlue">287</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/13/8LBINCCP00011229.html">学子高三退学赴北大旁听11年 母亲被气精神分裂</a></td>
+<td class="cBlue">278</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/09/8LDLLNH700014OMD.html">专家：中国应联合俄韩稳定菲越集中打击日本</a></td>
+<td class="cBlue">276</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDI5AOE00014OMD.html">1987日本战机曾对苏联轰炸机进行警告射击</a></td>
+<td class="cBlue">272</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDI5C5E00014OMD.html">环球时报：外媒称中国搭法军顺风车 很恶心</a></td>
+<td class="cBlue">267</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/16/8LBQVBB600014JB5.html">中国佛教人士就藏区自焚事件研讨佛教生命观(图)</a></td>
+<td class="cBlue">249</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDEEQC600014JB5.html">北京上海山西等8地代省(市)长月内将转正</a></td>
+<td class="cBlue">248</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/06/8LDC3EJH00014OMD.html">缅甸又一发炮弹落入云南 中缅边境贸易停滞</a></td>
+<td class="cBlue">247</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD0A4KE00014AED.html">周星驰经纪人：星爷对政治感兴趣 不会沦为花瓶</a></td>
+<td class="cBlue">247</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://world.163.com/13/0116/17/8LBU961O00014OQQ.html">一架直升机在伦敦市中心坠毁 已致2死13伤</a></td>
+<td class="cBlue">245</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCTL23Q00014AED.html">教授：武汉城区上空有50多吨PM2.5</a></td>
+<td class="cBlue">236</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/22/8LCGN1J700014JB6.html">男子不满老家拆迁扬言在广州制造血案被刑拘</a></td>
+<td class="cBlue">227</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCSS0HV00014AED.html">河南大用集团否认向肯德基麦当劳销售病死鸡</a></td>
+<td class="cBlue">226</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://world.163.com/13/0116/21/8LCBQHS800014OQQ.html">奥巴马同父异母哥哥欲竞选肯尼亚总统</a></td>
+<td class="cBlue">217</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUG3NV00014AED.html">足协副主席韦迪被曝下课：正在工作时接到通知</a></td>
+<td class="cBlue">212</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD1HLJC0001124J.html">深圳一造价近4800万元景观工程停工 称选址错误</a></td>
+<td class="cBlue">205</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/17/8LBUGFEN00014JB5.html">美国不准日本“警告射击” 避免引起中国反击</a></td>
+<td class="cBlue">205</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDH794N00014JB5.html">铁道部12306专家承认部分抢票软件有效</a></td>
+<td class="cBlue">195</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/08/8LDK6UHP0001124J.html">哈尔滨水利工程未招标已竣工 被指违法转包</a></td>
+<td class="cBlue">190</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/09/8LDMVC3J00014OMD.html">台军或将演练钓鱼岛遭外敌强占时 反击夺岛</a></td>
+<td class="cBlue">188</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/08/8LDJSJKH0001124J.html">深圳副市长：从未听说市内领导享受特供食品</a></td>
+<td class="cBlue">187</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/17/8LC139K800011229.html">网曝成都发生持枪抢银行案 当地警方称系误传</a></td>
+<td class="cBlue">175</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/09/8LDLBR5N00014JB6.html">内地政协广纳港区委员 何厚铧之子在沪当选</a></td>
+<td class="cBlue">166</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDISL7N00014OMD.html">鸠山17日向南京大屠杀纪念馆献花 被批日奸</a></td>
+<td class="cBlue">165</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD4FAVQ0001121M.html">缅甸政府堵住通道致中缅边境上亿贸易停滞</a></td>
+<td class="cBlue">163</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/14/8LBLURH500011229.html">夫妻相守67年今年1月14日同日离世 感动网友</a></td>
+<td class="cBlue">162</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDI5C8T00014OMD.html">中国在马里有2千侨民 是否出兵令人期待</a></td>
+<td class="cBlue">161</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://world.163.com/13/0117/07/8LDG59LR00014OQQ.html">美国日本停飞所有波音787客机</a></td>
+<td class="cBlue">161</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/21/8LCE3QS00001124J.html">湖南邵阳党报头版刊登官员检讨书</a></td>
+<td class="cBlue">151</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/01/8LCRONN10001121M.html">法国将增兵马里 对叛军展开大规模地面作战</a></td>
+<td class="cBlue">145</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD6JFT40001121M.html">委内瑞拉副总统称查韦斯病情好转 正开始爬山</a></td>
+<td class="cBlue">141</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/01/8LCRGO120001124J.html">环保部拟定标准降低轻型汽车PM2.5排放量</a></td>
+<td class="cBlue">132</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD65MBD0001124J.html">官员组团买地建楼资金链断裂 县政府门口贴检讨</a></td>
+<td class="cBlue">130</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/18/8LC2TE2K0001124J.html">深圳去年罚款超预算近8成 疑“税不够罚来凑”</a></td>
+<td class="cBlue">126</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/21/8LCEMLUK00011229.html">重庆1名老师灌醉女学生后将其强奸获刑3年</a></td>
+<td class="cBlue">124</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCU7E3V00014AED.html">审计署：整改问题资金逾千亿元 660多人被处理</a></td>
+<td class="cBlue">110</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDHBIUR00014OMD.html">武直十飞行员新头盔亮相 可与机炮随动射击</a></td>
+<td class="cBlue">105</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/10/8LDP8KKA00014OMD.html">伊朗军方否认美F-22飞越伊朗领空未被发现</a></td>
+<td class="cBlue">103</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/08/8LDI3U5J0001124J.html">东莞鱼翅销量锐减四成 酒店老板：领导都不吃了</a></td>
+<td class="cBlue">103</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/14/8LBJH66R0001124J.html">北京交管部门:暂不处罚曝光违规上路公车</a></td>
+<td class="cBlue">101</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/07/8LDENQAN00014JB6.html">18大后9省团委密集换届 新书记均系本省籍干部</a></td>
+<td class="cBlue">97</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/06/8LDCGQAA00011229.html">小贩被城管痛殴血流一地 官方称小贩先泼油</a></td>
+<td class="cBlue">97</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/special/2012home/">2012年网易新闻客户端年终策划</a></td>
+<td class="cBlue">97</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/10/8LDOA3RV00014JB6.html">美国步枪协会发布视频斥奥巴马“伪君子”</a></td>
+<td class="cBlue">87</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/09/8LDO1S3B00014OMD.html">外媒称解放军需要300架运20 够制造厂产10年</a></td>
+<td class="cBlue">85</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/09/8LDLQNI90001124J.html">网曝80后女副市长学历造假 叔叔为同省副厅长</a></td>
+<td class="cBlue">83</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDHV6VM00014OMD.html">奥巴马开出控枪"猛药" 禁售大弹夹攻击武器</a></td>
+<td class="cBlue">79</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0117/08/8LDJDITA00014OMD.html">汉和：乌克兰军工进步小致中乌军事合作低迷</a></td>
+<td class="cBlue">78</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/20/8LCANH0700014JB6.html">四川农民挖出乌木被判国有案原告诉讼被驳</a></td>
+<td class="cBlue">75</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/03/8LD2DV9P0001124J.html">周克华案后内地头号抢劫案告破：嫌犯抢金器40斤</a></td>
+<td class="cBlue">70</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCUFLS700014AED.html">北京地铁4名男子因拥挤对打 乘客让出1节车厢</a></td>
+<td class="cBlue">70</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/09/8LDNTR8G00014JB6.html">韦迪十大语录：国足5年亚洲一流 官员不用懂足球</a></td>
+<td class="cBlue">61</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCVLI9Q00014AED.html">英国伦敦遇难飞行员曾在007电影里开过飞机</a></td>
+<td class="cBlue">60</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/04/8LD6CU1600011229.html">女人大代表否认撞倒老人后亮证自行离开</a></td>
+<td class="cBlue">59</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0117/02/8LCSRJB300014AED.html">北京严管出租车行业 早晚高峰不出车将严惩</a></td>
+<td class="cBlue">59</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/23/8LCLA5LF00011229.html">网曝警察叼中华烟围殴记者：等下让你知道痛</a></td>
+<td class="cBlue">58</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://news.163.com/13/0115/14/8L9296KQ0001121M.html">日本称若中国飞机进钓鱼岛将发信号弹警告</a></td>
+<td class="cBlue">19572</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://news.163.com/13/0113/06/8L3124MC0001124J.html">湖南上访母亲唐慧将检举2名警察奸淫其女儿</a></td>
+<td class="cBlue">17556</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://news.163.com/13/0114/02/8L55FRU900011229.html">新疆小贩洛阳公路拦车强卖切糕：1刀下去550元</a></td>
+<td class="cBlue">17009</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://news.163.com/13/0115/15/8L96VT6T0001124J.html">兰考官员回应媒体指责：倒霉就倒霉在焦裕禄</a></td>
+<td class="cBlue">14525</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://news.163.com/13/0114/17/8L6RD2U600011229.html">夫妻收10元帮人订火车票被拘 购票者为其喊冤</a></td>
+<td class="cBlue">14502</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://news.163.com/13/0115/03/8L7U42D80001124J.html">长沙规划局原副局长10年敛财2亿元换6个情妇</a></td>
+<td class="cBlue">13861</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://news.163.com/13/0115/07/8L89GV0B00014JB6.html">交通部：9省市大客车须装北斗导航 系政治任务</a></td>
+<td class="cBlue">13842</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://news.163.com/13/0114/08/8L5RK71E0001124J.html">总参谋部:2013年要强化打仗思想 做好打仗准备</a></td>
+<td class="cBlue">13595</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://news.163.com/13/0115/02/8L7O7O4K0001124J.html">报告称全球10大严重污染城市7个在中国</a></td>
+<td class="cBlue">13562</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://news.163.com/13/0114/08/8L5QD8P00001124J.html">河南兰考县长回应无福利院却斥资2千万盖楼质疑</a></td>
+<td class="cBlue">13079</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L0149DA0001124J.html">社科院报告显示中国社会陷入信任危机</a></td>
+<td class="cBlue">12605</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/09/8LB35BCB0001124J.html">铁道部专家回应站票半价:有人坐空闲席位如何算</a></td>
+<td class="cBlue">12427</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/19/8KSO2AAG00014JB6.html">日媒称中国10余架战斗机接近钓鱼岛</a></td>
+<td class="cBlue">12316</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/10/8KUB4AME00014JB6.html">安倍晋三：钓鱼岛问题无谈判余地</a></td>
+<td class="cBlue">12299</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/02/8KTG4FT100014AED.html">郑州“房妹”家庭涉嫌倒卖数百套经适房</a></td>
+<td class="cBlue">12172</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/18/8KSKS0FC0001124J.html">信访局长会议:纠正一切拦卡堵截正常上访做法</a></td>
+<td class="cBlue">11852</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/14/8KS7FSC20001124J.html">河南反对平坟政协委员被正式除名 自称已出局</a></td>
+<td class="cBlue">11822</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/08/8LB055LJ0001124J.html">媒体称铁路系统全员加薪 月薪上涨360元至490</a></td>
+<td class="cBlue">11455</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/02/8KTEF6PF00014AED.html">郑州经适房黑幕:仅1/3留给市民 其余被层层扣留</a></td>
+<td class="cBlue">11415</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/11/8L8Q4DNG0001124J.html">解放军报:坦克班长演习中一炮命中两辆坦克</a></td>
+<td class="cBlue">11217</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/15/8KUTE0IS00014JB6.html">网曝辽宁现80后女副市长 官方称按程序晋升</a></td>
+<td class="cBlue">11082</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/16/8KUVMJGR0001124J.html">国防部:军机抵近钓鱼岛为应对日机跟踪</a></td>
+<td class="cBlue">10937</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/10/8L3H1S4R0001124J.html">太原市公安局长李亚力渎职被建议撤职</a></td>
+<td class="cBlue">10885</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LATFA2C00011229.html">李承鹏深圳签售再次被骂汉奸 场外发生打斗</a></td>
+<td class="cBlue">10798</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/10/8KUCLBNN0001124J.html">云南昭通山体滑坡埋46人 已致42人遇难</a></td>
+<td class="cBlue">10445</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/09/8L6070CO0001124J.html">人民日报：“厚德载雾自强不吸”非全面小康</a></td>
+<td class="cBlue">10273</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L02U57M00014AED.html">国防部：两架歼-10战机起飞监视日战机</a></td>
+<td class="cBlue">9823</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/00/8L7HF9GJ00014JB6.html">国家计生委：长期坚持计划生育不动摇</a></td>
+<td class="cBlue">9805</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LAFFH8300014AED.html">周克华女友全盘翻供 并不认为自己犯罪</a></td>
+<td class="cBlue">9794</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L586SRR00011229.html">《非诚勿扰》女嘉宾杀夫 死者非牵手男嘉宾</a></td>
+<td class="cBlue">9574</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/04/8L0ASG4J0001124J.html">周克华包养女友1周花费1万 自称哈佛毕业</a></td>
+<td class="cBlue">9373</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://world.163.com/13/0111/10/8KUBMS0600014OQQ.html">日媒称中国战机10日曾挂载反舰导弹抵近钓鱼岛</a></td>
+<td class="cBlue">9245</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/10/8L8L5ORU00014JB6.html">日驻华使馆首次要求在华日本人少出门避污染</a></td>
+<td class="cBlue">9135</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/00/8L50UQG20001121M.html">印度再曝公交车轮奸案 司机及售票员参与施暴</a></td>
+<td class="cBlue">8764</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/09/8L8GSPTP0001124J.html">赴广州欲制造血案男子:老家死十个人都包得住</a></td>
+<td class="cBlue">8750</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/03/8L2PHDGN00011229.html">警察检查网友开房遭质疑 回应称民警执法都合法</a></td>
+<td class="cBlue">8638</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/04/8L2QHIKL0001124J.html">中国黄金回应“黄金生锈”：符合国家标准</a></td>
+<td class="cBlue">8418</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0DDOLL0001124J.html">兰考大火记者手记：发布会前官员调侃女干部</a></td>
+<td class="cBlue">8220</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0114/09/8L5VRS9F00014OMD.html">日媒：中国战机在东海抵近追踪美军军机</a></td>
+<td class="cBlue">7836</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/02/8L2KGOSI00014AED.html">日媒称安倍将致信北约联手应对中国</a></td>
+<td class="cBlue">7797</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/05/8L5HJHGC0001124J.html">广东生猪供应商运500头猪堵政府大门抗议乱收费</a></td>
+<td class="cBlue">7789</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L57BQOE00014AED.html">湖南上访妈妈今日到省政法委检举警察奸淫女儿</a></td>
+<td class="cBlue">7750</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0D13O20001121M.html">安倍晋三指责中方为政治目的伤害日企</a></td>
+<td class="cBlue">7687</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/09/8L3DGNDI00014JB6.html">33城市空气遭遇严重污染 雾霾天气向南部扩张</a></td>
+<td class="cBlue">7664</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/09/8L602GH300011229.html">外国人划伤近10辆车 称因车辆占用人行道</a></td>
+<td class="cBlue">7618</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/09/8L3C9FFU00011229.html">少女武汉地铁内大跳钢管舞 乘客围观拍照(图）</a></td>
+<td class="cBlue">7493</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/11/8L678EN700014JB6.html">北京环保局：重污染因污染物排放量大</a></td>
+<td class="cBlue">7435</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/18/8L4A2L5700014JB5.html">湖南交通运输厅原副厅长被刑拘 多名高官落马</a></td>
+<td class="cBlue">7304</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0DR6D60001124J.html">雷政富不雅视频爆料人：女主角被镀金为名校生</a></td>
+<td class="cBlue">7283</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/15/8L1GMG2V00014JB5.html">新华时评：对南方冬季供暖之需岂能视而不见</a></td>
+<td class="cBlue">7159</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/13/8L3S59US0001124J.html">富士康江西工厂千人不满薪资待遇上街游行(图)</a></td>
+<td class="cBlue">6804</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/08/8L0MGR8E00014JB5.html">云南镇雄山体滑坡46名被埋人员全部遇难</a></td>
+<td class="cBlue">6601</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LADV43E00014JB6.html">日本称“飞机入侵”将按国际准则应对</a></td>
+<td class="cBlue">6597</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/08/8LAV83GE00014OMD.html">环球时报：打仗不是好事 不能轻易开战</a></td>
+<td class="cBlue">6545</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L04041C0001124J.html">温州穿制服搂抱“三陪女”安监所长被停职</a></td>
+<td class="cBlue">6538</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/02/8L2JFQ620001124J.html">陕西农民工下跪讨薪续：开发商曾花百万元请明星</a></td>
+<td class="cBlue">6523</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/07/8L37APU10001124J.html">湖北十堰拟投千亿元“削山要地”15万亩造新城</a></td>
+<td class="cBlue">6511</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/18/8L6SLL2300014JB6.html">商务部：私家车报废年限限制取消</a></td>
+<td class="cBlue">6458</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/11/8LBBTAGA00011229.html">网店出租男友春节回家 称礼节性接吻50元1次</a></td>
+<td class="cBlue">6433</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/15/8KSB3REC00014JB6.html">日本否认将对中国巡航钓鱼岛飞机“警告射击”</a></td>
+<td class="cBlue">6367</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/14/8L1CVM5N00014JB5.html">哈尔滨3000多户居民20天内遭3次停暖 围堵公</a></td>
+<td class="cBlue">6349</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/10/8KUB209N00014JB6.html">中东部持续雾霾天气 空气中重度污染</a></td>
+<td class="cBlue">6317</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/06/8L0HIH4R0001121M.html">云南边民屋顶插国旗避轰炸 目睹缅甸战机被击落</a></td>
+<td class="cBlue">6304</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0111/08/8KU41IEO00014OMD.html">伊朗革命卫队称核武研发成功 俄朝大力协助</a></td>
+<td class="cBlue">6243</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/14/8L1AEAQ300014JB5.html">2013年29天假期中18天被指“挪用”周末</a></td>
+<td class="cBlue">6208</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0C10ME00011229.html">尿毒病人用厨具等自制血透机维持生命13年(图)</a></td>
+<td class="cBlue">6170</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/00/8L7JJ0EU0001124J.html">报告称北上广等四地PM2.5一年或致死8500人</a></td>
+<td class="cBlue">6154</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/23/8L2BBFTR00014JB6.html">陈光标戴绿帽与朗朗南京街头免费派发自行车</a></td>
+<td class="cBlue">6137</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/09/8KU6S6IQ00014JB5.html">袁厉害收养弃婴无一被认定孤儿 未获相关救济金</a></td>
+<td class="cBlue">6044</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/02/8L2L1TH30001124J.html">二炮导弹旅多枚导弹齐射打击同一目标现场</a></td>
+<td class="cBlue">5992</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/08/8L5QSFFV00014JB5.html">研究生落选事业编环卫工 称"死也要死在编制里"</a></td>
+<td class="cBlue">5966</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/16/8L6OOE9H0001124J.html">周克华女友将于明日在重庆受审(图)</a></td>
+<td class="cBlue">5945</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/17/8L9EFJRF00011229.html">男子痴迷红歌几十年 曾卖房借钱组团赴京演出</a></td>
+<td class="cBlue">5916</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/14/8L3VL6VM0001124J.html">国资委副主任：央企职工收入高我们管不了</a></td>
+<td class="cBlue">5913</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/19/8L1SAA9J0001124J.html">1月12日空气污染最严重的前10个城市</a></td>
+<td class="cBlue">5891</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/13/8LBGQU1K0001124J.html">深圳市长作报告 参会者陆续离席或玩手机</a></td>
+<td class="cBlue">5851</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/14/8L6HNUNB00014JB6.html">少将：中国已多次派无人机赴钓鱼岛执行任务</a></td>
+<td class="cBlue">5827</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/17/8L9EM3U80001124J.html">浙江公证处领导被曝年薪百万元 司法局称没问题</a></td>
+<td class="cBlue">5665</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/14/8KS7BOL800014JB6.html">云南晋宁连环杀人犯4年杀害11人被执行死刑</a></td>
+<td class="cBlue">5663</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/02/8KTG8DOF00014AED.html">京城富商指使弟兄8年杀8人 贿赂警方帮其脱罪</a></td>
+<td class="cBlue">5619</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/03/8L7TIP1I0001124J.html">周克华女友被控窝藏今日受审 律师欲作无罪辩护</a></td>
+<td class="cBlue">5465</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/08/8L0OML3U0001124J.html">云南镇雄山体滑坡：女儿趴在父亲背上一同遇难</a></td>
+<td class="cBlue">5457</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/16/8L43RCFF00014JB5.html">广东揭阳福利院“空壳”17年 借孤儿应付检查</a></td>
+<td class="cBlue">5416</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LAFSRA300014J34.html">陆军集团军番号昨起解密 团级仍用“某”替代</a></td>
+<td class="cBlue">5229</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/15/8L40B92L0001124J.html">中国西北现神秘建筑 被指为反卫星武器发射场</a></td>
+<td class="cBlue">5190</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/16/8L44J0Q200014JB6.html">台北议会:规定大陆游客只能走后门因分流需要</a></td>
+<td class="cBlue">5170</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/20/8LC8L4KC0001124J.html">肺癌胃癌等20种疾病纳入农村大病保障</a></td>
+<td class="cBlue">5152</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/05/8L2UG2FN0001124J.html">央视质疑河南兰考有钱招待记者 无钱盖福利院</a></td>
+<td class="cBlue">5078</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/18/8L6VNJHJ0001124J.html">外交部回应解放军进驻中缅边境报道</a></td>
+<td class="cBlue">5064</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0115/09/8L8GRBN400014OMD.html">美媒:中国翔龙无人侦察机现身 航程7000千米</a></td>
+<td class="cBlue">5020</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/16/8L6O1E3T00011229.html">网传高铁辐射严重致乘务员不孕 铁道部否认</a></td>
+<td class="cBlue">5013</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/02/8LACLT3200014AED.html">女歌手经常网购被快递员认为有钱遭劫杀</a></td>
+<td class="cBlue">5007</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/15/8L40PFSQ00014JB6.html">北京雾霾未来3天无明显改善 网友自嘲人肉吸尘器</a></td>
+<td class="cBlue">4964</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/12/8KUJ2L5100011229.html">广州荔湾200多名环卫工罢工围警车要求涨薪</a></td>
+<td class="cBlue">4915</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/16/8KSC696C0001124J.html">兰考承诺6月建成孤儿院 称袁厉害可参加招聘</a></td>
+<td class="cBlue">4905</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/00/8LA4M65E00014JB6.html">法院称2.9万元案卷复印费含复印机损耗费</a></td>
+<td class="cBlue">4891</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/14/8L1A5R1V00014AED.html">宁夏1辆警车无牌上路被曝光 官方：螺丝丢了</a></td>
+<td class="cBlue">4840</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/17/8L9CTHGU0001124J.html">解放军陆军集团军番号可公开 不再以“某”替代</a></td>
+<td class="cBlue">4801</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/14/8KUPAUPN00014AED.html">北京3人因甲流或流感死亡 已现38例H1N1病例</a></td>
+<td class="cBlue">4782</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/03/8L2MHREE00014AED.html">云南镇雄一家7口遗体被找到 亲人哭喊“团聚了”</a></td>
+<td class="cBlue">4609</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://news.163.com/13/0115/14/8L9296KQ0001121M.html">日本称若中国飞机进钓鱼岛将发信号弹警告</a></td>
+<td class="cBlue">19572</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://news.163.com/13/0113/06/8L3124MC0001124J.html">湖南上访母亲唐慧将检举2名警察奸淫其女儿</a></td>
+<td class="cBlue">17556</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://news.163.com/13/0108/23/8KO174FB00014JB6.html">中科院报告称中国完成国家责任排名第2 美国垫底</a></td>
+<td class="cBlue">17505</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://news.163.com/13/0114/02/8L55FRU900011229.html">新疆小贩洛阳公路拦车强卖切糕：1刀下去550元</a></td>
+<td class="cBlue">17009</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://news.163.com/13/0108/15/8KN5NFE800014JB6.html">中科院报告：中国2049年全面超越美国实现复兴</a></td>
+<td class="cBlue">16709</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://news.163.com/13/0115/15/8L96VT6T0001124J.html">兰考官员回应媒体指责：倒霉就倒霉在焦裕禄</a></td>
+<td class="cBlue">14525</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://news.163.com/13/0114/17/8L6RD2U600011229.html">夫妻收10元帮人订火车票被拘 购票者为其喊冤</a></td>
+<td class="cBlue">14502</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://news.163.com/13/0115/03/8L7U42D80001124J.html">长沙规划局原副局长10年敛财2亿元换6个情妇</a></td>
+<td class="cBlue">13861</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://news.163.com/13/0115/07/8L89GV0B00014JB6.html">交通部：9省市大客车须装北斗导航 系政治任务</a></td>
+<td class="cBlue">13842</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://news.163.com/13/0114/08/8L5RK71E0001124J.html">总参谋部:2013年要强化打仗思想 做好打仗准备</a></td>
+<td class="cBlue">13595</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/02/8L7O7O4K0001124J.html">报告称全球10大严重污染城市7个在中国</a></td>
+<td class="cBlue">13562</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/08/8L5QD8P00001124J.html">河南兰考县长回应无福利院却斥资2千万盖楼质疑</a></td>
+<td class="cBlue">13079</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0104/11/8KCE27OR0001124J.html">香港示威者在中联办门前升类似殖民地旗帜</a></td>
+<td class="cBlue">12803</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L0149DA0001124J.html">社科院报告显示中国社会陷入信任危机</a></td>
+<td class="cBlue">12605</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0105/04/8KE7OVUI0001124J.html">香港示威者升殖民地时期旗帜自称非中国人(图)</a></td>
+<td class="cBlue">12586</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/09/8LB35BCB0001124J.html">铁道部专家回应站票半价:有人坐空闲席位如何算</a></td>
+<td class="cBlue">12427</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/19/8KSO2AAG00014JB6.html">日媒称中国10余架战斗机接近钓鱼岛</a></td>
+<td class="cBlue">12316</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/10/8KUB4AME00014JB6.html">安倍晋三：钓鱼岛问题无谈判余地</a></td>
+<td class="cBlue">12299</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/02/8KTG4FT100014AED.html">郑州“房妹”家庭涉嫌倒卖数百套经适房</a></td>
+<td class="cBlue">12172</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0106/09/8KHAFNC800011229.html">袁厉害受访否认卖弃婴：若逮住把我枪毙</a></td>
+<td class="cBlue">11870</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/18/8KSKS0FC0001124J.html">信访局长会议:纠正一切拦卡堵截正常上访做法</a></td>
+<td class="cBlue">11852</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/14/8KS7FSC20001124J.html">河南反对平坟政协委员被正式除名 自称已出局</a></td>
+<td class="cBlue">11822</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0109/14/8KPL1JFB0001124J.html">广州市公安局副局长祁晓林自缢身亡</a></td>
+<td class="cBlue">11805</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0108/02/8KLPT81J00014AED.html">袁厉害：低保还给政府 再不收养孩子</a></td>
+<td class="cBlue">11542</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0109/11/8KPBLFCK00011229.html">记者扮流浪汉访救助站 自称被工作人员围殴</a></td>
+<td class="cBlue">11537</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/08/8LB055LJ0001124J.html">媒体称铁路系统全员加薪 月薪上涨360元至490</a></td>
+<td class="cBlue">11455</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/02/8KTEF6PF00014AED.html">郑州经适房黑幕:仅1/3留给市民 其余被层层扣留</a></td>
+<td class="cBlue">11415</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/11/8L8Q4DNG0001124J.html">解放军报:坦克班长演习中一炮命中两辆坦克</a></td>
+<td class="cBlue">11217</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/15/8KUTE0IS00014JB6.html">网曝辽宁现80后女副市长 官方称按程序晋升</a></td>
+<td class="cBlue">11082</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/16/8KUVMJGR0001124J.html">国防部:军机抵近钓鱼岛为应对日机跟踪</a></td>
+<td class="cBlue">10937</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/10/8L3H1S4R0001124J.html">太原市公安局长李亚力渎职被建议撤职</a></td>
+<td class="cBlue">10885</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/07/8LATFA2C00011229.html">李承鹏深圳签售再次被骂汉奸 场外发生打斗</a></td>
+<td class="cBlue">10798</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0111/10/8KUCLBNN0001124J.html">云南昭通山体滑坡埋46人 已致42人遇难</a></td>
+<td class="cBlue">10445</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/01/8KQQFMJ00001124J.html">长沙救助站称与暗访记者肢体接触不违规</a></td>
+<td class="cBlue">10335</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/09/8L6070CO0001124J.html">人民日报：“厚德载雾自强不吸”非全面小康</a></td>
+<td class="cBlue">10273</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/02/8KQTES2F00014AED.html">民政部：将推动修法鼓励公民收养孤儿</a></td>
+<td class="cBlue">10239</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/10/8KROOTOH0001124J.html">香港立法会否决弹劾特首梁振英议案</a></td>
+<td class="cBlue">9850</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L02U57M00014AED.html">国防部：两架歼-10战机起飞监视日战机</a></td>
+<td class="cBlue">9823</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/00/8L7HF9GJ00014JB6.html">国家计生委：长期坚持计划生育不动摇</a></td>
+<td class="cBlue">9805</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LAFFH8300014AED.html">周克华女友全盘翻供 并不认为自己犯罪</a></td>
+<td class="cBlue">9794</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0106/12/8KHMRB9U00011229.html">袁厉害所收养孤儿：看到妈妈被批评很心疼</a></td>
+<td class="cBlue">9627</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L586SRR00011229.html">《非诚勿扰》女嘉宾杀夫 死者非牵手男嘉宾</a></td>
+<td class="cBlue">9574</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/09/8KRMJCTS0001124J.html">记者再诉暗访长沙救助站遭殴致脑震荡</a></td>
+<td class="cBlue">9509</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0109/09/8KP1MN3B0001121M.html">日本拟要求对中国海监飞机实施“警告射击”</a></td>
+<td class="cBlue">9505</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/04/8L0ASG4J0001124J.html">周克华包养女友1周花费1万 自称哈佛毕业</a></td>
+<td class="cBlue">9373</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://world.163.com/13/0111/10/8KUBMS0600014OQQ.html">日媒称中国战机10日曾挂载反舰导弹抵近钓鱼岛</a></td>
+<td class="cBlue">9245</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0105/16/8KFJ1JSK00014JB6.html">袁厉害每月领低保1740元 民众否认其卖弃婴赚钱</a></td>
+<td class="cBlue">9197</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/10/8L8L5ORU00014JB6.html">日驻华使馆首次要求在华日本人少出门避污染</a></td>
+<td class="cBlue">9135</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/06/8KRD0SBA0001124J.html">人民日报征集最反感官话 “高度重视”入选</a></td>
+<td class="cBlue">9026</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0109/15/8KPOJC2E0001124J.html">兰考官员:7名孤儿生命若换来救助体系完善值了</a></td>
+<td class="cBlue">8987</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0106/00/8KGDI4B000011229.html">北京研究饮用水水质夫妇已20年不喝自来水</a></td>
+<td class="cBlue">8934</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0106/15/8KHUUFHT0001124J.html">郑州“房妹”之父翟振锋已被刑事拘留</a></td>
+<td class="cBlue">8874</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0109/17/8KPUDTHS00011229.html">中国首富女儿30岁未交过男友：难辨追求者动机</a></td>
+<td class="cBlue">8841</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/00/8L50UQG20001121M.html">印度再曝公交车轮奸案 司机及售票员参与施暴</a></td>
+<td class="cBlue">8764</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0115/09/8L8GSPTP0001124J.html">赴广州欲制造血案男子:老家死十个人都包得住</a></td>
+<td class="cBlue">8750</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/03/8L2PHDGN00011229.html">警察检查网友开房遭质疑 回应称民警执法都合法</a></td>
+<td class="cBlue">8638</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0108/17/8KNDQ6KU0001124J.html">宁波村民被强行架出房屋遭强拆 官方称误拆</a></td>
+<td class="cBlue">8624</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0106/02/8KGKOOM300014AED.html">昆明机场大雾混乱三天 乘客抢飞机离开</a></td>
+<td class="cBlue">8572</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0109/00/8KO3FIBP00014JB6.html">新交规实施后多地驾照考试通过率仅4成</a></td>
+<td class="cBlue">8472</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/04/8L2QHIKL0001124J.html">中国黄金回应“黄金生锈”：符合国家标准</a></td>
+<td class="cBlue">8418</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0110/11/8KRRCRO500014JB6.html">吉尔吉斯斯坦居民与中国工人群殴 18名华人受伤</a></td>
+<td class="cBlue">8409</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0104/04/8KBLSL8J00014AED.html">公安部：“亮黄灯刹不住车”多因未减速</a></td>
+<td class="cBlue">8358</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0DDOLL0001124J.html">兰考大火记者手记：发布会前官员调侃女干部</a></td>
+<td class="cBlue">8220</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1223/00/8JCAJITK0001124J.html">中国海监巡逻机飞向钓鱼岛海域遭日方拦截</a></td>
+<td class="cBlue">7853</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0114/09/8L5VRS9F00014OMD.html">日媒：中国战机在东海抵近追踪美军军机</a></td>
+<td class="cBlue">7836</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/02/8L2KGOSI00014AED.html">日媒称安倍将致信北约联手应对中国</a></td>
+<td class="cBlue">7797</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/05/8L5HJHGC0001124J.html">广东生猪供应商运500头猪堵政府大门抗议乱收费</a></td>
+<td class="cBlue">7789</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/02/8L57BQOE00014AED.html">湖南上访妈妈今日到省政法委检举警察奸淫女儿</a></td>
+<td class="cBlue">7750</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0D13O20001121M.html">安倍晋三指责中方为政治目的伤害日企</a></td>
+<td class="cBlue">7687</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/09/8L3DGNDI00014JB6.html">33城市空气遭遇严重污染 雾霾天气向南部扩张</a></td>
+<td class="cBlue">7664</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1219/01/8J23P4OR00011229.html">男婴遇车祸送医后身亡 医生要求先挂号拒急救</a></td>
+<td class="cBlue">7629</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/09/8L602GH300011229.html">外国人划伤近10辆车 称因车辆占用人行道</a></td>
+<td class="cBlue">7618</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://ad.163.com/12/1224/17/8JGPJGHL0001125P.html">荣宝斋举办迎春大展，力邀著名画家赵准旺</a></td>
+<td class="cBlue">7495</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/09/8L3C9FFU00011229.html">少女武汉地铁内大跳钢管舞 乘客围观拍照(图）</a></td>
+<td class="cBlue">7493</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0114/11/8L678EN700014JB6.html">北京环保局：重污染因污染物排放量大</a></td>
+<td class="cBlue">7435</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1231/04/8K1DEN8N00014AED.html">清华教授：把反腐寄托于制度的想法太天真</a></td>
+<td class="cBlue">7394</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0107/03/8KJ8HD2N00011229.html">画院院长拼接裸女照片要挟强奸23人 含5名幼女</a></td>
+<td class="cBlue">7388</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/18/8L4A2L5700014JB5.html">湖南交通运输厅原副厅长被刑拘 多名高官落马</a></td>
+<td class="cBlue">7304</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/05/8L0DR6D60001124J.html">雷政富不雅视频爆料人：女主角被镀金为名校生</a></td>
+<td class="cBlue">7283</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0106/15/8KHVP14800014JB6.html">山西长治否认迟报:污染不出市不必上报</a></td>
+<td class="cBlue">7206</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/15/8L1GMG2V00014JB5.html">新华时评：对南方冬季供暖之需岂能视而不见</a></td>
+<td class="cBlue">7159</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1227/00/8JMJSSQS0001124J.html">马英九：无法承认“民国大陆领土”存有另一国家</a></td>
+<td class="cBlue">7132</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1230/02/8JUJHA3P00011229.html">农民工坐公交遭老太呵斥:这么脏就该走路回家</a></td>
+<td class="cBlue">6930</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1228/03/8JPINBHF00011229.html">9岁女孩寒夜街头卖爆米花 借路灯做功课</a></td>
+<td class="cBlue">6919</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1219/12/8J39P0600001124J.html">李小鹏任山西省委副书记及代省长</a></td>
+<td class="cBlue">6904</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1221/21/8J9EHD090001124J.html">媒体称全能神组织终极目的是推翻现政府</a></td>
+<td class="cBlue">6890</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1224/12/8JG6C37T0001124J.html">中国拟立法推行“网络后台实名制”</a></td>
+<td class="cBlue">6844</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1218/20/8J1JB5D600011229.html">12岁女孩买切糕被骗200元 受惊吓不敢一人出门</a></td>
+<td class="cBlue">6809</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0113/13/8L3S59US0001124J.html">富士康江西工厂千人不满薪资待遇上街游行(图)</a></td>
+<td class="cBlue">6804</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1219/08/8J2T81KH0001124J.html">李小鹏出任山西省委副书记</a></td>
+<td class="cBlue">6774</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0107/00/8KJ0B20E0001124J.html">环球时报：高智商、情商、媒商是官员基本素质</a></td>
+<td class="cBlue">6754</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/12/1222/05/8JA95GOR00011229.html">兰州城管持铁棍当街围殴残疾店主夫妻(图)</a></td>
+<td class="cBlue">6740</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0106/13/8KHR0BTO00014JB6.html">巴基斯坦称印军越境袭击打死巴方士兵</a></td>
+<td class="cBlue">6633</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0108/07/8KMALFBC0001124J.html">网曝多地执法人员抢走流浪者御寒衣被</a></td>
+<td class="cBlue">6617</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://ad.163.com/13/0105/15/8KFDQM200001125P.html">2012评选北京最牛年会场地，乙十六再度蝉联第一</a></td>
+<td class="cBlue">6617</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/08/8L0MGR8E00014JB5.html">云南镇雄山体滑坡46名被埋人员全部遇难</a></td>
+<td class="cBlue">6601</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0106/07/8KH624KC00014J34.html">美媒称中国将于1月11日进行反卫星试验</a></td>
+<td class="cBlue">6601</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0116/03/8LADV43E00014JB6.html">日本称“飞机入侵”将按国际准则应对</a></td>
+<td class="cBlue">6597</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://war.163.com/13/0116/08/8LAV83GE00014OMD.html">环球时报：打仗不是好事 不能轻易开战</a></td>
+<td class="cBlue">6545</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://news.163.com/13/0112/02/8L04041C0001124J.html">温州穿制服搂抱“三陪女”安监所长被停职</a></td>
+<td class="cBlue">6538</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<style type="text/css">
+.channel-end,.channelEnd-rightS,.channelEnd-link,.channelEnd-top {background:url(http://img3.cache.netease.com/cnews/img09/endnav_bg1001.jpg);}
+.channel-end {width:960px;height:37px;overflow:hidden;margin:10px auto 0;line-height:38px;background-position:left -67px;background-repeat:repeat;}
+.channelEnd-rightS {display:block;float:right;width:8px;height:37px;overflow:hidden;background-position:right -141px;background-repeat:no-repeat;}
+.channelEnd-link {float:left;height:37px;line-height:37px;overflow:hidden;color:#1E50A2;background-position:left -30px;background-repeat:no-repeat;}
+.channelEnd-link a {float:none;padding:0 5px;font-weight:normal;background:none;}
+.channelEnd-link .firstNode {margin-left:8px; background:none;}
+.channelEnd-top {display:block;float:right;width:80px;height:37px;overflow:hidden;line-height:37px;text-indent:10px;background-position:left -30px;background-repeat:no-repeat;}
+</style>
+<div class="channel-end">
+	<span class="channelEnd-link cBlue">
+    	<a class="firstNode" href="http://www.163.com/" rel="nofollow">网易首页</a>-<a href="http://news.163.com/" rel="nofollow">新闻</a>-<a href="http://sports.163.com/" rel="nofollow">体育</a>-<a href="http://ent.163.com/" rel="nofollow">娱乐</a>-<a href="http://money.163.com/" rel="nofollow">财经</a>-<a href="http://auto.163.com/" rel="nofollow">汽车</a>-<a href="http://tech.163.com" rel="nofollow">科技</a>-<a href="http://digi.163.com/" rel="nofollow">数码</a>-<a href="http://mobile.163.com/" rel="nofollow">手机</a>-<a href="http://lady.163.com/" rel="nofollow">女人</a>-<a href="http://house.163.com/" rel="nofollow">房产</a>-<a href="http://game.163.com/" rel="nofollow">游戏</a>-<a href="http://book.163.com/" rel="nofollow">读书</a>-<a href="http://edu.163.com/" rel="nofollow">教育</a>-<a href="http://travel.163.com/" rel="nofollow">旅游</a>-<a href="http://bbs.163.com/" rel="nofollow">论坛</a>-<a href="http://v.163.com/" rel="nofollow">视频</a>-<a href="http://blog.163.com/blogs/" rel="nofollow">博客</a>-<a href="http://t.163.com/" rel="nofollow">微博</a>-<a href="http://help.3g.163.com/" rel="nofollow">手机版</a>
+    </span>
+    <span class="channelEnd-rightS"></span>
+    <span class="channelEnd-top cBlue"><a href="#top" target="_self" rel="nofollow">返回顶部&uarr;</a></span>
+</div>
+<div class="about">策划编辑： / 美编： / 制作： / 技术： / 媒体合作:</div>
+<div class="foot">
+<div class="text"><a href="http://www.bjjubao.org/index.htm">北京互联网违法不良信息举报</a>　<a href="http://t.163.com/zt/feedback">意见反馈</a>　<a href="http://news.163.com/sitemap.html">新闻地图</a>　<a href="http://news.163.com/special/i/000117JD/index_history.html">历史回顾</a></div>
+<a href="http://corp.163.com/">About NetEase</a> - <a href="http://gb.corp.163.com/gb/about/overview.html">公司简介</a> - <a href="http://gb.corp.163.com/gb/contactus.html">联系方法</a> - <a href="http://corp.163.com/gb/job/job.html">招聘信息</a> - <a href="http://help.163.com/ ">客户服务</a> - <a href="http://gb.corp.163.com/gb/legal.html">隐私政策</a> - <a href="http://emarketing.biz.163.com/">网络营销</a> - <a href="http://sitemap.163.com/">网站地图</a><br />
+网易公司版权所有<br />
+
+<span class="cRed">&copy;1997-2013</span>
+</div>
+<!-- 弹窗代码 -->
+<!-- 代码 -->
+
+<!-- 即时消息 -->
+<script>
+(function(){	
+	var version = window.navigator.appVersion;
+	var isIE6 = (version.indexOf("MSIE 6.0") != -1 || version.indexOf("MSIE 5.5") != -1)? true:false;
+	showQR(450, "http://img3.cache.netease.com/news/2012/qr_newapp.png");
+	function showQR(top, imgUrl){
+		var QRbox= document.createElement("div");
+		var QRboxCSS ={
+			width: "110px",
+			height: "147px",
+			position: "fixed",
+			_position: "absolute",
+			top: top + "px",
+			right: "3px",
+			display:"block"
+		};
+		for(var key in QRboxCSS){
+			QRbox.style[key] = QRboxCSS[key];
+		}
+	 	if(isIE6){
+	 		QRbox.style.position = "absolute";
+	 	}
+	 	
+		QRbox.innerHTML="<a href='http://3g.163.com/links/3977' target='_blank'></a>";
+		var link =QRbox.getElementsByTagName("a")[0];
+		var linkCSS = {
+			display:"block",
+			width: "100%",
+			height: "100%",
+			backgroundImage: "url("+imgUrl+")",
+			backgroundPosition: "0px 0px"
+		};
+		for(var key in linkCSS){
+			link.style[key] = linkCSS[key]
+		}
+		document.body.appendChild(QRbox);
+		var linkEventMap = {
+			"mouseover": function(){
+				link.style.backgroundPosition = "-110px 0px";
+			},
+			"mouseout": function(){
+				link.style.backgroundPosition = "0px 0px";
+			}
+		}
+		for(var evt in linkEventMap){
+			var func = linkEventMap[evt];
+			addEvent(evt, link, func);
+		}
+		addEvent("scroll", window, function(){
+			if(isIE6){
+				QRbox.style.top = getScrollTop() + top + "px";
+			}
+		})
+	}
+	function addEvent(evt, elem, callback){
+		if(elem.addEventListener){
+			elem.addEventListener(evt, callback, false)
+		} else {
+			elem.attachEvent && elem.attachEvent("on"+evt, callback);
+		} 
+	}
+	function getScrollTop(){
+	    if(typeof pageYOffset!= 'undefined'){
+	        //most browsers
+	        return pageYOffset;
+	    }
+	    else{
+	        var B= document.body; //IE 'quirks'
+	        var D= document.documentElement; //IE with doctype
+	        D= (D.clientHeight)? D: B;
+	        return D.scrollTop;
+	    }
+	}
+})();
+(function(){function e(e,n,r,i){var r=r||500,s=i||function(){},o,u=parseInt(t(e,"height"),10);e.toggled?o=e.originalHeight:(o=u,e.originalHeight=o);var a=Math.round(r/o);n=="show"&&(e.style.height="0"),e.style.display="block",e.toggled=!0;var f=o;for(var l=f;l>=0;l--)(function(t){var r=n=="show"?t*a:(f-t)*a;setTimeout(function(){(t==0&&n=="hide"||t==f&&n=="show")&&s(),e.style.height=t+"px";var r=t/f;e.style.opacity=r,e.style.filter="alpha(opacity="+r*100+")"},r)})(l)}function t(e,t){if(e.style[t])return e.style[t];if(e.currentStyle)return e.currentStyle[t];if(document.defaultView&&document.defaultView.getComputedStyle){t=t.replace(/([A-Z])/g,"-$1"),t=t.toLowerCase();var n=document.defaultView.getComputedStyle(e,"");return n&&n.getPropertyValue(t)}return null}function n(e,t,n){var r=function(e,t){try{return e.contains?e!=t&&e.contains(t):!!(e.compareDocumentPosition(t)&16)}catch(n){}},i=function(e){var t=e.currentTarget,i=e.relatedTarget;!r(t,i)&&t!=i&&n.call(e.currentTarget,e)};e.addEventListener?t=="mouseenter"?e.addEventListener("mouseover",i,!1):t=="mouseleave"?e.addEventListener("mouseout",i,!1):e.addEventListener(t,n,!1):e.attachEvent("on"+t,n)}function r(t){var r=this;r.cfg=t;var i=function(){n(r.cfg.closeBtn,"click",function(){r.close()}),n(r.cfg.wrap,"mouseenter",function(){r._timingClose("stop")}),n(r.cfg.wrap,"mouseleave",function(){r._timingClose("start",3)}),n(window,"focus",function(){r._pollStop=!1}),n(window,"blur",function(){r._pollStop=!0}),window[r.cfg.pollCallback]=r._push,window[r.cfg.contentCallback]=r._fillContent,r.start()},s=function(e,t){var n="popush_scriptloader";document.getElementById(n)!==null&&document.body.removeChild(document.getElementById(n));var i=document.createElement("script");i.id=n,i.type="text/javascript",i.async=!0,i.src=r.cfg.preventCache?e+"?"+Math.round(Math.random()*1e10):e,i.onload=t||function(){return!1},document.body.appendChild(i)},o=function(){var e=location.host.split(".").reverse()[2],t="?id="+r.cfg.id+"&cname="+e+"&rnd="+Math.round(Math.random()*1e10);(new Image).src=(r.cfg.countUrl||"count.php")+t};r._getDisplayState=function(){return!r._state||r._state=="hide"?"hide":"show"},r._display=function(t){if(r._getDisplayState()==t)return!1;e(r.cfg.contentWrap,t),r._state=t},r._timingClose=function(e,t){if(r._getDisplayState()=="hide")return!1;var t=t||r.cfg.hideAfter;e=="start"?r._closeTimer=setTimeout(function(){r._display("hide")},t*1e3):e=="stop"&&typeof r._closeTimer!="undefined"&&clearTimeout(r._closeTimer)},r.close=function(){if(!-[1,]&&!window.XMLHttpRequest){r.cfg.wrap.style.display="none";return !1;}r._getDisplayState()=="show"?r._display("hide"):r.cfg.wrap.style.display="none"},r._fillContent=function(e){r.contentCache=e,r.cfg.contentWrap.innerHTML=e,r._display("show"),r._timingClose("start")},r.manualShow=function(){if(r._getDisplayState()=="show")return!1;r.contentCache?r._fillContent(r.contentCache):s(r.cfg.contentUrl)},r._push=function(e){var t=Math.round((new Date).valueOf()/1e3),n=parseInt(e,10),i=t-n,u=NTES.cookie.get("PopPushData");if(u==n)return!1;if(r.cfg.oldTime&&i>r.cfg.oldTime)return!1;s(r.cfg.contentUrl),NTES.cookie.set("PopPushData",e,"30m",".163.com","/"),o()},r._poll=function(){r._pollStop||s(r.cfg.pollUrl)},r.start=function(){r._pollStop=!1,r._poll(),window.setInterval(r._poll,r.cfg.pollCycle*1e3)},i()}window.PopPush=r})()
+</script>
+<style type="text/css">
+#instant-news{width:270px;position:fixed;left:40px;bottom:0;z-index:10;
+_position: absolute;
+_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-172));
+}
+#instant-news-close{color:#B6C4D3;font-size:18px;font-weight:400;position:absolute;top:5px;right:4px;text-align:center;cursor:pointer;margin:0;padding:0;_display:none;}
+#instant-news-content{height:170px;padding:0;border-bottom:1px solid #A6B7C9;overflow:hidden;display:none;}
+</style>
+<div id="instant-news"><div id="instant-news-close">×</div><div id="instant-news-content"></div></div>
+<script>
+(function(N){
+    var t = N.cookie.get("PopPushData");
+    if(t && t != "") N.cookie.set("PopPushData", parseInt(t, 10), "30m", ".163.com", "/");
+})(window.NTES);
+var instant_news_push = new PopPush({
+    id: "instantnews",
+    wrap: document.getElementById('instant-news'),
+    contentWrap: document.getElementById('instant-news-content'),
+    closeBtn: document.getElementById('instant-news-close'),
+    pollUrl: "http://www.163.com/special/0077450P/hot_pop_js.js",
+    pollCallback: "latestInstantNews",
+    contentUrl: "http://temp.163.com/special/00804IKG/instant_news_content_cb.js",
+    contentCallback: "instantNewsContent",
+    pollCycle: 90,
+    hideAfter: 30,
+    oldTime: 7200,
+    countUrl: "http://temp.163.com/special/hot_pop_content/",
+    preventCache: false
+});
+</script>
+<script type="text/javascript">
+//<![CDATA[
+for ( var i=0; i<$("div.tabBox").length; i++){
+	var tab = new NTES.ui.Slide( $($("div.tabBox")[i]).$("ul.tabNav > li"), $($("div.tabBox")[i]).$("div.tabContents"), "active", "mouseover");
+}
+//有道搜索Start
+function goyoudao(){
+		var SoForm = document.getElementById("yodaoForm");
+		var subc1=document.getElementById('subs1');
+		var subc2=document.getElementById('subs2');
+		var site=document.getElementById('site');
+                          if(document.getElementById("searchInput0").value=="" || document.getElementById("searchInput0").value.length==0)
+			{
+				alert("请输入关键字!");
+				return false;
+			}
+		if(subc1.checked){
+			site.value="网易";
+			SoForm.action="http://news.youdao.com/search"
+		}
+		else{
+			site.value="";
+			SoForm.action="http://www.youdao.com/search"
+		}
+		SoForm.submit();
+	    return true;
+	}
+//有道搜索End
+//日历Start
+function calendar(year, month){
+	//Get current Date
+	var cDate = new Date();
+	var cYear = cDate.getYear();
+	if (navigator.appVersion.indexOf("MSIE") == -1) {
+		cYear = cYear + 1900;
+	}
+	var cMonth = cDate.getMonth();
+	var cDay = cDate.getDate();
+	var yearDom = NTES("#setYear");
+	var monthDom = NTES("#setMonth");
+	
+	if (arguments.length > 1) {
+		this.year = year;
+		this.month = month - 1;
+	}
+	else {
+		this.year = cYear;
+		this.month = cMonth;
+		//显示日期
+		yearDom.innerHTML = cYear;
+		monthDom.innerHTML = cMonth + 1;
+	}
+	this.date = cDay;
+	this.draw(printCalendar);
+}
+//获得星期几
+calendar.prototype.getWeekStr = function(day){
+	switch (day) {
+		case 0:
+			return "星期日";
+		case 1:
+			return "星期一";
+		case 2:
+			return "星期二";
+		case 3:
+			return "星期三";
+		case 4:
+			return "星期四";
+		case 5:
+			return "星期五";
+		case 6:
+			return "星期六";
+	}
+}
+//获的月的天数
+calendar.prototype.monthDayNum = function(year, month){
+	var tdate = new Date(year, month + 1, 0);
+	return tdate.getDate();
+}
+//获的指定1号是星期几
+calendar.prototype.dayInWeek = function(year, month, date){
+	var tdate = new Date(year, month, date);
+	return tdate.getDay();
+}
+//打印日历
+calendar.prototype.draw = function(callback){
+	var year = this.year;
+	var month = this.month;
+	var currentDay = this.date;
+	var firstDayInWeek = this.dayInWeek(year, month, 1);
+	var monthDayNum = this.monthDayNum(year, month, 0);
+	callback(year, month, currentDay, firstDayInWeek, monthDayNum);
+}
+//上一月 下一月
+function calendarNP(yearID, monthID, state){
+	var yearDom = NTES(yearID);
+	var monthDom = NTES(monthID);
+	var year = parseInt(yearDom.innerHTML);
+	var month = parseInt(monthDom.innerHTML);
+	if (state == "next") {
+		month = month + 1;
+		if (month > 12) {
+			month = 1;
+			year = year + 1;
+		}
+	}
+	if (state == "previous") {
+		month = month - 1;
+		if (month == 0) {
+			month = 12;
+			year = year - 1;
+		}
+	}
+	yearDom.innerHTML = year;
+	monthDom.innerHTML = month;
+	var tcalendar = new calendar(year, month);
+}
+//显示日历
+function printCalendar(year, month, currentDay, firstDayInWeek, monthDayNum){
+	var year = year;
+	var month = month;
+	var currentDay = currentDay;
+	var firstDayInWeek = firstDayInWeek;
+	var monthDayNum = monthDayNum;
+	var displayMonth, displayDay;
+	var calendarList = NTES("#calendarList");
+	var liarray = [];
+	if (month < 10) {
+		month = month + 1
+		displayMonth = "0" + month;
+	}
+	else {
+		displayMonth = month + 1;
+	}
+	for (var i = 0; i < firstDayInWeek; i++) {
+		liarray.push("<li></li>");
+	}
+	for (var j = 1; j <= monthDayNum; j++) {
+		if (j < 10) {
+			displayDay = "0" + j;
+		}
+		else {
+			displayDay = j;
+		}
+		if (j == currentDay) {
+			liarray.push("<li><a class=\"current\" href=\"http://post2.news.163.com/wgethtml/http+!!news.163.com!special!0001386F!rank_news.html!/" + year + "-" + displayMonth + "/" + displayDay + "/12.html\">" + j + "</a></li>");
+		}
+		else {
+			liarray.push("<li><a href=\"http://post2.news.163.com/wgethtml/http+!!news.163.com!special!0001386F!rank_news.html!/" + year + "-" + displayMonth + "/" + displayDay + "/12.html\">" + j + "</a></li>");
+		}
+	}
+	var str = liarray.join("");
+	calendarList.innerHTML = str;
+}
+// 显示 隐藏图层
+function PopUpLayer(ctrl, content) {
+	var timerId;
+	
+	var hide = function() {
+		content.style.display = "none";
+	};
+	
+	this.hide = function(event) {
+		timerId = setTimeout(hide, 300);
+	};
+	
+	ctrl.addEvent("mouseover", function() { content.style.display = "block"; });
+	ctrl.addEvent("mouseout", this.hide);
+	content.addEvent("mouseout", this.hide);
+	content.addEvent("mouseover", function() { clearTimeout(timerId); });
+}
+var calendarLayer = new PopUpLayer(NTES("#getCalendar"), NTES("#calendarBox"));
+$("#preMonth").addEvent(
+	"click",
+	function(event) {
+		calendarNP("#setYear","#setMonth","previous");
+		NTES.Event.fix(event).preventDefault();
+	}
+);
+$("#nextMonth").addEvent(
+	"click",
+	function(event) {
+		calendarNP("#setYear","#setMonth","next");
+		NTES.Event.fix(event).preventDefault();
+	}
+);
+var newCalendar = new calendar();
+//日历End
+//]]>
+</script>
+<!-- START WRating v1.0 -->
+<script type="text/javascript" src="http://163.wrating.com/a1.js"></script>
+<script type="text/javascript">
+var vjAcc="860010-0502010100";
+var wrUrl="http://163.wrating.com/";
+vjTrack();
+</script>
+<noscript><img src="http://163.wrating.com/a.gif?c=860010-0502010100" width="1" height="1"/></noscript>
+<!-- END WRating v1.0 -->
+<!-- START NetEase Analytics 2006 -->
+    <script src="http://analytics.163.com/ntes.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+    _ntes_nacc = "news"; //站点ID。
+    neteaseTracker();
+    </script>
+<!-- END NetEase Analytics 2006 -->
+</body>
+</html>

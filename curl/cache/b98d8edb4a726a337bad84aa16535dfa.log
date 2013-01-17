@@ -1,0 +1,3002 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<title>新闻排行榜_网易新闻</title>
+<base target="_blank" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="author" content="网易" />
+<meta name="Copyright" content="网易版权所有" />
+<link href="http://img1.cache.netease.com/cnews/css07/style.css" rel="stylesheet" type="text/css" />
+<link href="http://img1.cache.netease.com/cnews/img09/channel_nav.css" rel="stylesheet" type="text/css"/>
+<link href="http://img1.cache.netease.com/cnews/img/subscibe0304/rank.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.gg735 {width:735px; overflow:hidden; float:left;}
+.gg210 {width:210px; overflow:hidden; float:right;}
+.channel h2 { width: auto; }
+</style>
+<script type="text/javascript" language="javascript" src="http://img1.cache.netease.com/cnews/js/ntes_jslib_1.x.js" charset="gb2312"></script>
+</head>
+<body>
+<link type="text/css" rel="stylesheet" media="screen" href="http://img1.cache.netease.com/common/css/common_nav_v1.0.7.css" />
+<script charset="gb2312" src="http://img3.cache.netease.com/cnews/js/ntes_jslib_1.x.js" language="javascript" type="text/javascript"></script>
+<div class="NTES-nav">
+	<span class="nav-link NTES-nav-link"><a href="http://www.163.com/">网易首页</a>-<a href="http://news.163.com/">新闻</a>-<a href="http://sports.163.com/">体育</a>-<a href="http://sports.163.com/nba/">NBA</a>-<a href="http://ent.163.com/">娱乐</a>-<a href="http://money.163.com/">财经</a>-<a href="http://money.163.com/stock/">股票</a>-<a href="http://auto.163.com/" id="_link_auto">汽车</a>-<a href="http://tech.163.com/">科技</a>-<a href="http://mobile.163.com/">手机</a>-<a href="http://lady.163.com/">女人</a>-<a href="http://bbs.163.com/">论坛</a>-<a href="http://v.163.com/">视频</a>-<a href="http://www.familydoctor.com.cn/"  rel="nofollow">健康</a>-<a href="http://house.163.com/" id="houseUrl">房产</a>-<a id="homeUrl" href="http://home.163.com/">家居</a>-<a href="http://edu.163.com/">教育</a>-<a href="http://book.163.com/">读书</a>-<a href="http://game.163.com/" id="_link_game">游戏</a>-<a href="http://caipiao.163.com/#from=dh">彩票</a>-<span class="nav-link-item" id="navMore">更多<span class="link-item-more" style="display: none;">
+			<a href="http://baoxian.163.com/car/index.html?from=dh">车险</a><a href="http://digi.163.com/">数码</a><a href="http://war.163.com/">军事</a><a href="http://fashion.163.com/">时尚</a><a href="http://travel.163.com/">旅游</a><a href="http://blog.163.com/?frompagenav">博客</a>
+		</span></span>|</span>
+	<div class="rightCon">
+		<div class="NTES-link code-num">
+			<span class="left"><a href="http://email.163.com/" class="cBlue"  rel="nofollow">免费邮箱</a> - <a href="http://reg.163.com/" class="cBlue"  rel="nofollow">通行证登录</a> | </span><a href="http://t.163.com/?f=catopmicoblogmsg" class="NTES-nav-wbLogin"  rel="nofollow">微博</a>
+		</div>
+	</div>
+	<a href="http://www.163.com/rss" class="NTES-nav-rss"  rel="nofollow">rss</a>
+</div>
+<script>
+//<![CDATA[
+NTES.ready( function($){
+$("#navMore").addEvent("click", function(e){
+	NTES($("#navMore .link-item-more")[0]).style.display = this.style.display == "block" ? "none" : "block";
+//	e.preventDefault();
+	e.cancelBubble = true;
+	document.onclick = function(){
+		NTES($("#navMore .link-item-more")[0]).style.display = "none";
+	}
+});
+	var P_INFO = NTES.cookie.get("P_INFO");
+	var S_INFO = NTES.cookie.get("S_INFO");
+	if(P_INFO){
+		var mailconfig = {
+			"163.com":"http://entry.mail.163.com/coremail/fcg/ntesdoor2?verifycookie=1&lightweight=1",
+			"126.com" : "http://entry.mail.126.com/cgi/ntesdoor?verifycookie=1&lightweight=1&style=-1",
+			"vip.126.com" : "http://reg.vip.126.com/enterMail.m",
+			"yeah.net" : "http://entry.yeah.net/cgi/ntesdoor?verifycookie=1&lightweight=1&style=-1",
+			"188" : "http://reg.mail.188.com/servlet/enter",
+			"vip.163.com" : "http://reg.vip.163.com/enterMail.m?enterVip=true-----------"
+		};
+		var passport =  P_INFO.substr(0, P_INFO.indexOf("|"));
+		var username =  passport.substr(0, P_INFO.indexOf("@"));
+		var logstate = P_INFO.split("|")[2];
+		var loginframe = "";
+		var url = "http://t.163.com/service/newMessage/" + passport + "/1/0/0/0/1";
+		var pspt = passport.length >= 6 ? passport.substr(0,6)+"…" : passport;
+		/@([^*]+)/.test(passport);
+		var logdomain = RegExp.$1;
+		if(P_INFO && S_INFO ) {
+			var entrylink_html = '<a href=\"http://reg.163.com/Main.jsp?username='+passport+'\">进入通行证</a>',
+				ntes_nav_html = '<div class="NTES-nav-link-chexian"><a href="http://www.163.com/">网易首页</a>-<a href="http://news.163.com/">新闻</a>-<a href="http://sports.163.com/">体育</a>-<a href="http://sports.163.com/nba/">NBA</a>-<a href="http://ent.163.com/">娱乐</a>-<a href="http://money.163.com/">财经</a>-<a href="http://money.163.com/stock/">股票</a>-<a href="http://auto.163.com/" id="_link_auto">汽车</a>-<a href="http://tech.163.com/">科技</a>-<a href="http://mobile.163.com/">手机</a>-<a href="http://lady.163.com/">女人</a>-<a href="http://bbs.163.com/">论坛</a>-<a href="http://v.163.com/">视频</a>-<a href="http://g.163.com/a?CID=13579&Values=505269036&Redirect=http://www.familydoctor.com.cn/">健康</a>-<a href="http://house.163.com/" id="houseUrl">房产</a>-<a id="homeUrl" href="http://home.163.com/">家居</a>-<a href="http://edu.163.com/">教育</a>-<a href="http://book.163.com/">读书</a>-<a href="http://game.163.com/" id="_link_game">游戏</a>|</div>';
+			if(mailconfig[logdomain] != undefined) {
+				entrylink_html += '<a href=\"'+mailconfig[logdomain]+'\">进入邮箱</a>';
+			}
+			if(logdomain == "popo.163.com" || mailconfig[logdomain] != undefined) {
+				entrylink_html += '<a href="http://blog.163.com/passportIn.do?entry=163">进入博客</a><a href="http://photo.163.com/?username='+passport+'\">进入相册</a>';
+			}
+			entrylink_html += '<a href="http://yuehui.163.com/">进入约会</a><a href="http://t.163.com">进入微博</a><a href="http://caipiao.163.com/#from=dh">进入彩票</a><a href="http://baoxian.163.com/car/index.html?from=dh">进入车险</a><a href="http://baoxian.163.com/#from=dh">进入保险</a><a href="http://mall.163.com/#from=dh">进入商城</a>';
+			if(logdomain == "163.com" || logdomain == "126.com" || logdomain == "yeah.net") {
+				loginframe = '<iframe allowTransparency=\"true\" style=\"width:45px; height:20px; float:left; *margin-top:2px; vertical-align: middle;\" id=\"ifrmNtesMailInfo\" border=\"0\" src=\"http://p.mail.163.com/mailinfo/shownewmsg_www_0819.htm\" frameBorder=\"0\" scrolling=\"no\"></iframe>';
+			}
+			var login_html = '<div class=\"ntes-usercenter\"><div class=\"ntes-usercenter-logined\"><strong id=\"ntes_usercenter_name\" class=\"ntes-usercenter-name\" title=\"欢迎你，'+passport+'\">'+pspt+'</strong></div><div id=\"ntes_usercenter_entry\" class=\"ntes-usercenter-entry\"><span class=\"user-entry\">'+entrylink_html+'</span></div></div><span class="left c-b3">(</span>'+loginframe+'<span class="left c-b3"> | </span><span id="wbLoginAfter"><a href="http://t.163.com/?f=catopmicoblogmsg" class="NTES-nav-wbLogin" style="color:#f6f6f6;" title="进入网易微博">微博</a></span><span class="left c-b3">) | </span><a class=\"ntes-usercenter-loginout left\" href=\"http://reg.163.com/Logout.jsp?username='+passport+'\" target=\"_self\">退出</a></div>';
+			$(".NTES-nav-link")[0].innerHTML = ntes_nav_html;
+			$(".NTES-link")[0].innerHTML = login_html;
+			$("#ntes_usercenter_name").addEvent("click", function(e){
+				$("#ntes_usercenter_entry").style.display = $("#ntes_usercenter_entry").style.display == "block" ? "none" : "block";
+				e.preventDefault();
+				e.cancelBubble = true;
+				document.onclick = function(){
+					$("#ntes_usercenter_entry").style.display = "none";
+				}
+			})
+			NTES.ajax.importJs(url, function() {
+				if (typeof window.resultStatus != "undefined") {
+					if (NTES("#wbLoginAfter")) {
+						var userId = resultStatus.userId;
+						var wbName = resultStatus.name;
+						var wbNameMod = wbName.replace(/[^\x00-\xff]/g,"*?");
+						var xxlen = wbNameMod.substr(0,10).indexOf("*") < 0 ? 0 : wbNameMod.substr(0,10).match(/\*/ig).length;
+						var wbNameEnd = (wbNameMod.length <= 10) ? "" : "…";
+						var totalCount = (parseInt(resultStatus.htlCount) < 100) ? parseInt(resultStatus.htlCount) : "99";
+						var totalCountEnd = (parseInt(resultStatus.htlCount) < 100) ? totalCount : totalCount+"+";
+						if(xxlen > 0){
+							if(wbNameMod.substr(9,1) == "?"){
+								wbName = wbName.substr(0,10-xxlen) + wbNameEnd;
+							}else{
+								wbName = wbName.substr(0,9-xxlen) + wbNameEnd;
+							}
+						}else{
+							wbName = wbName.substr(0,10) + wbNameEnd;
+						}
+						if (totalCount > 0) {
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/?f=catopmicoblogmsg.News' class='NTES-nav-wbMsg fB' style='color:#ba2636;' title='" + wbName + "新消息："+ totalCountEnd +"'>"+ totalCountEnd +"</a>";
+						}else{
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/?f=catopmicoblogmsg.enter' class='NTES-nav-wbLogin' style='color:#f6f6f6;' title='进入网易微博'>微博</a>";
+						}
+						if(userId == 0){
+							NTES("#wbLoginAfter").innerHTML = "<a href='http://t.163.com/service/autoOpenAccount?autoFollow=1&needRedirect=1&f=catopmicoblogmsg.open' class='NTES-nav-wbLogin' style='color:#f6f6f6;' title='开通网易微博'>微博</a>";
+						}
+					};
+				};
+			}, "UTF-8");
+		};
+	}
+})
+//]]>
+</script>
+<div class="ad960_70">
+<div class="ad_750">
+<iframe src="http://g.163.com/r?site=netease&affiliate=163&cat=article&type=column750x70&location=1" width="750" height="70" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
+<div class="ad_200">
+<iframe src="http://g.163.com/r?site=netease&affiliate=163&cat=article&type=logo200x70&location=1" width="200" height="70" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div>
+</div>
+<!--
+<div class="box-ad">
+<div class="ad125"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic3.gif" /></div>
+<div class="ad660"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic4.gif" /></div>
+<div class="ad125"><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/pic3.gif" /></div>
+</div>
+-->
+<span class="blank9"></span>
+<style type="text/css">
+/* 频道导航 */
+.channel {width:960px; height:32px; margin:0 auto; line-height:21px;}
+.channel h1 {width:107px; height:24px; float:left; overflow:hidden; margin:2px 19px 0 2px;}
+.channel h2 { float:left; margin-right:19px;}
+.channel h3 {float:left; margin-top:10px; line-height: 24px;}
+.channel .focus {float:left; overflow:hidden; text-align:left; margin-top:10px;}
+.channel .focus a {padding-right:6px;}
+.channel .weather {height:21px; float:right; padding:10px 0 0 0; overflow:hidden;width:120px;}
+</style>
+<!-- 导航栏开始 -->
+<div class="channel">
+    <h1><a href="http://news.163.com/" id="top"><img src="http://img1.cache.netease.com/cnews/img09/logo_107.gif" alt="网易新闻" width="107" height="24" /><br />网易新闻</a></h1>
+    <h2><a href="http://news.163.com/rank/"><img src="http://img1.cache.netease.com/cnews/img10/channelLogo2010/img_xwphb.jpg" height="26" alt="新闻排行榜" /></a></h2>
+    <h3 class="cBlack"><a href="http://www.163.com/">网易首页</a> > <a href="http://news.163.com/">新闻中心</a> > <a href="http://news.163.com/rank/">新闻排行榜</a></h3>
+    <div class="top_search">
+        <form target="_blank" id="formtop" name="nisearch_top" method="get" action="http://news.yodao.com/search">
+    <input type="hidden" value="news.163" name="keyfrom"/>  
+    <input type="hidden" value="user163" name="suser"/>
+    <input type="hidden" value="gbk" name="ue"/>
+    <label><span class="hidden">搜索</span><input type="text" class="textBox" value="请输入关键词" onfocus="this.value=''" id="searchInput_top" name="q"/></label>
+    <noscript><select name="site" class="left">
+    <option value="网易" selected="selected">新闻</option>
+    <option value="">网页</option>
+    </select></noscript> 
+    <div id="divSelect" class="left">
+    <input id="siteName" type="hidden" value="网易" name="site" /><div id="select_area" class="select_box"><span id="selected" class="search_site">新闻</span><div id="select_main" class="select_list"><a title="网易">新闻</a><a title="">网页</a></div></div>
+    </div>  
+    <input type="submit" class="btn" value="搜索" name="Submit"/><input type="hidden" value="page" id="in" name="in"/>
+    </form>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    (function NTES_Nav(){
+    function $_G(id){
+    return document.getElementById(id);
+    }
+    function clickselect(e){
+    e = e || window.event;
+    e.cancelBubble = true;
+    var name = this.innerHTML;
+    var txt = document.createTextNode(name);
+    selected.removeChild(selected.firstChild);
+    selected.appendChild(txt);
+    select_main.style.display = "none";
+    var title = this.getAttribute("title");
+    $_G("siteName").value = title;
+    if (title == "网易") {
+    document.nisearch_top.action = "http://news.yodao.com/search";
+    }
+    else {document.nisearch_top.action = "http://www.yodao.com/search";
+    }
+    }
+    function a_mouseover () {
+    this.className = "active";
+    }
+    function a_mouseout () {
+    this.className = "";
+    }
+    $_G("divSelect").innerHTML = '<input id="siteName" type="hidden" value="网易" name="site" /><div id="select_area" class="select_box"><span id="selected" class="search_site">新闻</span><div id="select_main" class="select_list"><a title="网易">新闻</a><a title="">网页</a></div></div>';
+    var select_area = $_G("select_area"), selected = $_G("selected"), select_main = $_G("select_main"), select_list = select_main.getElementsByTagName("a"), len = select_list.length;
+    select_area.onclick = select_main.onmouseover = function(){
+    select_main.style.display = "block";
+    }
+    select_main.onmouseout = function(){
+    select_main.style.display = "none";
+    }
+    for (var i = 0; i < len; i++) {
+    select_list[i].onclick = clickselect;
+    select_list[i].onmouseover = a_mouseover;
+    select_list[i].onmouseout = a_mouseout;
+    }
+    })();
+    //]]>
+    </script>
+</div>
+<!-- 导航栏结束 -->
+<!-- 二级导航开始 -->
+<div class="nav_channel">
+<span class="nav"><a href="http://news.163.com/latest/" class="firstNode">最新</a> <a href="http://news.163.com/rank/">排行</a> <a href="http://news.163.com/domestic/">国内</a> <a href="http://news.163.com/world/">国际</a> <a href="http://news.163.com/shehui/">社会</a> <a href="http://news.163.com/review/">评论</a> <a href="http://focus.news.163.com/">深度</a> <a href="http://war.news.163.com/">军事</a> <a href="http://history.news.163.com/">历史</a> <a href="http://discover.news.163.com/">探索</a> <a href="http://news.163.com/photo/">图片</a> <a href="http://blog.163.com/blogs/">博客</a> <a href="http://media.163.com/">媒体</a> <a href="http://v.news.163.com/">视频</a> <a href="http://popme.163.com/jdu/5433_090227.html">公益</a> <a href="http://help.3g.163.com/">手机版</a></span>
+<span class="rightS"></span>
+</div>
+<!-- 二级导航开始 --><div class="area areabg1">
+<div class="titleBar"><h2>体育</h2><div class="more">&nbsp;</div></div>
+<div class="area-half left">
+<div class="tabBox">
+<div class="title-tab"><h2>点击榜</h2><ul class="tabNav"><li class="active">1小时前点击排行</li><li>24小时点击排行</li><li>本周点击排行</li></ul></div>
+<div class="tabContents active">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th><th width="35">趋势</th></tr>
+	
+<tr>
+<td class="red"><span>1</span><a href="http://sports.163.com/13/0117/03/8LD1SILC00051CA1.html">科比因伤需坐直升机"上下班" 一次就花2000美</a></td>
+<td class="cBlue">451119</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://sports.163.com/13/0116/22/8LCGDLL500052UUC.html">麦嫂赛前献吻麦蒂赐予支持 丈夫绝杀她兴奋蹦起</a></td>
+<td class="cBlue">334417</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://sports.163.com/13/0116/23/8LCLJ6B000051C97.html">拜仁官方宣布瓜迪奥拉今夏上任执教 获三年合同</a></td>
+<td class="cBlue">196474</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://sports.163.com/13/0116/22/8LCI15JE00052UUC.html">时隔8年麦蒂再现制胜准绝杀 杀手本能他从没丢掉</a></td>
+<td class="cBlue">191593</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://sports.163.com/13/0117/09/8LDL10T600051C97.html">瓜帅执教拜仁年薪曝光 1700万超穆帅成世界第一</a></td>
+<td class="cBlue">161835</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://sports.163.com/13/0117/03/8LD2A56B00051C89.html">传韦迪下课祸起卡马乔 天价税后合同遭同僚质疑</a></td>
+<td class="cBlue">155957</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://sports.163.com/13/0116/23/8LCKB9AG00051C89.html">传韦迪突然下课 体育总局政策法规司司长或接任</a></td>
+<td class="cBlue">137403</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://sports.163.com/13/0117/07/8LDFRDSL00051C97.html">专访瓜帅经纪人:拜仁出价最低 不信任金元足球</a></td>
+<td class="cBlue">131242</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://sports.163.com/13/0116/21/8LCE71K900052UUC.html">1.7秒准绝杀!麦蒂31+6+6 单节13分滑翔</a></td>
+<td class="cBlue">98689</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://sports.163.com/13/0116/23/8LCJ2VDL00052UUC.html">朱芳雨叹又见麦蒂时刻 冯祺大赞领袖:我麦威武!</a></td>
+<td class="cBlue">70918</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDGFOBT00051CA1.html">天勾看好杜兰特冲击历史得分王:他具备这一天赋</a></td>
+<td class="cBlue">62708</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDLICP200051CA1.html">曝拉希德赛季提前报销 尼克斯欲裁员以便签新援</a></td>
+<td class="cBlue">56877</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCPC2R200051C97.html">德媒:追求瓜帅拜仁笑到最后 德甲50年最震撼签约</a></td>
+<td class="cBlue">52467</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/06/8LDBJ5RE00051C8V.html">国王杯-梅西普约尔破门 巴萨终场丢球2-2马拉加</a></td>
+<td class="cBlue">50738</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCQKUOD00051C97.html">德甲两大优势促瓜帅选拜仁 弃英超或因穆里尼奥</a></td>
+<td class="cBlue">43535</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDQLQVB00051C97.html">瓜帅执教拜仁遇2大难题:球风不同 还缺一个哈维</a></td>
+<td class="cBlue">41816</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/06/8LDCBC4Q00051C8V.html">梅西主场秀四座金球 抢断破门他对进球从不厌倦</a></td>
+<td class="cBlue">40253</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCTUI8Q00051C97.html">西媒曝瓜帅欲请劳尔当助手 恩里克亦成候选之一</a></td>
+<td class="cBlue">38515</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LDA84UL00051CCL.html">足总杯-鲁尼破门后失点球 曼联1-0西汉姆联晋级</a></td>
+<td class="cBlue">36967</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCH3OCG00052UUC.html">0分0板！莫里斯最耻辱一战 内线成北京卫冕的痛</a></td>
+<td class="cBlue">35913</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDIVGKR00051C89.html">韦迪下班后被总局约谈解职 薛立晋升后或接任</a></td>
+<td class="cBlue">31913</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/12/8LDV1R5P00051CA1.html">末节轰14分险导演大逆转 书豪19+4却现致命失</a></td>
+<td class="cBlue">31205</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCJG57P00052UUC.html">麦蒂通过网易辟谣专访5000美金 质疑消息来源</a></td>
+<td class="cBlue">28781</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDQ9T9O00051C89.html">巴萨顾问"差评"令根宝震怒:学不来技术就学态度</a></td>
+<td class="cBlue">25234</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDR0HN900051C89.html">韦迪新职位曝光 将赴体育总局汽摩中心担任主任</a></td>
+<td class="cBlue">23091</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCSQS8800051C89.html">各界热议韦迪卸任 颜强:交三年学费换来了什么?</a></td>
+<td class="cBlue">22236</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCL7JU200052UUC.html">麦蒂中绝杀归功队友 谈贺天举防守:场上有6号吗?</a></td>
+<td class="cBlue">21120</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFJV9Q00051C89.html">曝韦迪无法控制足协 多支中超队在足协有代言人</a></td>
+<td class="cBlue">21112</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/00/8LCOEMUO00051CD5.html">英媒曝米兰欲邀穆里尼奥执教 狂人年薪将成障碍</a></td>
+<td class="cBlue">20612</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDJ7SQP00051C89.html">安蒂奇关心令韩鹏感动 周海滨:遇上了一个好教练</a></td>
+<td class="cBlue">20361</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/11/8LDUGVGH00051C89.html">韦迪任汽摩中心主任实乃高升 官员:尚无官方消息</a></td>
+<td class="cBlue">20079</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCPTPFV00051C97.html">拜仁高层:只有瓜帅适合接班海帅 多特:恭喜拜仁</a></td>
+<td class="cBlue">19832</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDKRMHI00052UUC.html">麦蒂:在我的眼里没有防守 全队都是获胜的英雄</a></td>
+<td class="cBlue">19759</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LD8PVC700052UUC.html">"换吉喆"成球迷大杀器 鲁媒调侃北京心理素质差</a></td>
+<td class="cBlue">17777</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/06/8LDCGOFU00051CCL.html">金童遭狂嘘!传中如解围 登巴巴4场3球=T9踢2</a></td>
+<td class="cBlue">16780</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDE0M6600051C97.html">西媒:瓜帅周五生日当天在拜仁亮相 全德国都等他</a></td>
+<td class="cBlue">16530</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LD890V300051CCL.html">足总杯-威尔希尔世界波绝杀 枪手1-0斯旺西晋级</a></td>
+<td class="cBlue">16383</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDNGOM000051CCL.html">曼联老妖15分钟＞纳尼78分钟 弗爵:他将还踢1</a></td>
+<td class="cBlue">16332</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDKNLI800052UUC.html">青岛球员戏言奖金翻番 队友:谢谢麦蒂带我们赚钱</a></td>
+<td class="cBlue">14833</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/18/8LC2C99100051CA1.html">曝湖人不换加索尔真因 紫金军不想冒失双塔风险</a></td>
+<td class="cBlue">14208</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBQG16300051CA1.html">科比:懒得与上上季热火做对比 湖人遇更多困难</a></td>
+<td class="cBlue">13930</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCDM7L700052UUC.html">4次2+1!王哲林单回合拿4分 狂砍25+19统</a></td>
+<td class="cBlue">13736</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCE9C2500052UUC.html">苏群:北京陷入三分死胡同 山东将获常规赛第二</a></td>
+<td class="cBlue">13222</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDI2OIH00051CA1.html">解读:连胜湖人有4大变化 魔兽被激活防守有提升</a></td>
+<td class="cBlue">12987</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDMNCGT00052UUC.html">阿里纳斯:已受够NBA更喜欢CBA 下赛季我定会</a></td>
+<td class="cBlue">12357</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/12/8LDVM5S100051CA1.html">阿西克抢15板打爆7尺猛男 他1数据已列联盟第一</a></td>
+<td class="cBlue">12191</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDHJT2500051CA1.html">落魄湖人难阻击卫冕冠军? 或借篮板优势扑灭热火</a></td>
+<td class="cBlue">12174</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDGCV3300051C8V.html">比帅自弃良将酿终场失分 巴萨后防失误难破魔咒</a></td>
+<td class="cBlue">12047</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/12/8LDV2QVA00051CA1.html">LBJ:助攻5千比得分2万更有意义 我不是个得分</a></td>
+<td class="cBlue">11811</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/17/8LBVER5R00051CCL.html">天空体育美女主播走红 被誉为"英国版萨拉"(图)</a></td>
+<td class="cBlue">11736</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDOKDL700051CDG.html">彭帅连丢7局负基里连科 连续两年止步澳网次轮</a></td>
+<td class="cBlue">11304</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/00/8LCOI83K00051C89.html">韦迪履历:率领水军曾创辉煌 足协3年碌碌无为</a></td>
+<td class="cBlue">11123</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LD8EFMN00051CA1.html">全明星投票已截止周五出结果 书豪进首发几率为0</a></td>
+<td class="cBlue">10988</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/06/8LDD6D8200051CCL.html">未来枪王!威尔希尔绝杀显领袖气质 伤愈后终重生</a></td>
+<td class="cBlue">10195</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCRNLBV00051C89.html">韦迪任期3年国字号五线大溃败 男足女足全军覆没</a></td>
+<td class="cBlue">10027</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCUO6LN00051C89.html">韦迪语录:国足五年亚洲一流 足协官员不用懂足球</a></td>
+<td class="cBlue">9884</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFCMD000052UUC.html">"京鸭"遇"强鲁"灰飞烟灭 北京"疯狗精神"遭打</a></td>
+<td class="cBlue">9855</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOMADA00051CA1.html">科比:攻防俱佳靠意志 魔兽:这样打没人能赢湖人</a></td>
+<td class="cBlue">9648</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/04/8LD67A3700051C97.html">希帅:瓜帅适合拜仁 贝皇:祝贺拜仁获得最佳教练</a></td>
+<td class="cBlue">9604</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/15/8L1DRSUU00051CA1.html">李冰冰洛城观战半场失望退场 赛后发文鼓励科比</a></td>
+<td class="cBlue">9283</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDLP9SD00051CA1.html">卡莱尔:哈登造罚球联盟最强 林书豪被外界低估</a></td>
+<td class="cBlue">8845</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBBBM6D00051C8V.html">惊曝穆帅C罗赛后更衣室争吵 队友劝架避免互殴</a></td>
+<td class="cBlue">8832</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDJP5I400051CA1.html">ESPN:篮网换帅进攻超雷霆 德隆脱胎换骨效率暴</a></td>
+<td class="cBlue">8791</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDO5P2F00052UUC.html">京媒:马布里不是救世主 押宝一人早晚输个底儿掉</a></td>
+<td class="cBlue">8749</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/12/8LE14GFB00051CA1.html">历史第13人!勒布朗超越科比 成最年轻两万分先生</a></td>
+<td class="cBlue">8563</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/11/8LDUVP8K00051CA1.html">哈登23投5中犹如梦游 关键时刻连续打铁葬送火箭</a></td>
+<td class="cBlue">8372</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDNBBM200051C8V.html">云泥之别！瓜帅签约拜仁 里杰卡尔德被沙特解雇</a></td>
+<td class="cBlue">8358</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFJ5SU00051CCL.html">切尔西耻辱不胜差曼联13分 贝帅遭质疑:迟钝大师</a></td>
+<td class="cBlue">8354</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCVTU4900051C89.html">韦迪离任消息流传数月 曝于洪臣或接任党委书记</a></td>
+<td class="cBlue">8351</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCT7EQE00051C89.html">足协人士:闻韦迪下课惊讶 频换领导不利中国足球</a></td>
+<td class="cBlue">8211</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDJ6V7900052UUC.html">粤媒:卫冕冠军惨败无借口 北京尚不具绝对实力</a></td>
+<td class="cBlue">8182</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDJP4C000051CCL.html">苏亚雷斯称受不公正待遇 指责英媒都受曼联操纵</a></td>
+<td class="cBlue">8123</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOMGEH00051CD5.html">贝克汉姆有意再次加盟米兰 传加利亚尼婉言拒绝</a></td>
+<td class="cBlue">7868</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDLSJJB00051CA1.html">恩师赞甜瓜乃天生领袖 称奥运经历让其防守更强</a></td>
+<td class="cBlue">7766</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDI9B7U00051CD5.html">斯内德转会细节遭公布:身价750万年薪不足550</a></td>
+<td class="cBlue">7533</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCT01OT00051C97.html">瓜帅成拜仁首位西班牙籍主帅 请他只为创新王朝</a></td>
+<td class="cBlue">7507</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/03/8LD03URG00051C89.html">致敬!辽足15年坚守 肇俊哲亲承无意外今年底退役</a></td>
+<td class="cBlue">7415</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDG2AOP00051CCL.html">鲁尼破门双手指天告慰亲人 哀思下丢点球不意外</a></td>
+<td class="cBlue">7397</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/12/8LDV8BH700051CA1.html">从8中2到末节10分!天王威武 他扼杀火箭翻盘希</a></td>
+<td class="cBlue">7254</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDP83VR00051C97.html">卡恩:瓜帅令人激动兴奋 小猪不舍海帅离开拜仁</a></td>
+<td class="cBlue">7130</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDKCV2000051C8V.html">比帅:请舆论原谅蒂亚戈 事先不知瓜帅执教拜仁</a></td>
+<td class="cBlue">7088</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBSOFLS00051C97.html">德甲各队薪水最高球员:里贝里居首 格策位列第四</a></td>
+<td class="cBlue">6995</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDL6BQR00052UUC.html">青岛媒体:麦蒂不足以感动上天 但能感动老火箭迷</a></td>
+<td class="cBlue">6901</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCGVRB100052UUC.html">北京惨败暴2致命缺陷 内线无人+过度依赖马布里</a></td>
+<td class="cBlue">6889</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBN2IDE00051CDG.html">澳网郑洁决胜盘连胜5局 险胜斯托瑟晋级第三轮</a></td>
+<td class="cBlue">6856</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDP433P00051C8V.html">西裁判委员会起诉迪马利亚 瓦伦:皇马会哭有奶吃</a></td>
+<td class="cBlue">6791</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDNSJNV00051C8V.html">卡卡现身米兰城聚餐罗比 首度表态愿返红黑军团</a></td>
+<td class="cBlue">6588</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDIAMA900052UUC.html">全华班挽回一丝颜面 闵鹿蕾:年轻人到了担责之时</a></td>
+<td class="cBlue">6577</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDP3ER000051C89.html">内部矛盾让韦迪招架不住 曾公开抨击足协不团结</a></td>
+<td class="cBlue">6487</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFCLM300052UUC.html">打破陶汉林鼻子身压杰特 惨败之夜马布里真急了</a></td>
+<td class="cBlue">6450</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr style="height:15px;"><td colspan="3"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCPJ7J200051C89.html">揭秘张剑:屡赴各地讲学 曾随蔡振华调研日本足球</a></td>
+<td class="cBlue">6434</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDHT10A00051CA1.html">加索尔有望明日复出战热火 大赞科比越来越无私</a></td>
+<td class="cBlue">6305</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCCP6HU00051C97.html">范德法特夫妇宣布复合 娇妻:我仍深爱着他(图)</a></td>
+<td class="cBlue">6183</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCDV0NG00052UUC.html">马布里末节爆发空砍26+3+2 孤掌难鸣北京遭惨</a></td>
+<td class="cBlue">6168</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/11/8LDUIRU400051CA1.html">5000次!皇帝助攻大盘点:大Z最受益 韦德该谢</a></td>
+<td class="cBlue">5949</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDM30U700051CA1.html">2013全明星战袍曝光 设计灵感源于航天元素(图</a></td>
+<td class="cBlue">5903</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCFN5UV00051CCL.html">女王公园1050万欧签雷米 法国国脚中锋获约4年</a></td>
+<td class="cBlue">5822</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/11/8LDU858H00051CDG.html">彭帅出局赛后发布会落泪 哭诉与教练间出现问题</a></td>
+<td class="cBlue">5744</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/03/8LD0RQ2200051C97.html">英媒:再见瓜帅!蓝军痛失囊中之物 拜仁展露雄心</a></td>
+<td class="cBlue">5626</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDHNM5P00051C8V.html">桑切斯两空门不入+假摔 蒂亚戈送助攻功过相抵</a></td>
+<td class="cBlue">5366</td>
+<td><img src="http://img1.cache.netease.com/cnews/img/subscibe0304/red.gif" alt="red" /></td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://sports.163.com/13/0115/16/8L98SPST00051CA1.html">库班公告全联盟:小牛愿做大交易 有意者请联系我</a></td>
+<td class="cBlue">658006</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://sports.163.com/13/0116/07/8LASBU8I00051CD5.html">维埃里即将迈入婚姻殿堂 意媒称一桩神话破灭了</a></td>
+<td class="cBlue">601786</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://sports.163.com/13/0116/22/8LCGDLL500052UUC.html">麦嫂赛前献吻麦蒂赐予支持 丈夫绝杀她兴奋蹦起</a></td>
+<td class="cBlue">577361</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://sports.163.com/13/0117/03/8LD1SILC00051CA1.html">科比因伤需坐直升机"上下班" 一次就花2000美</a></td>
+<td class="cBlue">467276</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://sports.163.com/13/0116/07/8LAUIOOR00052UUC.html">爆料人:麦蒂收钱非秘密 央视和青岛记者都看到过</a></td>
+<td class="cBlue">416127</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://sports.163.com/13/0116/23/8LCLJ6B000051C97.html">拜仁官方宣布瓜迪奥拉今夏上任执教 获三年合同</a></td>
+<td class="cBlue">357848</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://sports.163.com/13/0116/22/8LCI15JE00052UUC.html">时隔8年麦蒂再现制胜准绝杀 杀手本能他从没丢掉</a></td>
+<td class="cBlue">348210</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://sports.163.com/13/0116/11/8LBBBM6D00051C8V.html">惊曝穆帅C罗赛后更衣室争吵 队友劝架避免互殴</a></td>
+<td class="cBlue">338257</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://sports.163.com/13/0116/21/8LCE71K900052UUC.html">1.7秒准绝杀!麦蒂31+6+6 单节13分滑翔</a></td>
+<td class="cBlue">288484</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://sports.163.com/13/0115/16/8L9AAO7B00051CCL.html">曼城新星8年沦为发福"大叔" 二十出头已无球可踢</a></td>
+<td class="cBlue">224435</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/22/8L9VFF0D00051CCL.html">足坛收入榜:赋闲小贝力压C罗居首 梅西仅列第3</a></td>
+<td class="cBlue">224190</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/03/8LD2A56B00051C89.html">传韦迪下课祸起卡马乔 天价税后合同遭同僚质疑</a></td>
+<td class="cBlue">210585</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBB2VRV00051CAQ.html">霍震霆公开出言护郭晶晶:请求媒体不要捕风捉影</a></td>
+<td class="cBlue">206511</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCKB9AG00051C89.html">传韦迪突然下课 体育总局政策法规司司长或接任</a></td>
+<td class="cBlue">206333</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LAU1NF700051C8M.html">U22国足热身9-0狂胜西丙青年队 卡马乔提前离</a></td>
+<td class="cBlue">190775</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFRDSL00051C97.html">专访瓜帅经纪人:拜仁出价最低 不信任金元足球</a></td>
+<td class="cBlue">188881</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/09/8LB2BM1300051C8V.html">夏奇拉挺大肚子携皮克亮相 两人"咬耳朵"显甜蜜</a></td>
+<td class="cBlue">183233</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBK4OTK00051CA1.html">轰31+16+4!湖人生涯首现 5度暴扣!魔兽真</a></td>
+<td class="cBlue">182056</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBQ2D6P00051CCL.html">最苦背景帝! 英格兰见证老马小罗伊布奇迹(图)</a></td>
+<td class="cBlue">173602</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/20/8L9OLURE00052UUC.html">24秒计时器再出故障 尤纳斯不满带领教练组抗议</a></td>
+<td class="cBlue">172946</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/15/8L97DJ9O00051CA1.html">《嘘!你不知道的姚明》(16):小范求阿帅慎用姚</a></td>
+<td class="cBlue">172063</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDL10T600051C97.html">瓜帅执教拜仁年薪曝光 1700万超穆帅成世界第一</a></td>
+<td class="cBlue">161835</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBSOFLS00051C97.html">德甲各队薪水最高球员:里贝里居首 格策位列第四</a></td>
+<td class="cBlue">148935</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOMGEH00051CD5.html">贝克汉姆有意再次加盟米兰 传加利亚尼婉言拒绝</a></td>
+<td class="cBlue">137061</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/21/8L9RG1I200052UUC.html">40+10!阿联赛季首次连场30+ 德比战场均轰</a></td>
+<td class="cBlue">134330</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/11/8L8NKMQI00051C8V.html">厄齐尔与褐发美女逛街 新欢是第一性感女神(图)</a></td>
+<td class="cBlue">133951</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCJ2VDL00052UUC.html">朱芳雨叹又见麦蒂时刻 冯祺大赞领袖:我麦威武!</a></td>
+<td class="cBlue">123111</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/13/8LBJ2Q9800051CA1.html">19中12!31+6铸就最恐怖科比 全场球迷为他</a></td>
+<td class="cBlue">117791</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LAT2FSD00051CD5.html">足坛15大中场绝配:哈维小白无解 米兰双前腰经典</a></td>
+<td class="cBlue">112090</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCCP6HU00051C97.html">范德法特夫妇宣布复合 娇妻:我仍深爱着他(图)</a></td>
+<td class="cBlue">104128</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBBPRU900051CA1.html">生涯第1000场!向40岁传奇致敬 他只想继续打</a></td>
+<td class="cBlue">102202</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/05/8LANDK9800051C8V.html">国王杯-本泽马破门伊瓜因造乌龙 皇马2-0胜瓦伦</a></td>
+<td class="cBlue">100890</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBO8F4U00051C89.html">林乐丰痛斥足协:百般阻挠实德收购 想逼死我们</a></td>
+<td class="cBlue">95415</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCPC2R200051C97.html">德媒:追求瓜帅拜仁笑到最后 德甲50年最震撼签约</a></td>
+<td class="cBlue">92420</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBN2IDE00051CDG.html">澳网郑洁决胜盘连胜5局 险胜斯托瑟晋级第三轮</a></td>
+<td class="cBlue">91075</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/09/8LB4AA8800051CCL.html">贝克汉姆回归英伦节奏 灰帽大衣显绅士风度(图)</a></td>
+<td class="cBlue">90074</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/19/8L9JS4CR00051C89.html">实德递交注册材料为留住球员 从中乙打起也愿意</a></td>
+<td class="cBlue">83408</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/18/8L9G0ELB00051CA1.html">LBJ暗批队友比赛不够尽力:我们能量太低怎能赢?</a></td>
+<td class="cBlue">81363</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/23/8LA0ELID00051CA1.html">尼克斯出奇招监听赛场声音 对手:这算变相窃听吗</a></td>
+<td class="cBlue">80598</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCQKUOD00051C97.html">德甲两大优势促瓜帅选拜仁 弃英超或因穆里尼奥</a></td>
+<td class="cBlue">80556</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBBMCPP00051CA1.html">书豪12+10引领13比4攻击潮 末节遭克劳福德</a></td>
+<td class="cBlue">80486</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDGFOBT00051CA1.html">天勾看好杜兰特冲击历史得分王:他具备这一天赋</a></td>
+<td class="cBlue">77790</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBBIGR100051CDG.html">李娜次盘末段连下13分翻盘 化解两盘点跻身32强</a></td>
+<td class="cBlue">77282</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/06/8LDCBC4Q00051C8V.html">梅西主场秀四座金球 抢断破门他对进球从不厌倦</a></td>
+<td class="cBlue">73193</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/18/8L9FO55R00051C89.html">恒大热身5-0轻取乙级队 恐怖三叉戟出战埃神破门</a></td>
+<td class="cBlue">68907</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCTUI8Q00051C97.html">西媒曝瓜帅欲请劳尔当助手 恩里克亦成候选之一</a></td>
+<td class="cBlue">68905</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCH3OCG00052UUC.html">0分0板！莫里斯最耻辱一战 内线成北京卫冕的痛</a></td>
+<td class="cBlue">68712</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/06/8LDBJ5RE00051C8V.html">国王杯-梅西普约尔破门 巴萨终场丢球2-2马拉加</a></td>
+<td class="cBlue">66552</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LAT42DU00051CA1.html">正视频直播湖人大战雄鹿 科比魔兽率队争连胜</a></td>
+<td class="cBlue">65338</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/06/8LAQS8G300051C8V.html">C罗哑火两失必进球 救火队员?西媒讽没看到球门</a></td>
+<td class="cBlue">65154</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOMADA00051CA1.html">科比:攻防俱佳靠意志 魔兽:这样打没人能赢湖人</a></td>
+<td class="cBlue">64738</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/21/8L9RDFNO00051CA1.html">名记:禅师不回归再添一证据 其得力助手转战NCA</a></td>
+<td class="cBlue">64697</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LDA84UL00051CCL.html">足总杯-鲁尼破门后失点球 曼联1-0西汉姆联晋级</a></td>
+<td class="cBlue">58755</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDLICP200051CA1.html">曝拉希德赛季提前报销 尼克斯欲裁员以便签新援</a></td>
+<td class="cBlue">56877</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/19/8L9KDBI200051C8V.html">小白荣膺世界最佳组织型中场 梅西入三甲C罗第6</a></td>
+<td class="cBlue">54836</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/18/8L9I0LEQ00051C89.html">实德最后期限递交注册材料 足协已启动审核程序</a></td>
+<td class="cBlue">54734</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/12/8LBEAODD00051CA1.html">疯狂!杀星连中5球灭火箭 休城球迷被逼绝望退场</a></td>
+<td class="cBlue">53569</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOKF1Q00051CCL.html">曝曼联今夏打包皇马3将 银河战舰难承受外援重税</a></td>
+<td class="cBlue">53549</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/17/8LBVER5R00051CCL.html">天空体育美女主播走红 被誉为"英国版萨拉"(图)</a></td>
+<td class="cBlue">52342</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/10/8LB7RCIK00051C89.html">恒大弃将加盟巴甲升班马 将和梅西表哥并肩作战</a></td>
+<td class="cBlue">52024</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LARN9L100052UUC.html">尤纳斯盛赞阿联海斯里普:世界级比赛 世界级球员</a></td>
+<td class="cBlue">50695</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/15/8L1DRSUU00051CA1.html">李冰冰洛城观战半场失望退场 赛后发文鼓励科比</a></td>
+<td class="cBlue">50497</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBB5UJU00051CA1.html">哈登首节成神后三节沉沦 唯一欣慰!连续21场20</a></td>
+<td class="cBlue">48160</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/08/8LB1NC1Q00052UUC.html">麦蒂首次斩获亚篮网周MVP 阿联兰多夫分列二三</a></td>
+<td class="cBlue">47683</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBMM3VB00051C89.html">鲁能重新崛起需满足三大要素 更衣室控制成关键</a></td>
+<td class="cBlue">46997</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCJG57P00052UUC.html">麦蒂通过网易辟谣专访5000美金 质疑消息来源</a></td>
+<td class="cBlue">45767</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/06/8LAQ5BSI00051CD5.html">意杯-拉诺基亚加时赛最后1分钟绝杀 国米3-2晋</a></td>
+<td class="cBlue">44889</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBAM4GV00051CA1.html">林书豪12+10火箭遭4连败 哈登23分克劳福德</a></td>
+<td class="cBlue">43741</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/18/8LC2C99100051CA1.html">曝湖人不换加索尔真因 紫金军不想冒失双塔风险</a></td>
+<td class="cBlue">42781</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/13/8LBJ64UU00051CA1.html">14投10铁!29分钟仅1助攻 詹宁斯遭科比全面</a></td>
+<td class="cBlue">42322</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDQLQVB00051C97.html">瓜帅执教拜仁遇2大难题:球风不同 还缺一个哈维</a></td>
+<td class="cBlue">41816</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/11/8L8PCJ6400051C89.html">《人民日报》发文盛赞高雷雷:善举简单而有力量</a></td>
+<td class="cBlue">40992</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/10/8LB7P5S700052UUC.html">青岛随队记者:保镖为保护麦蒂才出高价吓退媒体</a></td>
+<td class="cBlue">40408</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/08/8LAV1R2E00051C8V.html">穆帅第600战遭伯纳乌嘘声 定律预示皇马进四强</a></td>
+<td class="cBlue">40087</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/12/8LBDHCTK00051CA1.html">火箭遇西部顶级豪强只有缴枪 6战全败被爆94分</a></td>
+<td class="cBlue">39691</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LATJ1OF00052UUC.html">北京提前进入冲冠模式 主帅动员要玩"疯狗精神"</a></td>
+<td class="cBlue">39482</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/08/8LB0AGUT00051CCL.html">瓜帅明确表示渴望加盟英超 切尔西曼城谁能招揽?</a></td>
+<td class="cBlue">39335</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDIVGKR00051C89.html">韦迪下班后被总局约谈解职 薛立晋升后或接任</a></td>
+<td class="cBlue">38820</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/08/8LB0NCES00051CCL.html">范德萨揭范佩西转会主因 渴望冠军促其转投红魔</a></td>
+<td class="cBlue">38391</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFJV9Q00051C89.html">曝韦迪无法控制足协 多支中超队在足协有代言人</a></td>
+<td class="cBlue">37925</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/00/8LCOEMUO00051CD5.html">英媒曝米兰欲邀穆里尼奥执教 狂人年薪将成障碍</a></td>
+<td class="cBlue">37597</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCSQS8800051C89.html">各界热议韦迪卸任 颜强:交三年学费换来了什么?</a></td>
+<td class="cBlue">37470</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBM0D6E00051CA1.html">困兽出笼!霍华德成攻击核心 1数据暴涨直追科比</a></td>
+<td class="cBlue">36771</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCL7JU200052UUC.html">麦蒂中绝杀归功队友 谈贺天举防守:场上有6号吗?</a></td>
+<td class="cBlue">36693</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/23/8LA1MSBD00051CCL.html">温格：阿森纳将投巨资购买两名球员 明年或退休</a></td>
+<td class="cBlue">34801</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/15/8L97IBM700051CA1.html">卢比奥10场仅投中8球遭嘲笑:命中数比出场数还少</a></td>
+<td class="cBlue">34365</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LASU1S400051CD5.html">史诗战役!国米3分钟天堂坠落人间 加时读秒绝杀</a></td>
+<td class="cBlue">34195</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCPTPFV00051C97.html">拜仁高层:只有瓜帅适合接班海帅 多特:恭喜拜仁</a></td>
+<td class="cBlue">33988</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCE9C2500052UUC.html">苏群:北京陷入三分死胡同 山东将获常规赛第二</a></td>
+<td class="cBlue">32159</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LAT92PG00051CA1.html">马刺因轮休事件被告上法庭 律师称球队涉嫌欺诈</a></td>
+<td class="cBlue">31366</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/12/8LDV1R5P00051CA1.html">末节轰14分险导演大逆转 书豪19+4却现致命失</a></td>
+<td class="cBlue">31205</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBNQJPN00051C8V.html">比帅暗讽穆帅:如果巴萨落后18分 我早已被解雇了</a></td>
+<td class="cBlue">30698</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/21/8L9RQ21B00052UUC.html">生日夜刘炜砍七年新高37分 全场齐唱生日快乐歌</a></td>
+<td class="cBlue">30396</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/08/8LB21TS000051C89.html">安蒂奇妙手激活安塔尔 鲁能外籍队长或将留队</a></td>
+<td class="cBlue">29854</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/10/8L8KHGI000051C8V.html">穆帅暗示愿重返英超：爱英格兰足球 我必将回归</a></td>
+<td class="cBlue">29300</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBKBPTN00051CA1.html">连封厄文詹宁斯!科比太玩命 战热火将死防皇帝?</a></td>
+<td class="cBlue">29284</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBQG16300051CA1.html">科比:懒得与上上季热火做对比 湖人遇更多困难</a></td>
+<td class="cBlue">27615</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LD890V300051CCL.html">足总杯-威尔希尔世界波绝杀 枪手1-0斯旺西晋级</a></td>
+<td class="cBlue">27398</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/08/8LB0T5O300051C89.html">足协高层确认张吉龙竞选亚足联主席 筹备进行中</a></td>
+<td class="cBlue">27211</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCDM7L700052UUC.html">4次2+1!王哲林单回合拿4分 狂砍25+19统</a></td>
+<td class="cBlue">26288</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">点击数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://sports.163.com/13/0110/18/8KSIRB3S00052UUC.html">篮协罚单:主裁判吴敏华停赛十轮 麦蒂停赛一轮</a></td>
+<td class="cBlue">1301027</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://sports.163.com/13/0110/15/8KSBO9KD00051CD5.html">土耳其球迷抵制斯内德 约兰特情色片惹恼穆斯林</a></td>
+<td class="cBlue">1178342</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://sports.163.com/13/0112/14/8L1AV2SF00051CA1.html">人心尽失!湖人主场嘘声四起 绝望!影帝愤而退场</a></td>
+<td class="cBlue">1110815</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://sports.163.com/13/0112/09/8L0PGBOJ00051CA1.html">科比瓦妮莎联合声明:我们已复合 撤销离婚申诉</a></td>
+<td class="cBlue">1037755</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://sports.163.com/13/0110/08/8KRHQ0TH00051CA1.html">KG问候安东尼妻子言语曝光 曝甜瓜拉拉分居两月</a></td>
+<td class="cBlue">907632</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://sports.163.com/13/0110/08/8KRIJGHD00051C8V.html">超级怠慢!C罗找瓜帅打招呼遭无视 佩普扭头不理</a></td>
+<td class="cBlue">907259</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://sports.163.com/13/0112/15/8L1DRSUU00051CA1.html">李冰冰洛城观战半场失望退场 赛后发文鼓励科比</a></td>
+<td class="cBlue">839034</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://sports.163.com/13/0114/17/8L6RKP7900051C8L.html">惨剧!建业中场核心陆峰意外骨折 骨头外露(图)</a></td>
+<td class="cBlue">823217</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://sports.163.com/13/0114/07/8L5P4QJN00051CAQ.html">前女排奥运冠军张萍登报征婚 要求对方宽肩窄臀</a></td>
+<td class="cBlue">818364</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://sports.163.com/13/0110/00/8KQL7VA300052UUC.html">麦蒂微博骂裁判:3只瞎眼耗子 若不改善就不回CB</a></td>
+<td class="cBlue">809981</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/16/8L98SPST00051CA1.html">库班公告全联盟:小牛愿做大交易 有意者请联系我</a></td>
+<td class="cBlue">755293</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/14/8L3U636P00051CCO.html">跪了!日本高中联赛现"跪式人墙" 4人跪地挡门将</a></td>
+<td class="cBlue">687590</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/09/8L5UBP8I00051CA1.html">曝骑士2014年欲追勒布朗 湖人等多队将加入争夺</a></td>
+<td class="cBlue">664799</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/08/8L3ADGNC00051C89.html">李毅微博向志玲姐姐问好 网友:吊丝女神世纪合影</a></td>
+<td class="cBlue">662673</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/11/8L8NKMQI00051C8V.html">厄齐尔与褐发美女逛街 新欢是第一性感女神(图)</a></td>
+<td class="cBlue">620916</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LASBU8I00051CD5.html">维埃里即将迈入婚姻殿堂 意媒称一桩神话破灭了</a></td>
+<td class="cBlue">601786</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCGDLL500052UUC.html">麦嫂赛前献吻麦蒂赐予支持 丈夫绝杀她兴奋蹦起</a></td>
+<td class="cBlue">577361</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/07/8L0KUT1600051C8V.html">金球高帅富!梅西捧四金球"炫富" 闪瞎你了吗(图</a></td>
+<td class="cBlue">547099</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/07/8KU0G52E00051CA1.html">曝奥登已决定继续NBA生涯 或加盟热火辅佐big</a></td>
+<td class="cBlue">538929</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/00/8KQNMM5600052UUC.html">匿名金哨:八一的确24秒违例 按规则可以不看回放</a></td>
+<td class="cBlue">514187</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/20/8KSQT3BG00051CCL.html">巴神新年从"头"开始 亮金色发型备战阿森纳(图)</a></td>
+<td class="cBlue">507479</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0109/21/8KQD9RL700052UUC.html">青岛不满判罚砸技术台全队罢赛 球迷骚乱扔杂物</a></td>
+<td class="cBlue">469453</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/03/8LD1SILC00051CA1.html">科比因伤需坐直升机"上下班" 一次就花2000美</a></td>
+<td class="cBlue">467276</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/19/8KSOQRFN00052UUC.html">麦蒂:裁判是罪有应得罚得好 我不后悔批评裁判</a></td>
+<td class="cBlue">462358</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/07/8KU1EMNP00051CAQ.html">中泰搏击争霸赛中国4-3险胜 马库斯连KO中方两</a></td>
+<td class="cBlue">456680</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/08/8KU3FC7U00051CA1.html">小巴斯:因为纳什才聘请丹东尼 湖人能进季后赛</a></td>
+<td class="cBlue">451334</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/21/8L4NGDEJ00052UUC.html">38+13+8!麦蒂解禁篮板创新高 3度暴扣演最</a></td>
+<td class="cBlue">437048</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0109/17/8KPUD15800051C8V.html">梅西晒奖杯"小金库" 四座金球数十奖杯见证传奇</a></td>
+<td class="cBlue">436037</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/16/8L9AAO7B00051CCL.html">曼城新星8年沦为发福"大叔" 二十出头已无球可踢</a></td>
+<td class="cBlue">435755</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LAUIOOR00052UUC.html">爆料人:麦蒂收钱非秘密 央视和青岛记者都看到过</a></td>
+<td class="cBlue">416127</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/09/8L3EA02T00052UUC.html">麦蒂抵长春女球迷泪流满面 T-MAC"冷酷"拒绝</a></td>
+<td class="cBlue">402916</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/09/8KU6N3S400051CAQ.html">曝牛莉从艺前曾入选射击国家队 与王义夫是队友</a></td>
+<td class="cBlue">392542</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/20/8KSQUPHS00051CD5.html">贝总小女儿产下一子 米兰主席喜获第7个孙辈(图)</a></td>
+<td class="cBlue">391407</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/01/8L5290D800052UUC.html">4.3秒青岛场边搞笑一幕 麦蒂"不听战术"拒投3</a></td>
+<td class="cBlue">364817</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/23/8KT7A20C00052UUC.html">吴敏华已不止一次偏袒八一队 闵鹿蕾曾对其怒吼</a></td>
+<td class="cBlue">360584</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCLJ6B000051C97.html">拜仁官方宣布瓜迪奥拉今夏上任执教 获三年合同</a></td>
+<td class="cBlue">357848</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/14/8L1ANFAK00051CA1.html">42+8+5!生涯最高效!KD暴虐湖人 球迷求他</a></td>
+<td class="cBlue">356436</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCI15JE00052UUC.html">时隔8年麦蒂再现制胜准绝杀 杀手本能他从没丢掉</a></td>
+<td class="cBlue">348210</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/08/8KRIPV6Q00051C89.html">恒大允许吴坪枫零身价转会 难留广州恐远走他乡</a></td>
+<td class="cBlue">342777</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBBBM6D00051C8V.html">惊曝穆帅C罗赛后更衣室争吵 队友劝架避免互殴</a></td>
+<td class="cBlue">338257</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/19/8L4EK6TH00051C8V.html">曝伊布接连嘲讽两大巨星:10人比C罗强 梅西太矮</a></td>
+<td class="cBlue">335633</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/06/8KTS6AD100051C89.html">数百恒大球迷通宵排队买套票 最早者排队23小时</a></td>
+<td class="cBlue">332031</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/07/8L8AM9D800051CA1.html">手记-费根:书豪若进全明星很荒唐 别走姚明老路</a></td>
+<td class="cBlue">329962</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/09/8L5VAQN4000509NH.html">英34D内衣超模跑马拉松惊人 成绩堪比2级运动员</a></td>
+<td class="cBlue">326546</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/18/8KSKEU5900052UUC.html">篮协10年首次公开处罚裁判 停赛10轮属史上最重</a></td>
+<td class="cBlue">316934</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/13/8L3QPGFM00051CA1.html">国王1米75吊丝单节21分 极限100秒连飙4记</a></td>
+<td class="cBlue">316307</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/01/8L7LENAS00051C8M.html">国足热身0-2西班牙第三级球队 半场主力难挽败局</a></td>
+<td class="cBlue">297780</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/16/8L6OU20K00051CA1.html">韦德波什拜师美武术高手 "练武"成打好中锋秘诀</a></td>
+<td class="cBlue">296915</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/16/8KV0MKAE00052UUC.html">麦蒂禁赛妻子及时赶赴青岛 最艰难时刻家人现身</a></td>
+<td class="cBlue">295796</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/09/8L0QNLS800051C8V.html">梅西:金球不如冠军奖杯 颁奖典礼上忘记祝贺C罗</a></td>
+<td class="cBlue">290870</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCE71K900052UUC.html">1.7秒准绝杀!麦蒂31+6+6 单节13分滑翔</a></td>
+<td class="cBlue">288484</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/01/8L55780800052UUC.html">20岁麦蜜遇车祸命陨追星路 生前最大愿望看麦蒂</a></td>
+<td class="cBlue">282025</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/12/8L8SINDU00051CA1.html">数据平庸韦德末节遭弃用 和球迷对骂已无心恋战</a></td>
+<td class="cBlue">269975</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/08/8L8EA9SO00051C8V.html">曝皇马今夏欲放卡卡走人 阿科尔确定无缘伯纳乌</a></td>
+<td class="cBlue">269626</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/18/8KSKVG7G00052UUC.html">杨毅:10场后吴某还能赶上常规赛 请问你们满意吗</a></td>
+<td class="cBlue">267291</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/11/8KRSE4HT00051CA1.html">被裁判黑林书豪捏拳怒吼 连续15场送抢断创纪录</a></td>
+<td class="cBlue">260362</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/15/8L97DJ9O00051CA1.html">《嘘!你不知道的姚明》(16):小范求阿帅慎用姚</a></td>
+<td class="cBlue">254678</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/21/8L4MA74700052UUC.html">阿里纳斯满血复出 连中9球狂砍37分助上海赢球</a></td>
+<td class="cBlue">248683</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/11/8L0VOKQ700051CA1.html">林书豪12+5+6零失误 末节被摁板凳大半节致败</a></td>
+<td class="cBlue">247190</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/01/8L55E20I00051CCL.html">穆帅"法师"造型赴梦剧场 英媒:想好防范佩西了?</a></td>
+<td class="cBlue">234697</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/17/8L1N9QIJ00051CA1.html">球迷"替"KB写推特:悔不该逼走鲨鱼 魔兽也要走</a></td>
+<td class="cBlue">233106</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/13/8KUK2LD600051C89.html">富力将打包引进恒大三将 姜宁李健华确定加盟</a></td>
+<td class="cBlue">229983</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/15/8L6LBVRL00051CA1.html">沃顿畅聊生涯经典记忆 自嘲曾和科比"合砍"85分</a></td>
+<td class="cBlue">227817</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/09/8L5TI2TO00051CA1.html">《嘘!你不知道的姚明》(15):谁过度透支了姚明</a></td>
+<td class="cBlue">225573</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/22/8L9VFF0D00051CCL.html">足坛收入榜:赋闲小贝力压C罗居首 梅西仅列第3</a></td>
+<td class="cBlue">224350</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/10/8KUBN12800051C8V.html">《新闻联播》报道梅西拿金球 赞他开创足坛先例</a></td>
+<td class="cBlue">214349</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/03/8LD2A56B00051C89.html">传韦迪下课祸起卡马乔 天价税后合同遭同僚质疑</a></td>
+<td class="cBlue">210585</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/18/8L6VH03O00052UUC.html">曝麦蒂专访开价5000美金 酒店高层合影?免单套</a></td>
+<td class="cBlue">207255</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/07/8L8BMBT000051C89.html">卓尔球员睹陆峰断腿全程:像当年郑智跟西塞那样</a></td>
+<td class="cBlue">207081</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBB2VRV00051CAQ.html">霍震霆公开出言护郭晶晶:请求媒体不要捕风捉影</a></td>
+<td class="cBlue">206511</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCKB9AG00051C89.html">传韦迪突然下课 体育总局政策法规司司长或接任</a></td>
+<td class="cBlue">206333</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/23/8KVMKGCM00051CCL.html">IFFHS评21世纪主帅:弗爵第1穆帅第2 前十</a></td>
+<td class="cBlue">206174</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/17/8L1MH4GB00051CA1.html">影帝退场!湖人球迷根基动摇 巴斯已成众矢之的?</a></td>
+<td class="cBlue">204248</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/22/8KVM67DQ00052UUC.html">麦蒂选择观战舍弃为妻子接机 其妻悄悄抵达酒店</a></td>
+<td class="cBlue">202010</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/13/8L6BEG0H00051CA1.html">爽!魔兽11投换22+14 复出夜连获KB妙传他</a></td>
+<td class="cBlue">193706</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/20/8L9OLURE00052UUC.html">24秒计时器再出故障 尤纳斯不满带领教练组抗议</a></td>
+<td class="cBlue">191774</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LAU1NF700051C8M.html">U22国足热身9-0狂胜西丙青年队 卡马乔提前离</a></td>
+<td class="cBlue">190775</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFRDSL00051C97.html">专访瓜帅经纪人:拜仁出价最低 不信任金元足球</a></td>
+<td class="cBlue">188881</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0109/21/8KQB5QCK00051CA1.html">曝国王已敲定搬迁至西雅图 不排除球队易主可能</a></td>
+<td class="cBlue">183620</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/09/8LB2BM1300051C8V.html">夏奇拉挺大肚子携皮克亮相 两人"咬耳朵"显甜蜜</a></td>
+<td class="cBlue">183233</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBK4OTK00051CA1.html">轰31+16+4!湖人生涯首现 5度暴扣!魔兽真</a></td>
+<td class="cBlue">182056</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/21/8L7715UT00051C8M.html">卡马乔回击里皮吐槽:恒大总买国脚 我能怎么办?</a></td>
+<td class="cBlue">181900</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/16/8L6OMOO700052UUC.html">广东男篮打上尤氏烙印 队员不许开私家车到球馆</a></td>
+<td class="cBlue">178831</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/10/8L8KHGI000051C8V.html">穆帅暗示愿重返英超：爱英格兰足球 我必将回归</a></td>
+<td class="cBlue">176185</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBQ2D6P00051CCL.html">最苦背景帝! 英格兰见证老马小罗伊布奇迹(图)</a></td>
+<td class="cBlue">173602</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/06/8KRASTOT00051C8V.html">国王杯-C罗戴帽拉莫斯染红 皇马4-0总分5-2</a></td>
+<td class="cBlue">173090</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/11/8L8NHU6P00051C97.html">94世界杯绝杀德国功臣入狱 前国脚沦为腐败市长</a></td>
+<td class="cBlue">172980</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/12/8L6AT3G000051CA1.html">科比28分钟取23分6助 最轻松一役!末节含笑观</a></td>
+<td class="cBlue">172452</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/11/8KUDCDFA00051C89.html">前亚泰球员讨薪被威胁打断腿 赛前只能吃6元拉面</a></td>
+<td class="cBlue">169907</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/19/8KSO5SSI00052UUC.html">被罚主裁吴敏华:会正确对待失误 愿意接受处罚</a></td>
+<td class="cBlue">169118</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/00/8KQNIT8100052UUC.html">裁判知错不改因有规则撑腰 篮协应为罢赛门埋单</a></td>
+<td class="cBlue">168157</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/11/8L8PCJ6400051C89.html">《人民日报》发文盛赞高雷雷:善举简单而有力量</a></td>
+<td class="cBlue">167950</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/11/8KUDLF8U00052UUC.html">川媒质疑八一青岛一战涉赌 张博补篮令盘口反转</a></td>
+<td class="cBlue">164731</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/23/8L4R66BM00051C8V.html">FIFA金球奖被曝有猫腻 C罗选票被记梅西头上?</a></td>
+<td class="cBlue">164618</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDL10T600051C97.html">瓜帅执教拜仁年薪曝光 1700万超穆帅成世界第一</a></td>
+<td class="cBlue">161835</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/21/8L9RG1I200052UUC.html">40+10!阿联赛季首次连场30+ 德比战场均轰</a></td>
+<td class="cBlue">159834</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/21/8L76SQ0T00051C8V.html">C罗:我会时常反省自己形象 会履行完与皇马合同</a></td>
+<td class="cBlue">159430</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/11/8L8PTP1000051CD5.html">曝米兰欲收购日韩球星 本田圭佑+绿城猎物成候选</a></td>
+<td class="cBlue">157113</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/06/8KTTB5K600051C8V.html">国王杯-比利亚桑切斯各2球 巴萨5-0总分7-0</a></td>
+<td class="cBlue">156763</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/16/8L6LT88L00051C8V.html">央视连续报道梅西拿金球 《世界周刊》赞他球王</a></td>
+<td class="cBlue">155547</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="area-half right">
+<div class="tabBox">
+<div class="title-tab"><h2>跟贴榜</h2><ul class="tabNav"><li class="active">今日跟贴排行</li><li>本周跟贴排行</li><li>本月跟贴排行</li></ul></div>
+<div class="tabContents active">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://sports.163.com/13/0116/21/8LCD8NVM00052UUC.html">山东6人上双大胜北京取七连胜 马布里26分难救主</a></td>
+<td class="cBlue">1070</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://sports.163.com/13/0116/23/8LCKB9AG00051C89.html">传韦迪突然下课 体育总局政策法规司司长或接任</a></td>
+<td class="cBlue">963</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://sports.163.com/13/0116/23/8LCLJ6B000051C97.html">拜仁官方宣布瓜迪奥拉今夏上任执教 获三年合同</a></td>
+<td class="cBlue">820</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://sports.163.com/13/0116/21/8LCD5HDJ00052UUC.html">麦蒂1.7秒准绝杀轰31+6+6 青岛99-97</a></td>
+<td class="cBlue">737</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://sports.163.com/13/0116/13/8LBIRHT600051CA1.html">湖人轻取雄鹿获两连胜 魔兽轰31+16+4科比3</a></td>
+<td class="cBlue">530</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://sports.163.com/13/0116/15/8LBO8F4U00051C89.html">林乐丰痛斥足协:百般阻挠实德收购 想逼死我们</a></td>
+<td class="cBlue">453</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://sports.163.com/photoview/0B6P0005/92980.html#q=1">碌碌而“韦”——韦迪下课记</a></td>
+<td class="cBlue">258</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://sports.163.com/13/0116/21/8LCE71K900052UUC.html">1.7秒准绝杀!麦蒂31+6+6 单节13分滑翔</a></td>
+<td class="cBlue">251</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://sports.163.com/13/0117/11/8LDU81L600051CA1.html">哈登23中5火箭负小牛5连败 林书豪19分德克1</a></td>
+<td class="cBlue">250</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://sports.163.com/13/0116/13/8LBJ2Q9800051CA1.html">19中12!31+6铸就最恐怖科比 全场球迷为他</a></td>
+<td class="cBlue">230</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFRDSL00051C97.html">专访瓜帅经纪人:拜仁出价最低 不信任金元足球</a></td>
+<td class="cBlue">211</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBNQJPN00051C8V.html">比帅暗讽穆帅:如果巴萨落后18分 我早已被解雇了</a></td>
+<td class="cBlue">210</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/20/8LC9DAUR00051C8V.html">欧足联2012最佳阵:C罗梅西领衔 皇马巴萨各4</a></td>
+<td class="cBlue">206</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/06/8LDBJ5RE00051C8V.html">国王杯-梅西普约尔破门 巴萨终场丢球2-2马拉加</a></td>
+<td class="cBlue">205</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/special/nbazt/kobevslbj.html">科比VS勒布朗9年全解析</a></td>
+<td class="cBlue">187</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDL10T600051C97.html">瓜帅执教拜仁年薪曝光 1700万超穆帅成世界第一</a></td>
+<td class="cBlue">171</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/03/8LD2A56B00051C89.html">传韦迪下课祸起卡马乔 天价税后合同遭同僚质疑</a></td>
+<td class="cBlue">168</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCDV0NG00052UUC.html">马布里末节爆发空砍26+3+2 孤掌难鸣北京遭惨</a></td>
+<td class="cBlue">160</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCE9C2500052UUC.html">苏群:北京陷入三分死胡同 山东将获常规赛第二</a></td>
+<td class="cBlue">125</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBN2IDE00051CDG.html">澳网郑洁决胜盘连胜5局 险胜斯托瑟晋级第三轮</a></td>
+<td class="cBlue">124</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBQH1U200051C89.html">曝国安欲40万欧引进黑山国脚 将与欧冠劲旅竞争</a></td>
+<td class="cBlue">119</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBK4OTK00051CA1.html">轰31+16+4!湖人生涯首现 5度暴扣!魔兽真</a></td>
+<td class="cBlue">119</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCQKUOD00051C97.html">德甲两大优势促瓜帅选拜仁 弃英超或因穆里尼奥</a></td>
+<td class="cBlue">118</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCCDQIH00051CA1.html">面筐单打+背身科比完胜LBJ 第18局勒布朗将逆</a></td>
+<td class="cBlue">117</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LD8PVC700052UUC.html">"换吉喆"成球迷大杀器 鲁媒调侃北京心理素质差</a></td>
+<td class="cBlue">114</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOMADA00051CA1.html">科比:攻防俱佳靠意志 魔兽:这样打没人能赢湖人</a></td>
+<td class="cBlue">113</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBKT39Q00051C8V.html">贝隆称梅西老马同样杰出 不解皇马落后巴萨18分</a></td>
+<td class="cBlue">109</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBKBPTN00051CA1.html">连封厄文詹宁斯!科比太玩命 战热火将死防皇帝?</a></td>
+<td class="cBlue">109</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOKF1Q00051CCL.html">曝曼联今夏打包皇马3将 银河战舰难承受外援重税</a></td>
+<td class="cBlue">108</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/06/8LDCBC4Q00051C8V.html">梅西主场秀四座金球 抢断破门他对进球从不厌倦</a></td>
+<td class="cBlue">107</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBQG16300051CA1.html">科比:懒得与上上季热火做对比 湖人遇更多困难</a></td>
+<td class="cBlue">107</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDJP4C000051CCL.html">苏亚雷斯称受不公正待遇 指责英媒都受曼联操纵</a></td>
+<td class="cBlue">105</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCH9SOL00051C8M.html">沙特足协解约里杰卡尔德 国足亚预赛首战迎利好?</a></td>
+<td class="cBlue">101</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/13/8LBHJEJV00051CA1.html">前瞻:勒布朗迎里程碑 热火欲避免被勇士赛季横扫</a></td>
+<td class="cBlue">101</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCH3OCG00052UUC.html">0分0板！莫里斯最耻辱一战 内线成北京卫冕的痛</a></td>
+<td class="cBlue">99</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCTUI8Q00051C97.html">西媒曝瓜帅欲请劳尔当助手 恩里克亦成候选之一</a></td>
+<td class="cBlue">97</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LD9560S00051CCL.html">英超-登巴巴阿扎尔破门 切尔西两球领先2-2战平</a></td>
+<td class="cBlue">96</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/00DE0005/92987.html#q=1">夏奇拉皮克自曝怀孕半裸照</a></td>
+<td class="cBlue">94</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCIBVHN00052UUC.html">闵鹿蕾:莫里斯打天津前已受伤 半场过后无法坚持</a></td>
+<td class="cBlue">93</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/17/8LBUQD0R00051C89.html">《国安20年》工体签售在即 高峰韩旭南方将助阵</a></td>
+<td class="cBlue">93</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/10/8LDQLQVB00051C97.html">瓜帅执教拜仁遇2大难题:球风不同 还缺一个哈维</a></td>
+<td class="cBlue">90</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBQ4ADC00051C89.html">国安亚冠对手全队遇车祸 惊魂中幸无人受伤(图)</a></td>
+<td class="cBlue">89</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBJL9QC00051CA1.html">前瞻:哈林遭遇考验 德克欲率小牛继续统治火箭</a></td>
+<td class="cBlue">87</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/13/8LBJ64UU00051CA1.html">14投10铁!29分钟仅1助攻 詹宁斯遭科比全面</a></td>
+<td class="cBlue">86</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCCGFRL00051CA1.html">生死时刻LBJ并非不敌科比 季后赛勒布朗反更致命</a></td>
+<td class="cBlue">85</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCRNLBV00051C89.html">韦迪任期3年国字号五线大溃败 男足女足全军覆没</a></td>
+<td class="cBlue">83</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCGVRB100052UUC.html">北京惨败暴2致命缺陷 内线无人+过度依赖马布里</a></td>
+<td class="cBlue">83</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCPC2R200051C97.html">德媒:追求瓜帅拜仁笑到最后 德甲50年最震撼签约</a></td>
+<td class="cBlue">80</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/00/8LCOEMUO00051CD5.html">英媒曝米兰欲邀穆里尼奥执教 狂人年薪将成障碍</a></td>
+<td class="cBlue">79</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDGFOBT00051CA1.html">天勾看好杜兰特冲击历史得分王:他具备这一天赋</a></td>
+<td class="cBlue">78</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDNLT7C00051C8U.html">韦迪离任传闻引热议 黄健翔:这是解脱 早走早好</a></td>
+<td class="cBlue">77</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LDA84UL00051CCL.html">足总杯-鲁尼破门后失点球 曼联1-0西汉姆联晋级</a></td>
+<td class="cBlue">77</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBQ2D6P00051CCL.html">最苦背景帝! 英格兰见证老马小罗伊布奇迹(图)</a></td>
+<td class="cBlue">75</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/11/8LDUVP8K00051CA1.html">哈登23投5中犹如梦游 关键时刻连续打铁葬送火箭</a></td>
+<td class="cBlue">74</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDFCMD000052UUC.html">"京鸭"遇"强鲁"灰飞烟灭 北京"疯狗精神"遭打</a></td>
+<td class="cBlue">70</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/12/8LDV1R5P00051CA1.html">末节轰14分险导演大逆转 书豪19+4却现致命失</a></td>
+<td class="cBlue">64</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/05/8LD890V300051CCL.html">足总杯-威尔希尔世界波绝杀 枪手1-0斯旺西晋级</a></td>
+<td class="cBlue">64</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBSI15J00051C89.html">贵州官方宣布签两将 中超抢断王携本土射手加盟</a></td>
+<td class="cBlue">64</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBM9QE500051CA1.html">连续2场助攻30+!2年未见 湖人众人拾柴成就连</a></td>
+<td class="cBlue">64</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/special/anglezero/wdfired.html">业余足协管不好职业足球</a></td>
+<td class="cBlue">63</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/18/8LC1L34T00051C89.html">知情人曝大连收购被叫停原因:足协势力内斗所致</a></td>
+<td class="cBlue">63</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBM0D6E00051CA1.html">困兽出笼!霍华德成攻击核心 1数据暴涨直追科比</a></td>
+<td class="cBlue">63</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/12/8LE14GFB00051CA1.html">历史第13人!勒布朗超越科比 成最年轻两万分先生</a></td>
+<td class="cBlue">62</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/09/8LDM56M900051C89.html">实德注册有两大致命伤 俱乐部欠薪将被取消资格</a></td>
+<td class="cBlue">61</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/00/8LCOI83K00051C89.html">韦迪履历:率领水军曾创辉煌 足协3年碌碌无为</a></td>
+<td class="cBlue">61</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCJL2OG00052UUC.html">巩晓彬:没想到赢那么多 陶汉林:没想过进国家队</a></td>
+<td class="cBlue">60</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCGDLL500052UUC.html">麦嫂赛前献吻麦蒂赐予支持 丈夫绝杀她兴奋蹦起</a></td>
+<td class="cBlue">59</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCI15JE00052UUC.html">时隔8年麦蒂再现制胜准绝杀 杀手本能他从没丢掉</a></td>
+<td class="cBlue">58</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCJ2VDL00052UUC.html">朱芳雨叹又见麦蒂时刻 冯祺大赞领袖:我麦威武!</a></td>
+<td class="cBlue">56</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/11/8LDUB15700051CA1.html">马刺复仇送灰熊三连败 邓肯19+8+5+4帕克1</a></td>
+<td class="cBlue">54</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCPJ7J200051C89.html">揭秘张剑:屡赴各地讲学 曾随蔡振华调研日本足球</a></td>
+<td class="cBlue">54</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOMGEH00051CD5.html">贝克汉姆有意再次加盟米兰 传加利亚尼婉言拒绝</a></td>
+<td class="cBlue">54</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBPSLD400051C8O.html">四国赛-张睿破门对手乌龙 3分钟2球中国2-0韩</a></td>
+<td class="cBlue">53</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDHNM5P00051C8V.html">桑切斯两空门不入+假摔 蒂亚戈送助攻功过相抵</a></td>
+<td class="cBlue">52</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/04/8LD67A3700051C97.html">希帅:瓜帅适合拜仁 贝皇:祝贺拜仁获得最佳教练</a></td>
+<td class="cBlue">52</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/03/8LD1SILC00051CA1.html">科比因伤需坐直升机"上下班" 一次就花2000美</a></td>
+<td class="cBlue">52</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/18/8LC2C99100051CA1.html">曝湖人不换加索尔真因 紫金军不想冒失双塔风险</a></td>
+<td class="cBlue">52</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBT90DI00051CA1.html">丹帅迎执教生涯第400胜 纳什:魔兽场均能拿31</a></td>
+<td class="cBlue">52</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDHJT2500051CA1.html">落魄湖人难阻击卫冕冠军? 或借篮板优势扑灭热火</a></td>
+<td class="cBlue">50</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCJG57P00052UUC.html">麦蒂通过网易辟谣专访5000美金 质疑消息来源</a></td>
+<td class="cBlue">50</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCC7B8D00051CA1.html">深度数据剖析科比勒布朗 2关键环节皇帝完胜飞侠</a></td>
+<td class="cBlue">50</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBOLAUT00051C89.html">津媒:实德与足协对峙拖垮球员 他们是真正受害者</a></td>
+<td class="cBlue">50</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBPPMTH00051C89.html">国安后防充裕张永海恐被弃 京媒:需合理利用老将</a></td>
+<td class="cBlue">49</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCCUICU00052UUC.html">广厦复仇40分狂胜八一 双外援43分王治郅仅5分</a></td>
+<td class="cBlue">48</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/18/8LC25NDC00051CD5.html">曝西塞成尤文寻枪新目标 锋线高薪废柴拒绝离队</a></td>
+<td class="cBlue">48</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/14/8LBJPB0200051CA1.html">纳什11助攻激活全队 空位三分4中0因伤病未愈?</a></td>
+<td class="cBlue">47</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/08/8LDKCV2000051C8V.html">比帅:请舆论原谅蒂亚戈 事先不知瓜帅执教拜仁</a></td>
+<td class="cBlue">46</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDGHHNO00051C89.html">张琳芃推迟报到请求遭拒 卡马乔令其赴西验伤</a></td>
+<td class="cBlue">46</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/11/8LDSI2QR00051C89.html">学院派张剑人品学识佳 北大毕业曾调研管办分离</a></td>
+<td class="cBlue">45</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/01/8LCPTPFV00051C97.html">拜仁高层:只有瓜帅适合接班海帅 多特:恭喜拜仁</a></td>
+<td class="cBlue">45</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/00BU0005/92975.html#q=1">瓜迪奥拉今夏入主拜仁 曾造巴萨新王朝</a></td>
+<td class="cBlue">43</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBO6C3H00051C8V.html">西足协副主席曝西甲假球 称经济危机致低上座率</a></td>
+<td class="cBlue">43</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/16/8LBSOFLS00051C97.html">德甲各队薪水最高球员:里贝里居首 格策位列第四</a></td>
+<td class="cBlue">42</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/02/8LCVTU4900051C89.html">韦迪离任消息流传数月 曝于洪臣或接任党委书记</a></td>
+<td class="cBlue">41</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/22/8LCGPT5O00051C8V.html">梅西:最看重国王杯决赛破门 爱子出生是最大骄傲</a></td>
+<td class="cBlue">41</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/07/8LDE0M6600051C97.html">西媒:瓜帅周五生日当天在拜仁亮相 全德国都等他</a></td>
+<td class="cBlue">40</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/03/8LD0RQ2200051C97.html">英媒:再见瓜帅!蓝军痛失囊中之物 拜仁展露雄心</a></td>
+<td class="cBlue">40</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/20/8LC8G05Q00051CD5.html">斯内德不满国米施压赶人 意媒:荷兰天王首选英超</a></td>
+<td class="cBlue">40</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/13/8LBJ8L1M00051CA1.html">慈世平12+6+3妙传科比魔兽 他在场湖人净胜2</a></td>
+<td class="cBlue">40</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBNL55U00051CCL.html">网友调侃枪手痛处 上次夺冠后地球已多生10亿人</a></td>
+<td class="cBlue">39</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://sports.163.com/13/0110/18/8KSIRB3S00052UUC.html">篮协罚单:主裁判吴敏华停赛十轮 麦蒂停赛一轮</a></td>
+<td class="cBlue">1630</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://sports.163.com/13/0115/01/8L7LENAS00051C8M.html">国足热身0-2西班牙第三级球队 半场主力难挽败局</a></td>
+<td class="cBlue">1181</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://sports.163.com/13/0116/21/8LCD8NVM00052UUC.html">山东6人上双大胜北京取七连胜 马布里26分难救主</a></td>
+<td class="cBlue">1070</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://sports.163.com/13/0116/23/8LCKB9AG00051C89.html">传韦迪突然下课 体育总局政策法规司司长或接任</a></td>
+<td class="cBlue">963</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://sports.163.com/13/0113/17/8L49FGN800052UUC.html">天津93-80双杀卫冕冠军 老马末节三分4中4险</a></td>
+<td class="cBlue">939</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://sports.163.com/13/0116/23/8LCLJ6B000051C97.html">拜仁官方宣布瓜迪奥拉今夏上任执教 获三年合同</a></td>
+<td class="cBlue">820</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://sports.163.com/13/0111/21/8KVI7OGO00052UUC.html">阿联22分迪奥古准绝杀 广东客场113-110险</a></td>
+<td class="cBlue">790</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://sports.163.com/13/0116/21/8LCD5HDJ00052UUC.html">麦蒂1.7秒准绝杀轰31+6+6 青岛99-97</a></td>
+<td class="cBlue">737</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://sports.163.com/13/0114/18/8L6VH03O00052UUC.html">曝麦蒂专访开价5000美金 酒店高层合影?免单套</a></td>
+<td class="cBlue">723</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://sports.163.com/13/0112/14/8L1A2E5N00051CA1.html">6连败!湖人惨遭雷霆狂屠 杜兰特42+8+5科比</a></td>
+<td class="cBlue">638</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/19/8L9ISDRS00052UUC.html">前瞻:山东欲复仇北京争7连胜 马布里或再飚高分</a></td>
+<td class="cBlue">621</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/21/8KVGUAT300052UUC.html">新援25+14+3上演准绝杀 辽宁客场102-1</a></td>
+<td class="cBlue">572</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/23/8L4SNBHP00051CCL.html">英超-范佩西破门埃夫拉2助攻 曼联2-1双杀利物</a></td>
+<td class="cBlue">543</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/13/8LBIRHT600051CA1.html">湖人轻取雄鹿获两连胜 魔兽轰31+16+4科比3</a></td>
+<td class="cBlue">530</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/12/8L8RP5VB00051CA1.html">皇帝32分难阻热火负爵士 杰弗森23+11韦德仅</a></td>
+<td class="cBlue">497</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/06/8L32C69M00051C8U.html">半岛电视台记者透露“金球奖”评选有猫腻</a></td>
+<td class="cBlue">496</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/21/8KVIR5DH00052UUC.html">阿联半场低迷仍砍22+9 广东过度依赖埋定时炸弹</a></td>
+<td class="cBlue">480</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LAU1NF700051C8M.html">U22国足热身9-0狂胜西丙青年队 卡马乔提前离</a></td>
+<td class="cBlue">461</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/28F90005/92924.html#q=1">那些虐待动物的野蛮运动</a></td>
+<td class="cBlue">457</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/15/8LBO8F4U00051C89.html">林乐丰痛斥足协:百般阻挠实德收购 想逼死我们</a></td>
+<td class="cBlue">453</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/21/8L4M44V300052UUC.html">广东109-101稠州阿联38+11 杜比受限包</a></td>
+<td class="cBlue">452</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/19/8KSOQRFN00052UUC.html">麦蒂:裁判是罪有应得罚得好 我不后悔批评裁判</a></td>
+<td class="cBlue">440</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/3SLH0005/92936.html#q=1">孙杨拍摄春晚宣传片 "勇救"落水比基尼美女</a></td>
+<td class="cBlue">437</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/14/8L1CMJUA00051C8V.html">卡马乔：穆帅罚卡西为震慑全队 梅西不该拿金球</a></td>
+<td class="cBlue">429</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/14/8KUOF98H00051CA1.html">热火绝杀失败负开拓者 皇帝15+10+9巴图姆2</a></td>
+<td class="cBlue">429</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/21/8KVFP0JM00051C89.html">富力宣布签姜宁吴坪枫李健华 恒大3将投同城对手</a></td>
+<td class="cBlue">415</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/21/8L7715UT00051C8M.html">卡马乔回击里皮吐槽:恒大总买国脚 我能怎么办?</a></td>
+<td class="cBlue">414</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/09/8KU7O3J900052UUC.html">朱彦硕:北京口号被禁止 篮协还是信不过球迷素质</a></td>
+<td class="cBlue">412</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/14/8L3U636P00051CCO.html">跪了!日本高中联赛现"跪式人墙" 4人跪地挡门将</a></td>
+<td class="cBlue">411</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/08/8L5QENB900051C89.html">曝富力欲继续挖恒大墙角 赵旭日被列入引援名单</a></td>
+<td class="cBlue">410</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/23/8KT7A20C00052UUC.html">吴敏华已不止一次偏袒八一队 闵鹿蕾曾对其怒吼</a></td>
+<td class="cBlue">402</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/19/8KSMDNJG00052UUC.html">球迷吐槽"篮协最重罚单"不够重 网友高呼:换篮协</a></td>
+<td class="cBlue">397</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/04/8L2SQKAB00051C8V.html">西甲-C罗停赛卡卡染红 皇马全场1射正0-0垫底</a></td>
+<td class="cBlue">395</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/19/8L4EK6TH00051C8V.html">曝伊布接连嘲讽两大巨星:10人比C罗强 梅西太矮</a></td>
+<td class="cBlue">394</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/21/8L4LTM4P00052UUC.html">阿里纳斯37分刘炜准三双 上海107-104主场</a></td>
+<td class="cBlue">382</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/06/8KTS6AD100051C89.html">数百恒大球迷通宵排队买套票 最早者排队23小时</a></td>
+<td class="cBlue">382</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/16/8L6LT88L00051C8V.html">央视连续报道梅西拿金球 《世界周刊》赞他球王</a></td>
+<td class="cBlue">377</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/23/8KVMKGCM00051CCL.html">IFFHS评21世纪主帅:弗爵第1穆帅第2 前十</a></td>
+<td class="cBlue">374</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/11/8L1214FK00051C89.html">鲁能高层揭秘恒大出售姜宁内幕:没真心卖给我们</a></td>
+<td class="cBlue">368</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/16/8L983G5900051C8V.html">七成球迷抗议巴萨"独裁" 克鲁伊夫:这差距真可怕</a></td>
+<td class="cBlue">362</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/07/8L8AM9D800051CA1.html">手记-费根:书豪若进全明星很荒唐 别走姚明老路</a></td>
+<td class="cBlue">354</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/20/8L4JE3GJ00051CA1.html">曝灰熊致电湖人欲交易盖伊 紫金军表示很感兴趣</a></td>
+<td class="cBlue">350</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/12/8L6ACL0O00051CA1.html">湖人屠骑士获2013年首胜 魔兽复出22+14科</a></td>
+<td class="cBlue">347</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/06/8L5LK8CJ00051C8V.html">巴萨半程积分=曼联22场 造穆帅半程最多落后纪录</a></td>
+<td class="cBlue">345</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/21/8KVHCV3600052UUC.html">麦蒂停赛丹尼尔斯31+14 青岛逆转上海获第三胜</a></td>
+<td class="cBlue">340</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/09/8L0QNLS800051C8V.html">梅西:金球不如冠军奖杯 颁奖典礼上忘记祝贺C罗</a></td>
+<td class="cBlue">336</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBBBM6D00051C8V.html">惊曝穆帅C罗赛后更衣室争吵 队友劝架避免互殴</a></td>
+<td class="cBlue">327</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/06/8L88Q05R00052UUC.html">新鲜!村镇篮球赛也请外援 广东河源创中国先例</a></td>
+<td class="cBlue">326</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/10/8L3EJRU400051C8V.html">当超级丹遇到超级梅西 两天王相逢时尚之都(图)</a></td>
+<td class="cBlue">321</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/special/nbazt/kobe201301.html">被高估的关键先生</a></td>
+<td class="cBlue">319</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/10/8L6387NU00051C8V.html">巴萨群星反抢后10秒11传遛猴 对手看呆了!(视</a></td>
+<td class="cBlue">315</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/05/8L5IF8SO00051C8V.html">西甲-梅西2传1射12轮连胜 巴萨3-1创半程新</a></td>
+<td class="cBlue">310</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/17/8L1K9UFF00051C89.html">鲁能舜天无缘姜宁内幕曝光:恒大拒卖给争冠劲敌</a></td>
+<td class="cBlue">306</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/21/8L9QCPED00052UUC.html">易建联40+10迪奥古21+11 广东107-9</a></td>
+<td class="cBlue">302</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBAI5EB00052UUC.html">人民日报:篮协不要高高在上 要勇于担责变职业</a></td>
+<td class="cBlue">294</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/05/8LAMF0EV00051CAQ.html">贫困县重奖熊朝忠75万引争议 政府:表彰拳王精神</a></td>
+<td class="cBlue">294</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/19/8L9L84KJ00051CA1.html">波什:批我数据统计差太冤枉 篮板都被队友抢走了</a></td>
+<td class="cBlue">294</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/18/8KSKEU5900052UUC.html">篮协10年首次公开处罚裁判 停赛10轮属史上最重</a></td>
+<td class="cBlue">293</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/17/8L6RKP7900051C8L.html">惨剧!建业中场核心陆峰意外骨折 骨头外露(图)</a></td>
+<td class="cBlue">291</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/08/8KU3FC7U00051CA1.html">小巴斯:因为纳什才聘请丹东尼 湖人能进季后赛</a></td>
+<td class="cBlue">291</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/21/8L4M4TPE00052UUC.html">青岛104-96吉林首取连胜 麦蒂解禁暴砍38+</a></td>
+<td class="cBlue">290</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/0B6P0005/92690.html#q=1">恒大套票发售在即 球迷带帐篷干粮彻夜守候</a></td>
+<td class="cBlue">288</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/10/8L3G2HK300051CCL.html">曝瓜迪奥拉100%执教曼城 年薪1000万镑英超</a></td>
+<td class="cBlue">287</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/10/8KUBN12800051C8V.html">《新闻联播》报道梅西拿金球 赞他开创足坛先例</a></td>
+<td class="cBlue">284</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/17/8KSH4SBC00051C89.html">IFFHS俱乐部排名:恒大世界第126位 并列亚</a></td>
+<td class="cBlue">275</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/14/8L1AI7PQ00051CA1.html">23投15铁!科比28分难逆天 近三场69投26</a></td>
+<td class="cBlue">270</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/28F90005/92788.html#q=1">世界"冰王"-20度下赤身吃面喝酒</a></td>
+<td class="cBlue">267</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/07/8L0L4N1900051CAQ.html">杜兆才：从没打算放弃刘翔 仍是中国田径领军人</a></td>
+<td class="cBlue">264</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/0B6P0005/92980.html#q=1">碌碌而“韦”——韦迪下课记</a></td>
+<td class="cBlue">258</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/17/8KSGU0VK00051C89.html">邵佳一破门国安4-1大胜松江 冬训热身获三连胜</a></td>
+<td class="cBlue">257</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/11/8LBAM4GV00051CA1.html">林书豪12+10火箭遭4连败 哈登23分克劳福德</a></td>
+<td class="cBlue">256</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/06/8KTTB5K600051C8V.html">国王杯-比利亚桑切斯各2球 巴萨5-0总分7-0</a></td>
+<td class="cBlue">254</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/18/8L9FO55R00051C89.html">恒大热身5-0轻取乙级队 恐怖三叉戟出战埃神破门</a></td>
+<td class="cBlue">252</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCE71K900052UUC.html">1.7秒准绝杀!麦蒂31+6+6 单节13分滑翔</a></td>
+<td class="cBlue">251</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/13/8L3POJF200051CA1.html">热火29分屠国王止2连败 皇帝20+7+5+5查</a></td>
+<td class="cBlue">251</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/11/8KUDLF8U00052UUC.html">川媒质疑八一青岛一战涉赌 张博补篮令盘口反转</a></td>
+<td class="cBlue">251</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0117/11/8LDU81L600051CA1.html">哈登23中5火箭负小牛5连败 林书豪19分德克1</a></td>
+<td class="cBlue">250</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/10/8KUD2S4600051CCL.html">曝贝帅遭抵制今夏必离任 阿布斥30万周薪邀瓜帅</a></td>
+<td class="cBlue">250</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/0AP80005/92834.html#q=1">盘点大龄体坛"剩女"们</a></td>
+<td class="cBlue">249</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/15/8KSAM3JT00052UUC.html">马布里荣获京都球侠两项大奖 感谢球迷:我爱北京</a></td>
+<td class="cBlue">243</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/18/8KSKVG7G00052UUC.html">杨毅:10场后吴某还能赶上常规赛 请问你们满意吗</a></td>
+<td class="cBlue">241</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/11/8L0VOKQ700051CA1.html">林书豪12+5+6零失误 末节被摁板凳大半节致败</a></td>
+<td class="cBlue">240</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/21/8L76SQ0T00051C8V.html">C罗:我会时常反省自己形象 会履行完与皇马合同</a></td>
+<td class="cBlue">239</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/07/8L0KUT1600051C8V.html">金球高帅富!梅西捧四金球"炫富" 闪瞎你了吗(图</a></td>
+<td class="cBlue">237</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/10/8L3HIQ1S00051CA1.html">哈登29+9火箭负76人3连败 书豪13中2霍乐</a></td>
+<td class="cBlue">236</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/17/8KSHP8VH00051C8V.html">巴萨当选IFFHS年度最佳 切尔西第2皇马仅列第</a></td>
+<td class="cBlue">235</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/07/8L0L1BK300051C8V.html">穆帅保镖砸皇马球迷手机 狂人威胁：踢爆你屁股</a></td>
+<td class="cBlue">234</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/17/8L1N9QIJ00051CA1.html">球迷"替"KB写推特:悔不该逼走鲨鱼 魔兽也要走</a></td>
+<td class="cBlue">233</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/13/8LBJ2Q9800051CA1.html">19中12!31+6铸就最恐怖科比 全场球迷为他</a></td>
+<td class="cBlue">230</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/08/8L8EUFG500051CAQ.html">阿姆斯特朗录脱口秀节目 首度承认夺环法靠禁药</a></td>
+<td class="cBlue">228</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/23/8L4R66BM00051C8V.html">FIFA金球奖被曝有猫腻 C罗选票被记梅西头上?</a></td>
+<td class="cBlue">228</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/08/8L3ALNIQ00051C8V.html">曝金球投票再出现漏洞 巴神两票全被算成梅西?</a></td>
+<td class="cBlue">228</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/07/8LAUIOOR00052UUC.html">爆料人:麦蒂收钱非秘密 央视和青岛记者都看到过</a></td>
+<td class="cBlue">227</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/09/8L0PGBOJ00051CA1.html">科比瓦妮莎联合声明:我们已复合 撤销离婚申诉</a></td>
+<td class="cBlue">227</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/00/8L2F7BCB00051CCL.html">英超-神锋2乌龙+失点 兰帕德破门切尔西4-0回</a></td>
+<td class="cBlue">226</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/15/8L1DRSUU00051CA1.html">李冰冰洛城观战半场失望退场 赛后发文鼓励科比</a></td>
+<td class="cBlue">225</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/22/8L7BBQ7P00051C89.html">京媒:国安因差钱内部挖潜让人不爽 或签英甲中卫</a></td>
+<td class="cBlue">223</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/01/8L55E20I00051CCL.html">穆帅"法师"造型赴梦剧场 英媒:想好防范佩西了?</a></td>
+<td class="cBlue">223</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/11/8L66STUM00051C8M.html">卡马乔反击里皮：恒大一直买国脚 有什么招？</a></td>
+<td class="cBlue">216</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/08/8L0OCQU400051CA1.html">科比式返老还童不易 第17季场均30.1分后卫第</a></td>
+<td class="cBlue">216</td>
+</tr>
+</table>
+</div>
+<div class="tabContents">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><th>标题</th><th width="70">跟贴数</th></tr>
+<tr>
+<td class="red"><span>1</span><a href="http://sports.163.com/12/1225/21/8JJOMOB200052UUC.html">老马31+6+4阿联25+8 北京110-100</a></td>
+<td class="cBlue">2414</td>
+</tr>
+<tr>
+<td class="red"><span>2</span><a href="http://sports.163.com/12/1225/07/8JI7LQF500051CAQ.html">刘翔父亲:儿子没有退役打算 绯闻女友都是假的</a></td>
+<td class="cBlue">2047</td>
+</tr>
+<tr>
+<td class="red"><span>3</span><a href="http://sports.163.com/12/1220/18/8J6JB6Q200051C9E.html">欧冠1/8决赛:皇马遇曼联 巴萨碰米兰 拜仁战枪</a></td>
+<td class="cBlue">1967</td>
+</tr>
+<tr>
+<td class="gray"><span>4</span><a href="http://sports.163.com/13/0108/15/8KN62FIP00052UUC.html">北京主场口号遭球迷投诉 篮协封杀"这是哪?北京"</a></td>
+<td class="cBlue">1898</td>
+</tr>
+<tr>
+<td class="gray"><span>5</span><a href="http://sports.163.com/13/0110/18/8KSIRB3S00052UUC.html">篮协罚单:主裁判吴敏华停赛十轮 麦蒂停赛一轮</a></td>
+<td class="cBlue">1630</td>
+</tr>
+<tr>
+<td class="gray"><span>6</span><a href="http://sports.163.com/12/1226/21/8JMB1RLC00052UUC.html">首胜!麦蒂24+8+6率6人上双 青岛胜江苏止1</a></td>
+<td class="cBlue">1553</td>
+</tr>
+<tr>
+<td class="gray"><span>7</span><a href="http://sports.163.com/12/1220/08/8J5E9P3U00051CAQ.html">30名少林武术高手加入海军陆战队 世界冠军在列</a></td>
+<td class="cBlue">1526</td>
+</tr>
+<tr>
+<td class="gray"><span>8</span><a href="http://sports.163.com/12/1220/18/8J6JATGV00051C9E.html">解析曼联VS皇马:C罗首战旧主 穆帅PK爵爷优势</a></td>
+<td class="cBlue">1428</td>
+</tr>
+<tr>
+<td class="gray"><span>9</span><a href="http://sports.163.com/13/0102/21/8K8B5RG100052UUC.html">三人20+北京蝉联半程王 大郅24+17难阻军旅</a></td>
+<td class="cBlue">1234</td>
+</tr>
+<tr>
+<td class="gray"><span>10</span><a href="http://sports.163.com/13/0106/10/8KHEHCMV00052UUC.html">重磅!李春江下课杜锋接任广东帅位 尤纳斯任助教</a></td>
+<td class="cBlue">1228</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/01/8L7LENAS00051C8M.html">国足热身0-2西班牙第三级球队 半场主力难挽败局</a></td>
+<td class="cBlue">1181</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0109/11/8KP9LEPB00051CA1.html">科比20+7难阻湖人4连败 哈林合砍50+14火</a></td>
+<td class="cBlue">1177</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/00/8KQL7VA300052UUC.html">麦蒂微博骂裁判:3只瞎眼耗子 若不改善就不回CB</a></td>
+<td class="cBlue">1112</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1220/08/8J5FI93100051C89.html">中超外援政策沿用4+1 23:1!唯一反对票来自</a></td>
+<td class="cBlue">1109</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCD8NVM00052UUC.html">山东6人上双大胜北京取七连胜 马布里26分难救主</a></td>
+<td class="cBlue">1070</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1229/09/8JSN55LC00051C8M.html">国足不可掉以轻心 印尼招归化球员变身"洋枪队"</a></td>
+<td class="cBlue">1065</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0108/02/8KLQC9J700051C8V.html">2012FIFA金球奖公布 梅西力压C罗小白第四</a></td>
+<td class="cBlue">1051</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1228/11/8JQCIF9000051C8M.html">印尼招尼日利亚洋枪 国足亚预赛对手翻版卡塔尔</a></td>
+<td class="cBlue">1049</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1228/09/8JQ50OI100051C8M.html">FIFA判国足对手"死缓" 亚预赛印尼或皆被判0</a></td>
+<td class="cBlue">1045</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1229/19/8JTSB52000051C8M.html">伊拉克足协放弃马拉多纳 扶正本土教练出战国足</a></td>
+<td class="cBlue">1036</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1228/09/8JQ4QTDO00051C8M.html">足协公布亚预赛备战日程 卡马乔将祭出魔鬼训练</a></td>
+<td class="cBlue">1012</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0107/13/8KKANU6J00051CA1.html">湖人憾负掘金遭三连败 魔兽14+26+4科比29</a></td>
+<td class="cBlue">981</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1223/04/8JCQFU6R00051C8V.html">西甲-卡西遭弃用本泽马破门 皇马2-3差巴萨16</a></td>
+<td class="cBlue">976</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0109/21/8KQE1JSU00052UUC.html">罢赛!青岛遭争议判罚退场10分钟 耗尽28秒负八</a></td>
+<td class="cBlue">973</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCKB9AG00051C89.html">传韦迪突然下课 体育总局政策法规司司长或接任</a></td>
+<td class="cBlue">963</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1229/11/8JSUQBPK00051C8V.html">梅西11岁时曾可能加盟皇马 自荐马竞皇马均失败</a></td>
+<td class="cBlue">963</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1223/10/8JDF2VHO00051CA1.html">皇帝30+9+7热火擒爵士4连胜 波什休战韦德2</a></td>
+<td class="cBlue">958</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0113/17/8L49FGN800052UUC.html">天津93-80双杀卫冕冠军 老马末节三分4中4险</a></td>
+<td class="cBlue">939</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/special/zhzt/votetoparis.html">中国男乒'直通巴黎'网络投票</a></td>
+<td class="cBlue">907</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1223/14/8JDQFJL600051CA1.html">湖人逆转14分加时擒勇士 纳什复出科比41投34</a></td>
+<td class="cBlue">896</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1221/21/8J9EUOGB00052UUC.html">麦蒂带病出战3分钟 青岛107-126负山西遭1</a></td>
+<td class="cBlue">895</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0109/10/8KP5UJSL00051CCL.html">英媒评英超最佳阵容反讽FIFA 英超莫非真无大将</a></td>
+<td class="cBlue">891</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0104/21/8KDGGEUD00052UUC.html">阿联24+10朱芳雨21+13 广东102-98</a></td>
+<td class="cBlue">888</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0101/08/8K4D6RNV00051C89.html">里皮:中国菜帮我治好胃病 恒大不职业让我震惊</a></td>
+<td class="cBlue">885</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/special/2012ending/">网易体育2012年终策划：体育课</a></td>
+<td class="cBlue">885</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1220/11/8J5RITTB00051CAQ.html">安徽初二男生跑300米猝死 家属向学校索赔90万</a></td>
+<td class="cBlue">872</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1219/13/8J3DM0O400051C89.html">杨旭爱子香港降生荣升奶爸 自曝重五斤四两(图)</a></td>
+<td class="cBlue">862</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/11/8KRSHBNJ00051CA1.html">湖人憾负马刺遭五连败 科比27+4+5错失扳平三</a></td>
+<td class="cBlue">852</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1226/16/8JLOK05I00051C89.html">体坛财富榜郑智不及李娜零头 足球前8皆出自恒大</a></td>
+<td class="cBlue">845</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1224/11/8JG2PCTG00051C89.html">恒大官网宣布签约埃尔克森 转会费570万欧签四年</a></td>
+<td class="cBlue">828</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1230/11/8JVHOHT300051CAQ.html">孙海平：死心塌地练跨栏的少 第二个"刘翔"难寻</a></td>
+<td class="cBlue">825</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0108/21/8KNP6IAS00052UUC.html">北京124-105辽宁双杀对手 马布里35分领衔</a></td>
+<td class="cBlue">823</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1229/10/8JSTMQ6100051CA1.html">皇帝35+5+6热火不敌活塞 韦德缺席波什砍28</a></td>
+<td class="cBlue">823</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/23/8LCLJ6B000051C97.html">拜仁官方宣布瓜迪奥拉今夏上任执教 获三年合同</a></td>
+<td class="cBlue">820</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0106/21/8KIL8RN500052UUC.html">北京103-105吉林5连胜终结 老马37分莫里</a></td>
+<td class="cBlue">820</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1218/18/8J1BTQI800052UUC.html">篮协因赛区秩序再出罚单:广东北京山西共被罚7万</a></td>
+<td class="cBlue">808</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1218/22/8J1PL5LQ00052UUC.html">麦蒂35+6+4仍难救主 青岛客场114-121</a></td>
+<td class="cBlue">799</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0107/08/8KJRVC2G00051C89.html">里皮清洗名单包含吴坪枫克莱奥 替补为主无国脚</a></td>
+<td class="cBlue">792</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1223/21/8JEKI9BT00052UUC.html">广厦108-102送青岛12连败 麦蒂病愈砍41</a></td>
+<td class="cBlue">792</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0105/14/8KFATEVT00051CA1.html">保罗30+13快船再擒湖人 科比38+5末节16</a></td>
+<td class="cBlue">791</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/21/8KVI7OGO00052UUC.html">阿联22分迪奥古准绝杀 广东客场113-110险</a></td>
+<td class="cBlue">790</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0104/06/8KBT2NQ800051CAQ.html">刘翔:看康复情况再定未来 学英语为进社会做准备</a></td>
+<td class="cBlue">778</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1227/12/8JNUC5AE00051CA1.html">科比40分湖人负掘金止5连胜 纳什15+8魔兽遭</a></td>
+<td class="cBlue">778</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0106/07/8KH538EP00051CA1.html">科比:不会再出现OK组合 三连冠时期我牺牲太多</a></td>
+<td class="cBlue">777</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1223/21/8JEJI15E00052UUC.html">北京82-111东莞让出榜首 马布里11+4东莞</a></td>
+<td class="cBlue">739</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0116/21/8LCD5HDJ00052UUC.html">麦蒂1.7秒准绝杀轰31+6+6 青岛99-97</a></td>
+<td class="cBlue">737</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0114/18/8L6VH03O00052UUC.html">曝麦蒂专访开价5000美金 酒店高层合影?免单套</a></td>
+<td class="cBlue">723</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1230/12/8JVKSLD400051CA1.html">前线-球迷冲中国记者怒骂:林书豪有什么好写的!?</a></td>
+<td class="cBlue">715</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0108/02/8KLNREML00051C8V.html">FIFA最佳11人阵容公布 梅西C罗领衔西甲11</a></td>
+<td class="cBlue">714</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0102/13/8K7HI2J200051CA1.html">科比36分0助攻湖人负76人 霍乐迪26+10纳</a></td>
+<td class="cBlue">708</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1229/09/8JSNOS0H00051C8V.html">穆里尼奥:卡西不是皇马丰碑 主教练决定出场阵容</a></td>
+<td class="cBlue">700</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1231/15/8K2IPPEL00052UUC.html">广东今日再演"人在囧途" 球队大巴和公交车相撞</a></td>
+<td class="cBlue">695</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1224/17/8JGMOEGI00052UUC.html">京粤战两大争议人物碰面 "换吉喆"还是"换苏伟"</a></td>
+<td class="cBlue">695</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0108/07/8KMAOC5C00051C8M.html">国脚回忆童年:以我的聪明才智 若读书也能上清华</a></td>
+<td class="cBlue">684</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1229/11/8JT0OTTE00051CA1.html">GDP84分马刺终结火箭5连胜 哈登33+5+7</a></td>
+<td class="cBlue">674</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1220/09/8J5HV34S00051CA1.html">多名联盟内部人士皆称科比害湖人:他出手太多了</a></td>
+<td class="cBlue">674</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1231/15/8K2J4VDM00051C8V.html">梅西连续4年被评为欧洲之王 C罗得9票尚不敌小白</a></td>
+<td class="cBlue">673</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1227/00/8JMMNJOK00051CCL.html">英超-范佩西破门豌豆绝杀 曼联三度落后4-3逆转</a></td>
+<td class="cBlue">659</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1226/11/8JL85LHJ00051CA1.html">4人20+火箭23分血洗公牛 书豪20+11阿西</a></td>
+<td class="cBlue">657</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1228/06/8JPT1U0S00051CA1.html">2013全明星第二轮票选:科比反超勒布朗暂成票王</a></td>
+<td class="cBlue">654</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1231/10/8K21D5Q600051C8V.html">曝曼联敲定重追C罗价码 6000万英镑加德赫亚纳</a></td>
+<td class="cBlue">648</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1226/05/8JKKBCC600052UUC.html">吉喆:很能理解苏伟的感受 希望换XX口号到此为止</a></td>
+<td class="cBlue">647</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1224/01/8JF2JPLL00051CCL.html">英超-托雷斯兰帕德建功 切尔西7人破门8-0狂胜</a></td>
+<td class="cBlue">642</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1221/10/8J8AFFC200051C8V.html">C罗：若破曼联大门绝不庆祝 怀念六年红魔生涯</a></td>
+<td class="cBlue">642</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0110/08/8KRIJGHD00051C8V.html">超级怠慢!C罗找瓜帅打招呼遭无视 佩普扭头不理</a></td>
+<td class="cBlue">641</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://zx.caipiao.163.com/article/13/0107/10/8KK2OVLE00052DT2.html">中国彩票年销量2615亿创纪录 福体彩涨幅均达1</a></td>
+<td class="cBlue">641</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0112/14/8L1A2E5N00051CA1.html">6连败!湖人惨遭雷霆狂屠 杜兰特42+8+5科比</a></td>
+<td class="cBlue">638</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1224/20/8JH1NHIP00052UUC.html">前瞻:圣诞大战上演"京粤对决" 广东欲复仇北京</a></td>
+<td class="cBlue">627</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0115/19/8L9ISDRS00052UUC.html">前瞻:山东欲复仇北京争7连胜 马布里或再飚高分</a></td>
+<td class="cBlue">621</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1225/21/8JJP91RM00052UUC.html">阿联4次暴扣砍25+8+3  关键时刻7分钟他却</a></td>
+<td class="cBlue">619</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0101/09/8K4FLUEQ00051C89.html">恒大官方宣布签约三将 曾诚赵鹏弋腾加盟5日报到</a></td>
+<td class="cBlue">618</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/photoview/00CO0005/91968.html#q=1">国际足球2012年终策划一路向西之群雄逐鹿成追忆</a></td>
+<td class="cBlue">616</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1219/14/8J3GCIDA00051CA1.html">湖人逆转18分擒山猫3连胜 科比30+7+6加索</a></td>
+<td class="cBlue">615</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0108/03/8KLR29F300051C8V.html">金球4连霸!梅西超越普拉蒂尼齐祖 成史上第一人</a></td>
+<td class="cBlue">614</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0107/09/8KJTFRUF00051C8M.html">卡马乔备战计划折服元老 曹景伟称恒大拖累国足</a></td>
+<td class="cBlue">614</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0109/21/8KQD9RL700052UUC.html">青岛不满判罚砸技术台全队罢赛 球迷骚乱扔杂物</a></td>
+<td class="cBlue">612</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1219/15/8J3M89UE00051C8V.html">曝C罗不开心坚持想走 巴黎欲豪购?皇马标价1.5</a></td>
+<td class="cBlue">609</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1222/07/8JAFU6EG00051CAQ.html">曝李永波因消极比赛无缘最佳教练 评委:人品丢分</a></td>
+<td class="cBlue">599</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1220/22/8J70DM3700051C9E.html">王的盛宴!米兰连战巴萨国米 皇马踢完巴萨踢曼联</a></td>
+<td class="cBlue">597</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1219/21/8J492DSM00052UUC.html">北京102-92江苏收获2连胜 马布里27+7+</a></td>
+<td class="cBlue">596</td>
+</tr>
+<tr style="height:15px;"><td colspan="2"></td></tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1223/07/8JD4J6R500051CA1.html">LBJ出手次数创生涯新低:不愿像科比那样投篮46</a></td>
+<td class="cBlue">586</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1220/19/8J6KRF1P00051C9E.html">神了!欧冠抽签有猫腻? 彩排结果和正式结果一样!</a></td>
+<td class="cBlue">584</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1222/10/8JAQ7HGL00051CA1.html">书豪挤掉保罗全明星首发? 美媒：林的人气太旺</a></td>
+<td class="cBlue">583</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0103/19/8KAMG9F400051CDG.html">李娜:我不打全运会领导都知道 媒体不用再瞎写</a></td>
+<td class="cBlue">580</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1219/09/8J2VV2TK00051C8V.html">曝中国黑帮承认与皇马有联系 在伯纳乌VIP厢作案</a></td>
+<td class="cBlue">574</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0111/21/8KVGUAT300052UUC.html">新援25+14+3上演准绝杀 辽宁客场102-1</a></td>
+<td class="cBlue">572</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1226/09/8JL255U900051CA1.html">皇帝29+8+9热火擒雷霆5连胜 阿杜33+7维</a></td>
+<td class="cBlue">571</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/13/0106/14/8KHU4L2N00051CA1.html">魔兽回应科比:做领袖无需吼队友 湖人不是一群狼</a></td>
+<td class="cBlue">570</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1231/17/8K2PNMOE00052UUC.html">篮协重磅处罚!山西外援威廉姆斯吸大麻 禁赛半年</a></td>
+<td class="cBlue">566</td>
+</tr>
+<tr>
+<td class="rank"><a href="http://sports.163.com/12/1229/16/8JTG6C4500052UUC.html">马库斯韧带撕裂休战4-6周 山西宣布将更换外援</a></td>
+<td class="cBlue">566</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<style type="text/css">
+.channel-end,.channelEnd-rightS,.channelEnd-link,.channelEnd-top {background:url(http://img3.cache.netease.com/cnews/img09/endnav_bg1001.jpg);}
+.channel-end {width:960px;height:37px;overflow:hidden;margin:10px auto 0;line-height:38px;background-position:left -67px;background-repeat:repeat;}
+.channelEnd-rightS {display:block;float:right;width:8px;height:37px;overflow:hidden;background-position:right -141px;background-repeat:no-repeat;}
+.channelEnd-link {float:left;height:37px;line-height:37px;overflow:hidden;color:#1E50A2;background-position:left -30px;background-repeat:no-repeat;}
+.channelEnd-link a {float:none;padding:0 5px;font-weight:normal;background:none;}
+.channelEnd-link .firstNode {margin-left:8px; background:none;}
+.channelEnd-top {display:block;float:right;width:80px;height:37px;overflow:hidden;line-height:37px;text-indent:10px;background-position:left -30px;background-repeat:no-repeat;}
+</style>
+<div class="channel-end">
+	<span class="channelEnd-link cBlue">
+    	<a class="firstNode" href="http://www.163.com/" rel="nofollow">网易首页</a>-<a href="http://news.163.com/" rel="nofollow">新闻</a>-<a href="http://sports.163.com/" rel="nofollow">体育</a>-<a href="http://ent.163.com/" rel="nofollow">娱乐</a>-<a href="http://money.163.com/" rel="nofollow">财经</a>-<a href="http://auto.163.com/" rel="nofollow">汽车</a>-<a href="http://tech.163.com" rel="nofollow">科技</a>-<a href="http://digi.163.com/" rel="nofollow">数码</a>-<a href="http://mobile.163.com/" rel="nofollow">手机</a>-<a href="http://lady.163.com/" rel="nofollow">女人</a>-<a href="http://house.163.com/" rel="nofollow">房产</a>-<a href="http://game.163.com/" rel="nofollow">游戏</a>-<a href="http://book.163.com/" rel="nofollow">读书</a>-<a href="http://edu.163.com/" rel="nofollow">教育</a>-<a href="http://travel.163.com/" rel="nofollow">旅游</a>-<a href="http://bbs.163.com/" rel="nofollow">论坛</a>-<a href="http://v.163.com/" rel="nofollow">视频</a>-<a href="http://blog.163.com/blogs/" rel="nofollow">博客</a>-<a href="http://t.163.com/" rel="nofollow">微博</a>-<a href="http://help.3g.163.com/" rel="nofollow">手机版</a>
+    </span>
+    <span class="channelEnd-rightS"></span>
+    <span class="channelEnd-top cBlue"><a href="#top" target="_self" rel="nofollow">返回顶部&uarr;</a></span>
+</div>
+<div class="about">美编：麦汉晖 / 制作：朱德明 / 技术：罗金 朱德明</div>
+<div class="foot">
+<div class="text"><a href="http://www.bjjubao.org/index.htm">北京互联网违法不良信息举报</a>　<a href="http://t.163.com/zt/feedback">意见反馈</a>　<a href="http://news.163.com/sitemap.html">新闻地图</a>　<a href="http://news.163.com/special/i/000117JD/index_history.html">历史回顾</a></div>
+<a href="http://corp.163.com/">About NetEase</a> - <a href="http://gb.corp.163.com/gb/about/overview.html">公司简介</a> - <a href="http://gb.corp.163.com/gb/contactus.html">联系方法</a> - <a href="http://corp.163.com/gb/job/job.html">招聘信息</a> - <a href="http://help.163.com/ ">客户服务</a> - <a href="http://gb.corp.163.com/gb/legal.html">隐私政策</a> - <a href="http://emarketing.biz.163.com/">网络营销</a> - <a href="http://sitemap.163.com/">网站地图</a><br />
+网易公司版权所有<br />
+
+<span class="cRed">&copy;1997-2013</span>
+</div>
+<!-- 弹窗代码 -->
+<!-- 代码 -->
+
+<!-- 即时消息 -->
+<script>
+(function(){	
+	var version = window.navigator.appVersion;
+	var isIE6 = (version.indexOf("MSIE 6.0") != -1 || version.indexOf("MSIE 5.5") != -1)? true:false;
+	showQR(450, "http://img3.cache.netease.com/news/2012/qr_newapp.png");
+	function showQR(top, imgUrl){
+		var QRbox= document.createElement("div");
+		var QRboxCSS ={
+			width: "110px",
+			height: "147px",
+			position: "fixed",
+			_position: "absolute",
+			top: top + "px",
+			right: "3px",
+			display:"block"
+		};
+		for(var key in QRboxCSS){
+			QRbox.style[key] = QRboxCSS[key];
+		}
+	 	if(isIE6){
+	 		QRbox.style.position = "absolute";
+	 	}
+	 	
+		QRbox.innerHTML="<a href='http://3g.163.com/links/3977' target='_blank'></a>";
+		var link =QRbox.getElementsByTagName("a")[0];
+		var linkCSS = {
+			display:"block",
+			width: "100%",
+			height: "100%",
+			backgroundImage: "url("+imgUrl+")",
+			backgroundPosition: "0px 0px"
+		};
+		for(var key in linkCSS){
+			link.style[key] = linkCSS[key]
+		}
+		document.body.appendChild(QRbox);
+		var linkEventMap = {
+			"mouseover": function(){
+				link.style.backgroundPosition = "-110px 0px";
+			},
+			"mouseout": function(){
+				link.style.backgroundPosition = "0px 0px";
+			}
+		}
+		for(var evt in linkEventMap){
+			var func = linkEventMap[evt];
+			addEvent(evt, link, func);
+		}
+		addEvent("scroll", window, function(){
+			if(isIE6){
+				QRbox.style.top = getScrollTop() + top + "px";
+			}
+		})
+	}
+	function addEvent(evt, elem, callback){
+		if(elem.addEventListener){
+			elem.addEventListener(evt, callback, false)
+		} else {
+			elem.attachEvent && elem.attachEvent("on"+evt, callback);
+		} 
+	}
+	function getScrollTop(){
+	    if(typeof pageYOffset!= 'undefined'){
+	        //most browsers
+	        return pageYOffset;
+	    }
+	    else{
+	        var B= document.body; //IE 'quirks'
+	        var D= document.documentElement; //IE with doctype
+	        D= (D.clientHeight)? D: B;
+	        return D.scrollTop;
+	    }
+	}
+})();
+(function(){function e(e,n,r,i){var r=r||500,s=i||function(){},o,u=parseInt(t(e,"height"),10);e.toggled?o=e.originalHeight:(o=u,e.originalHeight=o);var a=Math.round(r/o);n=="show"&&(e.style.height="0"),e.style.display="block",e.toggled=!0;var f=o;for(var l=f;l>=0;l--)(function(t){var r=n=="show"?t*a:(f-t)*a;setTimeout(function(){(t==0&&n=="hide"||t==f&&n=="show")&&s(),e.style.height=t+"px";var r=t/f;e.style.opacity=r,e.style.filter="alpha(opacity="+r*100+")"},r)})(l)}function t(e,t){if(e.style[t])return e.style[t];if(e.currentStyle)return e.currentStyle[t];if(document.defaultView&&document.defaultView.getComputedStyle){t=t.replace(/([A-Z])/g,"-$1"),t=t.toLowerCase();var n=document.defaultView.getComputedStyle(e,"");return n&&n.getPropertyValue(t)}return null}function n(e,t,n){var r=function(e,t){try{return e.contains?e!=t&&e.contains(t):!!(e.compareDocumentPosition(t)&16)}catch(n){}},i=function(e){var t=e.currentTarget,i=e.relatedTarget;!r(t,i)&&t!=i&&n.call(e.currentTarget,e)};e.addEventListener?t=="mouseenter"?e.addEventListener("mouseover",i,!1):t=="mouseleave"?e.addEventListener("mouseout",i,!1):e.addEventListener(t,n,!1):e.attachEvent("on"+t,n)}function r(t){var r=this;r.cfg=t;var i=function(){n(r.cfg.closeBtn,"click",function(){r.close()}),n(r.cfg.wrap,"mouseenter",function(){r._timingClose("stop")}),n(r.cfg.wrap,"mouseleave",function(){r._timingClose("start",3)}),n(window,"focus",function(){r._pollStop=!1}),n(window,"blur",function(){r._pollStop=!0}),window[r.cfg.pollCallback]=r._push,window[r.cfg.contentCallback]=r._fillContent,r.start()},s=function(e,t){var n="popush_scriptloader";document.getElementById(n)!==null&&document.body.removeChild(document.getElementById(n));var i=document.createElement("script");i.id=n,i.type="text/javascript",i.async=!0,i.src=r.cfg.preventCache?e+"?"+Math.round(Math.random()*1e10):e,i.onload=t||function(){return!1},document.body.appendChild(i)},o=function(){var e=location.host.split(".").reverse()[2],t="?id="+r.cfg.id+"&cname="+e+"&rnd="+Math.round(Math.random()*1e10);(new Image).src=(r.cfg.countUrl||"count.php")+t};r._getDisplayState=function(){return!r._state||r._state=="hide"?"hide":"show"},r._display=function(t){if(r._getDisplayState()==t)return!1;e(r.cfg.contentWrap,t),r._state=t},r._timingClose=function(e,t){if(r._getDisplayState()=="hide")return!1;var t=t||r.cfg.hideAfter;e=="start"?r._closeTimer=setTimeout(function(){r._display("hide")},t*1e3):e=="stop"&&typeof r._closeTimer!="undefined"&&clearTimeout(r._closeTimer)},r.close=function(){if(!-[1,]&&!window.XMLHttpRequest){r.cfg.wrap.style.display="none";return !1;}r._getDisplayState()=="show"?r._display("hide"):r.cfg.wrap.style.display="none"},r._fillContent=function(e){r.contentCache=e,r.cfg.contentWrap.innerHTML=e,r._display("show"),r._timingClose("start")},r.manualShow=function(){if(r._getDisplayState()=="show")return!1;r.contentCache?r._fillContent(r.contentCache):s(r.cfg.contentUrl)},r._push=function(e){var t=Math.round((new Date).valueOf()/1e3),n=parseInt(e,10),i=t-n,u=NTES.cookie.get("PopPushData");if(u==n)return!1;if(r.cfg.oldTime&&i>r.cfg.oldTime)return!1;s(r.cfg.contentUrl),NTES.cookie.set("PopPushData",e,"30m",".163.com","/"),o()},r._poll=function(){r._pollStop||s(r.cfg.pollUrl)},r.start=function(){r._pollStop=!1,r._poll(),window.setInterval(r._poll,r.cfg.pollCycle*1e3)},i()}window.PopPush=r})()
+</script>
+<style type="text/css">
+#instant-news{width:270px;position:fixed;left:40px;bottom:0;z-index:10;
+_position: absolute;
+_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-172));
+}
+#instant-news-close{color:#B6C4D3;font-size:18px;font-weight:400;position:absolute;top:5px;right:4px;text-align:center;cursor:pointer;margin:0;padding:0;_display:none;}
+#instant-news-content{height:170px;padding:0;border-bottom:1px solid #A6B7C9;overflow:hidden;display:none;}
+</style>
+<div id="instant-news"><div id="instant-news-close">×</div><div id="instant-news-content"></div></div>
+<script>
+(function(N){
+    var t = N.cookie.get("PopPushData");
+    if(t && t != "") N.cookie.set("PopPushData", parseInt(t, 10), "30m", ".163.com", "/");
+})(window.NTES);
+var instant_news_push = new PopPush({
+    id: "instantnews",
+    wrap: document.getElementById('instant-news'),
+    contentWrap: document.getElementById('instant-news-content'),
+    closeBtn: document.getElementById('instant-news-close'),
+    pollUrl: "http://www.163.com/special/0077450P/hot_pop_js.js",
+    pollCallback: "latestInstantNews",
+    contentUrl: "http://temp.163.com/special/00804IKG/instant_news_content_cb.js",
+    contentCallback: "instantNewsContent",
+    pollCycle: 90,
+    hideAfter: 30,
+    oldTime: 7200,
+    countUrl: "http://temp.163.com/special/hot_pop_content/",
+    preventCache: false
+});
+</script>
+<script type="text/javascript">
+//<![CDATA[
+for ( var i=0; i<$("div.tabBox").length; i++){
+	var tab = new NTES.ui.Slide( $($("div.tabBox")[i]).$("ul.tabNav > li"), $($("div.tabBox")[i]).$("div.tabContents"), "active", "mouseover");
+}
+//有道搜索Start
+function goyoudao(){
+		var SoForm = document.getElementById("yodaoForm");
+		var subc1=document.getElementById('subs1');
+		var subc2=document.getElementById('subs2');
+		var site=document.getElementById('site');
+                          if(document.getElementById("searchInput0").value=="" || document.getElementById("searchInput0").value.length==0)
+			{
+				alert("请输入关键字!");
+				return false;
+			}
+		if(subc1.checked){
+			site.value="网易";
+			SoForm.action="http://news.youdao.com/search"
+		}
+		else{
+			site.value="";
+			SoForm.action="http://www.youdao.com/search"
+		}
+		SoForm.submit();
+	    return true;
+	}
+//有道搜索End
+//]]>
+</script>
+<!-- START WRating v1.0 -->
+<script type="text/javascript" src="http://163.wrating.com/a1.js"></script>
+<script type="text/javascript">
+var vjAcc="860010-0502010100";
+var wrUrl="http://163.wrating.com/";
+vjTrack();
+</script>
+<noscript><img src="http://163.wrating.com/a.gif?c=860010-0502010100" width="1" height="1"/></noscript>
+<!-- END WRating v1.0 -->
+<!-- START NetEase Analytics 2006 -->
+    <script src="http://analytics.163.com/ntes.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+    _ntes_nacc = "news"; //站点ID。
+    neteaseTracker();
+    </script>
+<!-- END NetEase Analytics 2006 -->
+</body>
+</html>
