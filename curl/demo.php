@@ -18,7 +18,7 @@ $conf = array(
 $db = DbHelper::getInstance($conf);
 
 $url = array(
-    0 => 'http://news.163.com/rank/'
+    0 => 'http://sports.sina.com.cn/nba/'
 );
 $cache = array(
     'dir'       => './cache',
@@ -31,17 +31,18 @@ $cache = array(
  * href 进入more连接后, 抓取所有新闻标题
  */
 $regexp = array(
-    'more' => '/<div\s+class="more"><a\s+href="(.*)">(.*)<\/a>\s*<\/div>/Uims',
-    'href' => '/<td\s+class="(.*)">\s*<span>(.*)<\/span>\s*<a\s+href="(.*)">(.*)<\/a>\s*<\/td>/'
+    'more' => '/<div\s+class="tab\s+tabnews\s+tab690"(.*)>\s*<p\s+class="current">\s*<a\s+href="(.*)"\s+target="_blank">(.*)<\/a>\s*<\/p>.?/Uims',
+    'thref' => '/<div\s+id="right">(.*)<a\s+href="(.*)"\s+target="_blank">(.*)<\/a><br><br><\/div>/ims',
+    'href' => '/<a\s+href="(.*)"\s+target="_blank">(.*)<\/a>/Uims'
 );
 
 $news_exp = array(
-    'title'                  => '/<h1\s*id="h1title"\s*class="ep-h1">(.*)<\/h1>/Uims',
-    'summary'                => '/<p\s+class="ep-summary">(.*)<\/p>/Uims',
-    'author'                 => '/ <div\s+class="ep-source cDGray">(.*)<\/a>\s*：\s+(.*)<\/span>\s*<span\s+class="ep-editor">/Uims',
+    'title'                  => '/<h1\s+id="artibodyTitle">(.*)<\/h1>/Uims',
+    'summary'                => ' ',
+    'author'                 => '/<a\s+class="ent1\s+fred"\s+href="(.*)"\s+target="_blank"\s+data-sudaclick="media_name">(.*)<\/a>/Uims',
     'pic'                    => '',
-    'content'                => '/<div\s+id="endText">(.*)<\/div>/Uims',
-    'resource_created_time'  => '/<div\s+class="ep-info\s+cDGray">\s*<div\s+class="left">(.*)[^\d|\-|:|\s](.*)<a\s+(.*)>(.*)<\/a>/Uims'
+    'content'                => "/<!--\s+publish_helper(.*)\s+-->(.*)<!--\s+publish_helper_end\s+-->/Uims",
+    'created_time'           => '/<span\s+id="pub_date">(.*)<\/span>/Uims'
 );
 
 try{
@@ -53,13 +54,14 @@ try{
             $matches = $curl->preg($regexp['more'], $content);
         }
     }
-    $more_urls = $curl->getCache($matches[1], true);
+    $more_urls = $curl->getCache($matches[2], true);
     $hrefs = array();
     if(is_array($more_urls)){
         foreach($more_urls as $more_url){
             $content = file_get_contents($more_url);
-            $matches = $curl->preg($regexp['href'], $content);
-            foreach($matches[3] as $match){
+            $matches = $curl->preg($regexp['thref'], $content);
+            $_matches = $curl->preg($regexp['href'], $matches[1][0]);
+            foreach($_matches[1] as $match){
                 $hrefs[] = $match;
             }
         }
@@ -72,17 +74,22 @@ try{
         foreach($content as $c){
             $titles = $curl->preg($news_exp['title'], $c);
             $title = $curl->striconv($titles[1][0]);
-            $summarys = $curl->preg($news_exp['summary'], $c);
-            $summary = $curl->striconv($summarys[1][0]);
-            $resource_created_time = $curl->preg($news_exp['resource_created_time'], $c);
-            $created_time = $resource_created_time[1][0];
-            $resource = $curl->striconv($resource_created_time[4][0]);
+            $created_times = $curl->preg($news_exp['created_time'], $c);
+            $created_time = $curl->striconv($created_times[1][0]);
+            $created_time =  preg_replace_callback(
+                '/(\d+)[^\d]*(\d+)[^\d]*(\d+)[^\d]*(.*)/', 
+                function($matches)use($created_time){
+                    return sprintf("%s-%s-%s %s", $matches[1], $matches[2], $matches[3], $matches[4]);
+                },
+                $created_time
+            );
+            $authors = $curl->preg($news_exp['author'], $c);
+            $resource = $author = $curl->striconv($authors[2][0]);
             $texts = $curl->preg($news_exp['content'], $c);
-            $_text = preg_replace('/<iframe(.*)>\s*<\/iframe>/', ' ', $texts[1][1]);
-            $text = $curl->striconv($_text);
+            $text = $curl->striconv($texts[2][0]);
             $array = array(
                 'title' => $title,
-                'summary' => $summary,
+                'author' => $author,
                 'resource' => $resource,
                 'content' => $text,
                 'created_time' => $created_time
