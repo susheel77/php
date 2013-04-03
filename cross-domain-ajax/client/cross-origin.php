@@ -2,7 +2,7 @@
 <head>
 <script>
 var server_url = "http://www.cross-domain-server.com.cn/cross-origin.php";
-var xhr = null;
+var xhr;
 
 function loadScript(url, callback, charset){
 	charset = charset || 'utf-8';
@@ -18,7 +18,19 @@ function loadScript(url, callback, charset){
 }
 
 function createCORSRequest(method, url){
-    xhr = new XMLHttpRequest();
+    xhr = null;
+    if(window.XMLHttpRequest && !document.all){
+        //Firefox, Opera 8.0+, Safari
+        xhr = new XMLHttpRequest();
+    }else if(window.XMLHttpRequest && document.all){
+        xhr = new XDomainRequest();
+    }else if(window.ActiveXObject){
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }else{
+        return false;
+    }
+    xhr.open(method, url);
+    /*
 	if("withCredentials" in xhr){
 		xhr.open(method, url, true);
 	}else if(typeof XDomainRequest != "undefined"){
@@ -27,6 +39,7 @@ function createCORSRequest(method, url){
 	}else{
 		xhr = null;
 	}
+    */
     xhr.onreadystatechange = handler;
     xhr.send();
 }
