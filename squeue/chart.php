@@ -43,9 +43,7 @@ $(function(){
 <meta charset='utf-8' />
 <body style='text-align:center;'>
 <div style='text-align:center;border:5px solid blue;width:800px;height:500px;'>
-    <div style='height:350px' class='history'>
-        
-    </div>
+    <div style='height:350px' class='history'></div>
     <div style='border-top:2px solid blue;width:760px;height:130px;padding:20px;'>
         <div>
             <textarea style='border:0;width:740px;height:90px;font-size:14px;' name='content'></textarea>
