@@ -51,39 +51,39 @@ class Redis{
 
     // 队列, 向首部增加数据
     public function lpush($key, $value){
-		return $this->connection->lpush($this->keyprefix . $key, $value);
+        return $this->connection->lpush($this->keyprefix . $key, $value);
     }
 
-	// 队列, 向尾部增加数据
-	public function rpush($key, $value){
-		return $this->connection->rpush($this->keyprefix . $key, $value);
-	}
+    // 队列, 向尾部增加数据
+    public function rpush($key, $value){
+        return $this->connection->rpush($this->keyprefix . $key, $value);
+    }
 
-	// 队列, 从首部弹出数据，并且删除此数据
-	public function lpop($key){
-		return $this->connection->lpop($this->keyprefix . $key);
-	}
+    // 队列, 从首部弹出数据，并且删除此数据
+    public function lpop($key){
+        return $this->connection->lpop($this->keyprefix . $key);
+    }
 
-	// 队列, 冲尾部弹出数据, 并且删除数据
-	public function rpop($key){
-		return $this->connection->rpop($this->keyprefix . $key);
-	}
+    // 队列, 冲尾部弹出数据, 并且删除数据
+    public function rpop($key){
+        return $this->connection->rpop($this->keyprefix . $key);
+    }
 
-	// 查看队列中的总数
-	public function llen($key){
-		return $this->connection->llen($this->keyprefix . $key);
-	}
+    // 查看队列中的总数
+    public function llen($key){
+        return $this->connection->llen($this->keyprefix . $key);
+    }
 
-	// 查看队列中的数据, 有偏移量
-	public function lrange($key, $start, $offset){
-		return $this->connection->lrange($this->keyprefix . $key, $start, $offset);
-	}
+    // 查看队列中的数据, 有偏移量
+    public function lrange($key, $start, $offset){
+        return $this->connection->lrange($this->keyprefix . $key, $start, $offset);
+    }
 
-	// 查看队列中某一个值
-	public function lindex($key, $index){
-		return $this->connection->lindex($this->keyprefix . $key, $index);
-	}
-    
+    // 查看队列中某一个值
+    public function lindex($key, $index){
+        return $this->connection->lindex($this->keyprefix . $key, $index);
+    }
+
     // 实例化类
     public static function getInstance($conf){
         if(self::$class === null){
