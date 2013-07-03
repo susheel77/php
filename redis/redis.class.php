@@ -31,7 +31,7 @@ class Redis{
     
     // 设置key value值, 0 无过期
     public function set($key, $value, $expire = 0){
-        return $this->connection->setex($this->keyprefix . $key, $value, $expire);
+        return $this->connection->setex($this->keyprefix . $key, $expire, $value);
     }
     
     // 修改key值
