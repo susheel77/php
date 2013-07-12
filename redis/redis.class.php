@@ -4,14 +4,14 @@
  * @author zhanglei <zhanglei19881228@sina.com>
  */
 
-namespace Redis;
-use Predis;
+
+
 
 class Redis{
     
     private static $class = null;       // 实例化对象
     private $connection;                // redis连接对象
-    private $keyprefix = 'redis_';       // 存储key前缀
+    private $keyprefix = 'redis_';      // 存储key前缀
     
     // 构造函数
     private function __construct($conf){
@@ -41,7 +41,12 @@ class Redis{
     
     // 删除key
     public function remove($key){
-        if($this->connection->get($this->keyprefix . $$key)) return $this->connection->del($this->keyprefix . $key);
+        if($this->connection->get($this->keyprefix . $key)) return $this->connection->del($this->keyprefix . $key);
+    }
+
+    // 清空队列
+    public function truncate($key){
+        return $this->connection->del($this->keyprefix . $key);
     }
     
     // 得到key
@@ -64,7 +69,7 @@ class Redis{
         return $this->connection->lpop($this->keyprefix . $key);
     }
 
-    // 队列, 冲尾部弹出数据, 并且删除数据
+    // 队列, 从尾部弹出数据, 并且删除数据
     public function rpop($key){
         return $this->connection->rpop($this->keyprefix . $key);
     }
@@ -94,17 +99,4 @@ class Redis{
     
 }
 
-// 配置选项, 主机， 端口, redis的数据库
-$conf = array(
-    'host'     => '127.0.0.1',
-    'port'     => 6379,
-    'database' => 0
-
-);
-
-$redis = Redis::getInstance($conf);
-//$redis->lpush('queue', 'zhanglei');
-echo $redis->llen('queue');
-$lists = $redis->lindex('queue', 10);
-print_r($lists);
 ?>
