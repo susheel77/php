@@ -27,6 +27,8 @@ while(true){
 
     $sql = sprintf("insert into users set username = '%s', password = '%s', sex = '%s', email = '%s', created_time = '%s'", $data['username'], $data['password'], $data['sex'], $data['email'], date('Y-m-d H:i:s'));
 
+    // 此处需要做unique的判断, 由于时间原因, 省略了。list.php需要时刻运行着, 以保证不断的从redis取出数据交给mysql, 减少mysql的并发, 有必要去写个shell的守护进程去看护
+
     try{
         $result = mysql_query($sql);
         if(!$result) echo mysql_error();
