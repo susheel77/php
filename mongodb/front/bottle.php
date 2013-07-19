@@ -29,10 +29,43 @@ if(!$status){
 
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 
-// 漂流瓶类型库
+// 漂流瓶类型表
 $bottle = $connection->selectCollection('bottle');
+
+// 漂流瓶动作表
+$bottle_action = $connection->selectCollection('bottle_action');
+
 if($act == 'play'){
-	
+	$id = trim($_GET['id']);
+	$_id = new MongoId($id);
+	$current_bottle = $bottle->findOne(array('_id' => $_id));
+	if(empty($current_bottle)) die('漂流瓶不存在');
+?>
+	<form method='post' action='bottle.php?act=playtodo'>
+		<?php echo $current['name']; ?> 选择的是 <?php echo $current_bottle['name']; ?>
+		<input name='bottle_id' type='hidden' value='<?php echo $current_bottle["_id"]; ?>' /><br /><br />
+		漂流瓶内容: <textarea name='content' rows=2 cols=20></textarea><br /><br />
+		<input name='submit' value='扔出去' type='submit' />
+	</form>
+<?php
+}elseif($act == 'playtodo'){
+	$data['bottle_id'] = MongoDBRef::create('bottle', new MongoId(trim($_POST['bottle_id'])));
+	$data['content'] = htmlspecialchars(addslashes(trim($_POST['content'])));
+	$data['user_id_from'] = MongoDBRef::create('users', $current['_id']);
+	$users_list = $users->find();
+	$userslists = array();
+	foreach($users_list as $key => $list){
+		$userslists[] = $list['_id'];
+	}
+	$rand_key = array_rand($userslists, 1);
+	$data['user_id_to'] = MongoDBRef::create('users', $userslists[$rand_key]);
+	$data['created_time'] = date('Y-m-d H:i:s');
+	$result = $bottle_action->insert($data);
+	if($result){
+		echo "<script>";
+		echo "location.href='bottle.php'";
+		echo "</script>";
+	}
 }else{
 	$bottle_lists = $bottle->find();
 ?>
