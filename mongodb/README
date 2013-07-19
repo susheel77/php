@@ -65,6 +65,7 @@ mongodb的命令
 		db.users.find({'age': {'$gte': 24}});
 		db.users.find({'age': {'$gte': 18}, 'name': 'zhanglei'}).sort({'_id': -1}).skip(0).limit(1);
 		db.bottle_action.findOne().user_id_from.fetch();
+		db.bottle_action.find().sort({'_id': -1}).limit(1)[0].user_id_from.fetch();
 
 
 php操作mongodb的例子
