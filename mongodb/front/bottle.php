@@ -67,9 +67,21 @@ if($act == 'play'){
 		echo "</script>";
 	}
 }else{
+	$user_id_to = $current['_id']->{'$id'};
+	$where = array('user_id_to' => MongoDBRef::create('users', new MongoId($user_id_to)));
+	$count = $bottle_action->count($where);
+	$lists = $bottle_action->find($where);
 	$bottle_lists = $bottle->find();
 ?>
-	欢迎 <?php echo $current['name']; ?>, 亲 <br /><br /><br /> 
+	欢迎 <?php echo $current['name']; ?>, 亲, 您总共有 <?php echo $count; ?> 个漂流瓶<br /><br />
+	<div style='color:red'>
+	<?php while($list = $lists->getNext()): ?>
+		发送人：<?php $user_from = MongoDBRef::get($bottle_action->db, $list['user_id_from']); echo $user_from['name']; ?><br />
+		送达时间：<?php echo $list['created_time']; ?><br />
+		漂流瓶内容：<?php echo $list['content']; ?><br />
+	<?php endwhile; ?>
+	</div>
+	<br /><br /> 
 	<?php foreach($bottle_lists as $id => $list): ?>
 	<?php echo $list['name']; ?>&nbsp;&nbsp;<a href='bottle.php?act=play&id=<?php echo $list["_id"]; ?>'>扔瓶子</a><br /><br />
 	<?php endforeach; ?>
