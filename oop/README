@@ -29,5 +29,8 @@ __unset($property_name)
 
 php 设计模式
 http://www.ibm.com/developerworks/cn/opensource/os-php-designptrns/
+	单例模式：__construct是私有的。防止程序在类外面肆意new这个类。
+	观察者模式：观察者类里面传入被观察对象，在观察者内里面执行被观察对象的函数。独立于被观察者。参照observe.class.php
+	策略模式：在策略类里面传入别的类的对象。在策略类里面某个函数中执行别的类的函数。参照strategy.class.php
 
 php垃圾回收机制
