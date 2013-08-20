@@ -8,11 +8,11 @@ class Destruct{
 	}
 
 	public function say(){
-		echo $this->name;
+		echo $this->name . "\r\n";
 	}
 
 	public function __destruct(){
-		echo "unset" . $this->name;
+		echo "unset" . $this->name . "\r\n";
 	}
 
 }
@@ -20,6 +20,5 @@ class Destruct{
 $d1 = new Destruct('张磊');
 $d2 = new Destruct("adele");
 echo $d1->say();
-echo "\r\n";
 echo $d2->say();
 ?>
