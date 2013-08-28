@@ -3,7 +3,7 @@
  * @author coderookie <zhanglei19881228@sina.com>
  * @todo describe the http
  */
-class Header{
+class ResponseHeader{
     private static $class = null;
     // 响应头状态码
     private static $statusCode = array(
@@ -176,7 +176,7 @@ class Header{
         if(isset(self::$statusCode[$code])){
             $protocol = $_SERVER['SERVER_PROTOCOL'];
             $description = !empty($text) ? $text : self::$statusCode[$code];
-            $status = $protocol . $code . $description;
+            $status = $protocol . " " . $code . " " . $description;
             header($status);
         }else{
             throw new Exception("http status code is not exists");
@@ -219,31 +219,41 @@ class Header{
     }
     
     // 通过expire来设置浏览器缓存
-    public function setCacheByExpire($time = 0){
-        $expire = gmdate("D, d M Y H:i:s \G\M\T", time() + $time);
-        header("Expire: $expire");
+    public function setCacheByExpires($time = 0){
+        $expire = gmdate("r", time() + $time);
+        header("Expires: $expire");
     }
     
-    // 通过lastModifiedTime来设置浏览器缓存
-    public function setCacheByLastModify($modifiedTime){
-        $modifiedDate = date('D, d M Y H:i:s \G\M\T', $modifiedTime);
-        $http_if_modified_since = $_SERVER['HTTP_IF_MODIFIED_SINCE'];
+    /*
+     * 浏览器第一次请求url时候, 响应头里面会带有此文件的修改时间, If-Modified-Since
+     * 如果得到的的If-Modified-Since小于Last-Modified, 告知浏览器文件并没有被修改, 响应的body是空, 也就解释了为什么页面没有内容
+     * 通过lastModifiedTime来设置浏览器缓存
+     */
+    public function setCacheByLastModify($time = 0){
+        $cache_time = time() + $time;
+        $cache_date = gmdate('r', $cache_time);
+
+        $http_if_modified_since = !empty($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : null;
         $http_if_modified_since_time = strtotime($http_if_modified_since);
-        if (isset($http_if_modified_since) && $modifiedTime >= $http_if_modified_since_time){
-            $this->setHeaderStatus('304');
+
+        if(!empty($http_if_modified_since) && $cache_time > $http_if_modified_since_time){
+            $last_modified = $cache_date;
+        }else{
+            $last_modified = gmdate('r', time());
         }
-        header("Last-Modified: $modifiedDate");
+
+        header("Last-Modified: $last_modified");
     }
     
     // 通过cache-controller来设置浏览器缓存
     public function setCacheByController($maxAge = 0){
-        $cacheController = sprintf("Cache-Controller: max-age=%u", $maxAge);
+        $cacheController = sprintf("Cache-Control: max-age=%u", $maxAge);
         header($cacheController);
     }
     
     // 通过Etags来设置浏览器缓存
     public function setCacheByEtags($etags = ''){
-        $http_if_none_match = $_SERVER['HTTP_IF_NONE_MATCH'];
+        $http_if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? $_SERVER['HTTP_IF_NONE_MATCH'] : ' ';
         if(isset($http_if_none_match) && $etags == $http_if_none_match){
             $this->setHeaderStatus("304");
         }
@@ -261,7 +271,7 @@ class Header{
     
     public static function getInstance(){
         if(self::$class === null){
-            self::$class = new Header();
+            self::$class = new ResponseHeader();
         }
         return self::$class;
     }

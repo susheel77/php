@@ -1,11 +1,12 @@
 <?php
 if(file_exists("./header.class.php")) include_once("./header.class.php");
-$time = time() + 100;
-$request = Header::getInstance();
+
+$request = ResponseHeader::getInstance();
 $request->setCacheByController(100);
-$request->setCacheByExpire(100);
-$request->setCacheByLastModify($time);
+$request->setCacheByExpires(100);
+$request->setCacheByLastModify(100);
+
 ?>
 <div style='text-align:center; margin: 50 auto; font-size:30px; font-weight:bolder;'>
-    my name is zhanglei
+    my name is zhanglei a
 </div>
