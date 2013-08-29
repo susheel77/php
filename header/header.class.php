@@ -218,9 +218,14 @@ class ResponseHeader{
         readfile($path);
     }
     
+    // 允许浏览器缓存
+    public function setPragma(){
+        header("Pragma: private");
+    }
+
     // 通过expire来设置浏览器缓存
     public function setCacheByExpires($time = 0){
-        $expire = gmdate("r", time() + $time);
+        $expire = gmdate("r", time() + $time + 8*3600);
         header("Expires: $expire");
     }
     
@@ -230,16 +235,17 @@ class ResponseHeader{
      * 通过lastModifiedTime来设置浏览器缓存
      */
     public function setCacheByLastModify($time = 0){
-        $cache_time = time() + $time;
+        $cache_time = time() + $time + 8*3600;
         $cache_date = gmdate('r', $cache_time);
 
         $http_if_modified_since = !empty($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : null;
         $http_if_modified_since_time = strtotime($http_if_modified_since);
 
         if(!empty($http_if_modified_since) && $cache_time > $http_if_modified_since_time){
+            // 已经过期, 重新发请求
             $last_modified = $cache_date;
         }else{
-            $last_modified = gmdate('r', time());
+            $last_modified = gmdate('r', time() + 8*3600);
         }
 
         header("Last-Modified: $last_modified");
