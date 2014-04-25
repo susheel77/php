@@ -11,4 +11,5 @@ $conf = array(
 
 $redis = Redis::getInstance($conf);
 $flag = "register";
+$name = $redis->set('name', 'zhanglei', 3600);
 ?>

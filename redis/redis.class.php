@@ -1,16 +1,13 @@
 <?php
 /**
- * @description redis
+ * @brief redis client class
  * @author zhanglei <zhanglei19881228@sina.com>
  */
-
-
-
 
 class Redis{
     
     private static $class = null;       // 实例化对象
-    private $connection;                // redis连接对象
+    private $connection = null;         // redis连接对象
     private $keyprefix = 'redis_';      // 存储key前缀
     
     // 构造函数
@@ -18,10 +15,12 @@ class Redis{
         if($this->checkConf($conf)) throw new Exception('redis conf is error');
         if(file_exists(__DIR__ . '/predis/autoload.php')){
             require_once(__DIR__.'/predis/autoload.php');
-            $this->connection = new Predis\Client($conf);
         }else{
-            exit('redis system is error');
+            throw new Exception('redis file is not include');
         }
+		if($this->connection === null){
+			$this->connection = new Predis\Client($conf);
+		}
     }
     
     // 检查传入的conf是否正确
@@ -36,18 +35,28 @@ class Redis{
     
     // 修改key值
     public function update($key, $value, $expire = 0){
-        if($this->connection->get($this->keyprefix . $key)) return $this->connection->setex($this->keyprefix . $key, $value, $expire);
+        if($this->connection->get($this->keyprefix . $key)) return $this->connection->setex($this->keyprefix . $key, $expire, $value);
     }
     
     // 删除key
-    public function remove($key){
-        if($this->connection->get($this->keyprefix . $key)) return $this->connection->del($this->keyprefix . $key);
+    public function del($key){
+        if($this->connection->get($this->keyprefix . $key)) return $this->connection->delete($this->keyprefix . $key);
     }
 
-    // 清空队列
-    public function truncate($key){
-        return $this->connection->del($this->keyprefix . $key);
-    }
+	// 得到key的生存时间
+	public function ttl($key){
+		if($this->connection->get($this->keyprefix . $key)) return $this->connection->ttl($this->keyprefix . $key);
+	}
+
+	// 清空所有过期的key
+	public function persist(){
+		return $this->connection->persist();
+	}
+
+	// 给多个key赋值
+	public function mset($data){
+		return $this->connection->mset($data);
+	}
     
     // 得到key
     public function get($key){
