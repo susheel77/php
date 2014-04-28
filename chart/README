@@ -1,0 +1,18 @@
+socket_server.php socket服务器端, 先开始执行socket_server.php, 打开socket, 并让其监听指定端口过来所有信息
+
+socket_client.php socket客户端, 开始执行socket_client.php, 让其不断的去读socket服务器端返回的字符串, 并且输出
+
+以上两个文件都在php命令下执行, 不要在浏览器下执行
+
+
+socket_form.php 是html代码, 将聊天的参数传给socket_client.php, 然后client传给server端, 并接受server返回的字符串
+
+
+以下是问题
+
+开启socket_server是为了开启一个socket, 并且listen这个端口下的信息
+
+开启socket_client, 连接了这个服务器的socket, 并且不断的读socket服务器断返回的字符串
+
+用浏览器打开socket_form.php, 将聊天记录传给client, 然后client通过socket传给server, server写入redis后, 返回字符串
+给client, client缺断开了. 为啥? 按理说, client应该能一直得到server返回的参数, 并且输出到终端上
