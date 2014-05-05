@@ -79,7 +79,8 @@ class DbHelper{
     public function excute($sql){
         $result = mysql_query($sql, $this->link);
         if(!$result){
-            return array('errno' => mysql_errno(), 'error' => mysql_error());
+			$this->error = array('errno' => mysql_errno(), 'error' => mysql_error());
+            return false;
         }else{
             if(strtolower(substr($sql, 0, 6)) == 'insert'){
                 return mysql_insert_id();
@@ -183,6 +184,10 @@ class DbHelper{
         $sql .= $this->getMixSqlStr($where);
         return $returnsql ? $sql : $this->excute($sql);
     }
+
+	public function getError(){
+		return $this->error;
+	}
     
 }
 ?>
