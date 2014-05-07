@@ -230,25 +230,38 @@ class ResponseHeader{
     }
     
     /*
-     * 浏览器第一次请求url时候, 响应头里面会带有此文件的修改时间, If-Modified-Since
-     * 如果得到的的If-Modified-Since小于Last-Modified, 告知浏览器文件并没有被修改, 响应的body是空, 也就解释了为什么页面没有内容
-     * 通过lastModifiedTime来设置浏览器缓存
+     * 浏览器第一次请求服务器, 没有if_modified_since, 返回200
+	 * 并且响应last_modified的时间, 此时last_modified为当前时间 + 需要缓存的时间
+     * 浏览器第二次或者后面多次请求服务器, 带有if_modified_since, 判断当前的时间与if_modified_since做比较
+     * 如果当前时间 < if_modified_since 还在缓存中
+	 *     返回304
+	 * 如果当前时间 > if_modified_since 表示已经过期
+	 *     返回200, 并且将last_modified设置为当前的时间 + 需要缓存的时间
      */
     public function setCacheByLastModify($time = 0){
-        $cache_time = time() + $time + 8*3600;
-        $cache_date = gmdate('r', $cache_time);
+		$current_time = time() + 8*3600;
 
-        $http_if_modified_since = !empty($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : null;
-        $http_if_modified_since_time = strtotime($http_if_modified_since);
+		// 需要缓存到什么时间
+		$cache_time = $current_time + $time;
+		$cache_date = gmdate('r', $cache_time);
+		
+        $http_if_modified_since = !empty($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false;
 
-        if(!empty($http_if_modified_since) && $cache_time > $http_if_modified_since_time){
-            // 已经过期, 重新发请求
-            $last_modified = $cache_date;
+        if(!empty($http_if_modified_since)){
+			$http_if_modified_since_time = strtotime($http_if_modified_since);
+			if($current_time < $http_if_modified_since_time){
+				// 当前时间小于if_modified_since, 需要缓存
+				$this->setHeaderStatus(304);
+			}else{
+				// 当前时间大于if_modified_since, 缓存已经过期, 设置新的缓存时期
+				$this->setHeaderStatus(200);
+				header("Last-Modified: $cache_date");
+			}
         }else{
-            $last_modified = gmdate('r', time() + 8*3600);
+			// 第一次请求服务器
+			$this->setHeaderStatus(200);
+			header("Last-Modified: $cache_date");
         }
-
-        header("Last-Modified: $last_modified");
     }
     
     // 通过cache-controller来设置浏览器缓存
