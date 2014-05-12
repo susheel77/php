@@ -21,28 +21,6 @@ class MultiConnection{
     public function getCacheFilename($url){
         return $this->cache['dir'] . '/' . md5($this->cache['prefix'] . $url) . '.log';
     }
-    
-    /**
-     * @description 通过url得到缓存文件, 如果没有缓存文件, 则写入缓存文件
-     * @param array $urls
-     * @param type $iscache
-     * @return url对应缓存文件的数组
-     */
-    public function getCache(array $urls, $iscache = false){
-        if(!is_array($urls)) $urls = array($urls);
-        $is_exists = true;
-        $filearr = array();
-        foreach($urls as $url){
-            $filename = $this->getCacheFilename($url);
-            if(!file_exists($filename)){
-                $is_exists = false;
-                break;
-            }
-            $filearr[] = $filename;
-        }
-        if(!$is_exists) $filearr = $this->curlmulti($urls, $iscache);
-        return $filearr;
-    }
 
     /**
      * @param $urls array
@@ -55,28 +33,27 @@ class MultiConnection{
      */
     public function curlmulti($urls, $iscache = false){
         if(count($urls) > 20) throw new Exception('The thread is more than the limit');
-        $this->multi = curl_multi_init();
+        $mh = curl_multi_init();
         foreach($urls as $key => $url){
             $conn[$key] = curl_init($url);
             curl_setopt($conn[$key], CURLOPT_RETURNTRANSFER, 1);
-            curl_multi_add_handle($this->multi, $conn[$key]);
+			curl_setopt($conn[$key], CURLOPT_HEADER, 0);
+            curl_multi_add_handle($mh, $conn[$key]);
         }
 
-        $active = null;
-        do{
-            $batch_curl_res = curl_multi_exec($this->multi, $active);
-        }while($batch_curl_res == CURLM_CALL_MULTI_PERFORM);
+		$active = null;
+		// 执行批处理句柄
+		do{
+			$mrc = curl_multi_exec($mh, $active);
+		}while($mrc == CURLM_CALL_MULTI_PERFORM);
 
+		while($active && $mrc == CURLM_OK){
+			do{
+				$mrc = curl_multi_exec($mh, $active);
+			}while($mrc == CURLM_CALL_MULTI_PERFORM);
+		}
 
-        while($active && $batch_curl_res == CURLM_OK){
-            if(curl_multi_select($this->multi) != -1){
-                do{
-                    $batch_curl_res = curl_multi_exec($this->multi, $active);
-                }while($batch_curl_res == CURLM_CALL_MULTI_PERFORM);
-            }
-        }
-
-        if($batch_curl_res != CURLM_OK){
+        if($mrc != CURLM_OK){
             throw new Exception('curl multi exec batch resource is failed');
         }
  
@@ -95,7 +72,7 @@ class MultiConnection{
             }else{
                 throw new Exception('curl every url is failed');
             }
-            curl_multi_remove_handle($this->multi, $conn[$key]);
+            curl_multi_remove_handle($mh, $conn[$key]);
             curl_close($conn[$key]);
         }
         return $returns;

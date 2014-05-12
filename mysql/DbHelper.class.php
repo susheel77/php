@@ -126,7 +126,7 @@ class DbHelper{
     /**
      * @see $this->read();
      */
-    public function readOne($table, $where, $field, $tail, $returnsql){
+    public function readOne($table, $where, $field, $tail = '', $returnsql = false){
         $return = $this->read($table, $where, $field, $tail, $returnsql);
         if($returnsql){
             return $return;
@@ -159,7 +159,7 @@ class DbHelper{
      *         use write('users', array('username' => 'zhanglei'), false);
      *         use write('users', array('username' => 'zhanglei'), array('id' => '1'))
      */
-    public function write($table, $data, $where, $returnsql = 0){
+    public function write($table, $data, $where = false, $returnsql = 0){
         if(!$data || !is_array($data)) return false;
         $sql = "";
         $operation = empty($where) ? 'insert into' : 'update';

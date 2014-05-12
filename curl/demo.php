@@ -1,12 +1,7 @@
+<meta charset='gbk' />
 <?php
 set_time_limit(3600);
 error_reporting(7);
-/**
- * 由于时间原因, 更多的报错没有处理, 有时间再去处理那些错误报告
- * 缓存文件取名的规则
- * 根据md5(prefix+url)来当做文件的名称, 这样通过每个url就能找到每个url所对应的缓存文件, 则不需要每次都远程调用
- */
-include_once('./multiConnection.class.php');
 include_once('../mysql/DBHelper.class.php');
 
 $conf = array(
@@ -15,91 +10,64 @@ $conf = array(
     'pass' => 'root',
     'db'   => 'demo'
 );
+
+$filename = './cache/content.log';
+$href_filename = './cache/href.log';
+function fput($filename, $content){
+	$fp = fopen($filename, 'w+');
+	fwrite($fp, $content);
+	fclose($fp);
+}
+
 $db = DbHelper::getInstance($conf);
 
-$url = array(
-    0 => 'http://sports.sina.com.cn/nba/'
-);
-$cache = array(
-    'dir'       => './cache',
-    'prefix'    => 'curl'
+$hrefs_content = file_get_contents($href_filename);
+if(empty($hrefs_content)){
+	$url = 'http://sports.sina.com.cn/g/premierleague/';
+	$content = file_get_contents($url);
+	preg_match_all('/<li>\s*<a\s*href=(.*shtml)\s*class="fgrey"\s+target=_blank>(.*)<\/a>(.*)<\/li>/', $content, $matches);
+	$hrefs = $matches[1];
+	fput($href_filename, implode("\r\n", $hrefs));
+}
+
+$hrefs = explode("\r\n", $hrefs_content);
+
+$preg = array(
+	'title'			=> '/<h1\s+id="artibodyTitle">(.*)<\/h1>/',
+	'created_time'	=> '/<span id="pub_date">(.*)<\/span>/',
+	'author'		=> '/<span id="media_name"><a(.*)>(.*)<\/a>/',
+	'author1'		=> '/<span id="media_name"><font(.*)>(.*)<\/font>/',
+	'content'		=> '/<div class=(.*) id="artibody">(.*)<!--\s+publish_helper_end\s+--\>/Uis'
 );
 
-/**
- * 所有的正则表达式
- * 所有more(更多)的连接
- * href 进入more连接后, 抓取所有新闻标题
- */
-$regexp = array(
-    'more' => '/<div\s+class="tab\s+tabnews\s+tab690"(.*)>\s*<p\s+class="current">\s*<a\s+href="(.*)"\s+target="_blank">(.*)<\/a>\s*<\/p>.?/Uims',
-    'thref' => '/<div\s+id="right">(.*)<a\s+href="(.*)"\s+target="_blank">(.*)<\/a><br><br><\/div>/ims',
-    'href' => '/<a\s+href="(.*)"\s+target="_blank">(.*)<\/a>/Uims'
-);
+foreach($hrefs as $href){
+	$main_content = file_get_contents($filename);
+	if(empty($main_content)){
+		$main_content = file_get_contents($href);
+		fput($filename, $main_content);
+	}
+	preg_match_all($preg['title'], $main_content, $title_matches);
+	$data['title'] = $title_matches[1][0];
+	preg_match_all($preg['created_time'], $main_content, $created_time_matches);
+	$data['created_time'] = $created_time_matches[1][0];
+	preg_match_all($preg['author'], $main_content, $author_matches);
+	if(empty($author_matches[2][0])){
+		preg_match_all($preg['author1'], $main_content, $author_matches);
+	}
+	$data['author'] = $author_matches[2][0];
+	preg_match_all($preg['content'], $main_content, $content_matches);
+	$data['content'] = $content_matches[2][0];
 
-$news_exp = array(
-    'title'                  => '/<h1\s+id="artibodyTitle">(.*)<\/h1>/Uims',
-    'summary'                => ' ',
-    'author'                 => '/<a\s+class="ent1\s+fred"\s+href="(.*)"\s+target="_blank"\s+data-sudaclick="media_name">(.*)<\/a>/Uims',
-    'pic'                    => '',
-    'content'                => "/<!--\s+publish_helper(.*)\s+-->(.*)<!--\s+publish_helper_end\s+-->/Uims",
-    'created_time'           => '/<span\s+id="pub_date">(.*)<\/span>/Uims'
-);
+	foreach($data as $key => $value){
+		$data[$key] = iconv('gbk', 'utf-8', $data[$key]);
+	}
 
-try{
-    $curl = MultiConnection::getInstance($cache);
-    $filearr = $curl->getCache($url, true);
-    if(is_array($filearr)){
-        foreach($filearr as $file){
-            $content = file_get_contents($file);
-            $matches = $curl->preg($regexp['more'], $content);
-        }
-    }
-    $more_urls = $curl->getCache($matches[2], true);
-    $hrefs = array();
-    if(is_array($more_urls)){
-        foreach($more_urls as $more_url){
-            $content = file_get_contents($more_url);
-            $matches = $curl->preg($regexp['thref'], $content);
-            $_matches = $curl->preg($regexp['href'], $matches[1][0]);
-            foreach($_matches[1] as $match){
-                $hrefs[] = $match;
-            }
-        }
-    }
-    // 因为所有的连接太多, 不可能拉出count(hrefs)的线程去远程采集
-    $chunk_hrefs = array_chunk($hrefs, 20, true);
-    $content = array();
-    foreach($chunk_hrefs as $chunk){
-        $content = $curl->curlmulti($chunk, false);
-        foreach($content as $c){
-            $titles = $curl->preg($news_exp['title'], $c);
-            $title = $curl->striconv($titles[1][0]);
-            $created_times = $curl->preg($news_exp['created_time'], $c);
-            $created_time = $curl->striconv($created_times[1][0]);
-            $created_time =  preg_replace_callback(
-                '/(\d+)[^\d]*(\d+)[^\d]*(\d+)[^\d]*(.*)/', 
-                function($matches)use($created_time){
-                    return sprintf("%s-%s-%s %s", $matches[1], $matches[2], $matches[3], $matches[4]);
-                },
-                $created_time
-            );
-            $authors = $curl->preg($news_exp['author'], $c);
-            $resource = $author = $curl->striconv($authors[2][0]);
-            $texts = $curl->preg($news_exp['content'], $c);
-            $text = $curl->striconv($texts[2][0]);
-            $array = array(
-                'title' => $title,
-                'author' => $author,
-                'resource' => $resource,
-                'content' => $text,
-                'created_time' => $created_time
-            );
-            $db_results = $db->write('news', $array, false, false);
-            //echo $db_results;die;
-            if(!$db_results) exit(mysql_error());
-        }
-    }
-}catch(Exception $e){
-    echo $e->getMessage();
+	$record = $db->readOne('news', array('title' => $data['title']), 'id');
+	if(!$record && !empty($data['title']) && !empty($data['content']) && !empty($data['author'])){
+		$result = $db->write('news', $data);
+		$errors = $db->getError();
+		if(!empty($errors)) fput('./cache/error.log', $errors['error']);
+	}
+	fput($filename, '');
 }
 ?>
