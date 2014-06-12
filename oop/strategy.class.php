@@ -1,54 +1,92 @@
 <?php
-// OOP策略模式
-// 接口类
-interface Strategy{
-	public function filter($record);
+/**
+ * @author zhanglei <zhanglei19881228@sina.com>
+ * @date 2014-06-12 17:00
+ * @brief 策略设计模式, 将变化的动作分离出策略类, 由主题选择何种策略
+ */
+interface ModelInterface{
+    public function getLists();
 }
 
-// 策略倒序
-class Desc implements Strategy{
-	
-	public function filter($array){
-		rsort($array);
-		return $array;
-	}
-
+class Category implements ModelInterface{
+    
+    public function getLists(){
+        echo "category lists<br />";
+    }
+    
 }
 
-// 策略正序
-class Asc implements Strategy{
-
-	public function filter($array){
-		sort($array);
-		return $array;
-	}
+class News implements ModelInterface{
+    
+    public function getLists(){
+        echo "news lists<br />";
+    }
+    
 }
 
-// 用户类
-class Users{
-
-	private $array = array();
-
-	public function __construct($array){
-		if(!is_array($array)) throw new Exception('User Class params should be array');
-		foreach($array as $value){
-			$this->array[] = intval($value);
-		}
-	}
-
-	public function sort($obj){
-		if(is_array($this->array)) return $obj->filter($this->array);
-	}
-
+class Strategy{
+    
+    public function getLists($model){
+        return $model->getLists();
+    }
+    
 }
 
-$users = new Users(array(4, 7, 1, 60, 58, 40, 34));
-$asc = $users->sort(new Asc());
-$desc = $users->sort(new Desc());
+$strategy = new Strategy;
+$strategy->getLists(new Category);
+$strategy->getLists(new News);
 
+
+/* sort strategy parrern */
+interface SortInterface{
+    
+    public function sort(&$array);
+    
+}
+
+class Asc implements SortInterface{
+    
+    public function sort(&$array){
+        sort($array);
+    }
+    
+}
+
+class Desc implements SortInterface{
+    
+    public function sort(&$array){
+        return rsort($array);
+    }
+    
+}
+
+class StrategySort{
+    
+    private $array = array();
+    
+    public function __construct($array){
+        if(empty($array) || !is_array($array)){
+            throw new Exception('the params should be array');
+        }
+        $this->array = $array;
+    }
+    
+    public function sort($object){
+        $object->sort($this->array);
+        return $this->getArray();
+    }
+    
+    public function getArray(){
+        return $this->array;
+    }
+    
+}
+
+$array = array(8, 15, 69, 698, 65, 5, 32, 67, 12);
+$strategy_sort = new StrategySort($array);
+$asc = $strategy_sort->sort(new Asc);
 print_r($asc);
-
-echo "\r\n";
-
+echo "<br />";
+$desc = $strategy_sort->sort(new Desc);
 print_r($desc);
 ?>
