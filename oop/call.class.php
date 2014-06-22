@@ -5,7 +5,7 @@ class Call{
 	private $address = "london";
 
 	public function __construct(){
-
+		// do nothing
 	}
 
 	public function __call($name, $arguments){
