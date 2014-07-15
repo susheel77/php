@@ -1,5 +1,10 @@
 <?php
-if(file_exists("./redis.class.php")) include_once("./redis.class.php");
+error_reporting(E_ALL);
+if(file_exists("./redis.class.php")){
+	include_once("./redis.class.php");
+}else{
+	die('error');
+}
 
 // 配置选项, 主机， 端口, redis的数据库
 $conf = array(
@@ -11,5 +16,6 @@ $conf = array(
 
 $redis = Redis::getInstance($conf);
 $flag = "register";
-$name = $redis->set('name', 'zhanglei', 3600);
+$name = $redis->set('nameaaaa', 'zhangleiaaaaa', 3600);
+print_r($redis->get('nameaaaa'));
 ?>

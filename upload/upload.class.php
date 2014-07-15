@@ -44,7 +44,14 @@ class Upload{
         if(empty($_FILES[$input]['name'])){
             return $this->handleFileError('附件', 9);
         }
-        array($_FILES[$input]['name']);
+        if(!is_array($_FILES[$input]['name'])){
+            $_FILES[$input]['name'] = array($_FILES[$input]['name']);
+            $_FILES[$input]['type'] = array($_FILES[$input]['type']);
+            $_FILES[$input]['tmp_name'] = array($_FILES[$input]['tmp_name']);
+            $_FILES[$input]['error'] = array($_FILES[$input]['error']);
+            $_FILES[$input]['size'] = array($_FILES[$input]['size']);
+        }
+
         foreach($_FILES[$input]['name'] as $key => $name){
             $file_data = pathinfo($name);
             $basename = $file_data['filename'];
@@ -69,6 +76,9 @@ class Upload{
             }else{
                 return $this->handleFileError($key + 1, $_FILES[$input]['error'][$key]);
             }
+        }
+        if(count($suc) == 1){
+            $suc = $suc[1];
         }
         return !empty($suc) ? $suc : array();
     }
@@ -183,10 +193,14 @@ class Upload{
     
     // 得到图片信息
     private function getImageInfo($image){
-        if(!file_exists($image)) throw new Exception('图片不存在');
+        if(!file_exists($image)){
+            throw new Exception('图片不存在');
+        }
         $pathinfo = pathinfo($image);
         $extension = $pathinfo['extension'];
-        if(!in_array($extension, $this->imagetype)) throw new Exception('图片类型错误');
+        if(!in_array($extension, $this->imagetype)){
+            throw new Exception('图片类型错误');
+        }
         $arr = getimagesize($image);
         $imageinfo['width'] = $arr[0];
         $imageinfo['height'] = $arr[1];
@@ -220,7 +234,6 @@ class Upload{
                 $path = $this->markFolder . $date;
                 break;
             default:
-                return false;
                 break;
         }
         return $this->makedir($path);
@@ -228,11 +241,17 @@ class Upload{
     
     // 得到画布填充颜色的rgb值
     private function getColor(array $color){
-        if(!is_array($color)) throw new Exception('画布填充颜色的类型错误');
+        if(!is_array($color)){
+            throw new Exception('画布填充颜色的类型错误');
+        }
         $return = array();
         foreach($color as $_c){
-            if(is_numeric($_c)) $return[] = $_c;
-            if(count($return) >= 3) return $return;
+            if(is_numeric($_c)){
+                $return[] = $_c;
+            }
+            if(count($return) >= 3){
+                return $return;
+            }
         }
         $count = count($return);
         for($i=0; $i<3-$count; $i++){
@@ -243,7 +262,9 @@ class Upload{
 
     // 文件夹不存在, 则建立
     private function makedir($folder){
-        if(!file_exists($folder)) mkdir($folder, 0777, true);
+        if(!file_exists($folder)){
+            mkdir($folder, 0777, true);
+        }
         return $folder;
     }
 
@@ -256,4 +277,3 @@ class Upload{
     }
 
 }
-?>

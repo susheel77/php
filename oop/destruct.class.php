@@ -12,12 +12,12 @@ class Destruct{
 	}
 
 	public function __destruct(){
-		echo "unset" . $this->name . "\r\n";
+		echo "unset " . $this->name . "\r\n";
 	}
 
 }
 
-$d1 = new Destruct('张磊');
+$d1 = new Destruct('zhanglei');
 $d2 = new Destruct("adele");
 echo $d1->say();
 echo $d2->say();
