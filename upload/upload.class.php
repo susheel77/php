@@ -254,7 +254,7 @@ class Upload{
             }
         }
         $count = count($return);
-        for($i=0; $i<3-$count; $i++){
+        for($i = 0; $i < 3 - $count; $i++){
             array_push($return, 255);
         }
         return $return;
