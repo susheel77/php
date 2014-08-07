@@ -3,14 +3,14 @@
  * @author zhanglei <zhanglei19881228@sina.com>
  * @todo mongodb class
  */
-class Db{
+class MongoHelper{
 
 	private static $class = null;
 	
 	private $conf = array(
 		'host' => 'localhost',
-		'user' => 'zhanglei',
-		'pass' => 'zhanglei',
+		'user' => 'mongodb',
+		'pass' => 'mongodb',
 		'name' => 'test',
 		'port' => 27017
 	);
@@ -19,7 +19,7 @@ class Db{
 
 	private function __construct(){
 		$params = sprintf("mongodb://%s:%s@%s:%u", $this->conf['user'], $this->conf['pass'], $this->conf['host'], $this->conf['port']);
-		$connection = new Mongo($params);
+		$connection = new MongoClient($params);
 		$this->connection = $connection->selectDB($this->conf['name']);
 	}
 
@@ -29,7 +29,7 @@ class Db{
 
 	public static function getInstance(){
 		if(self::$class === null){
-			self::$class = new Db();
+			self::$class = new MongoHelper();
 		}
 		return self::$class;
 	}

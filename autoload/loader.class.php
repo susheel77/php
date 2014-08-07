@@ -7,7 +7,7 @@
 class Loader{
     
     private static $_classDir = array();
-    private static $_folder = "..";
+    private static $_folder = "E:/webdev/www/github/php";
     
     private static function getFolders(){
         $handle = opendir(self::$_folder);

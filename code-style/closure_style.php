@@ -65,6 +65,6 @@ $phone_arr = array(
 $phone_arr_new = preg_replace_callback('/(\d{4})(\d{4})(\d{3})/', function($matches)use($phone_arr){
     return sprintf("%s****%s", $matches[1], $matches[3]);
 }, $phone_arr);
-print_r($phone_arr_new);
+printr($phone_arr_new);
 
 
