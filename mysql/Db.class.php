@@ -46,7 +46,7 @@ class Db{
     
     // 连接数据库
     private function connect(){
-        $this->mysqli = mysqli_connect($this->dbconf['host'], $this->dbconf['user'], $this->dbconf['pass'], $this->dbconf['name']);
+        $this->mysqli = new mysqli($this->dbconf['host'], $this->dbconf['user'], $this->dbconf['pass'], $this->dbconf['name']);
         if(mysqli_connect_errno()){
             $this->setDebug();
             $this->halt(mysqli_connect_error());
