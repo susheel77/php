@@ -1,7 +1,10 @@
 <?php
 error_reporting(E_ALL);
-if(file_exists("../autoload/loader.class.php")){
-	include_once("../autoload/loader.class.php");
+set_time_limit(36000);
+
+
+if(file_exists(dirname(dirname(__FILE__)) . "/autoload/loader.class.php")){
+	include_once(dirname(dirname(__FILE__)) . "/autoload/loader.class.php");
 }else{
 	throw new Exception('autoload class is not exists');
 }
