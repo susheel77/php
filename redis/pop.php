@@ -4,7 +4,7 @@ if(file_exists(dirname(__FILE__) . '/inc.php')){
 }else{
 	throw new Exception('inc php is not exists');
 }
-set_time_limit(3600);
+set_time_limit(86400);
 /*
     create table users(
         uid int unsigned not null auto_increment comment '自增长ID',
