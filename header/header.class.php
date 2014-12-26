@@ -184,8 +184,8 @@ class ResponseHeader{
     }
     
     // 设置响应信息的编码
-    public function setHeaderCharset($character = 'utf-8', $type = 'text/html'){
-        $charset = sprintf("Content-type: %s; charset=%s", $character, $type);
+    public function setHeaderCharset($character = 'utf-8', $type = 'html'){
+        $charset = sprintf("Content-type: %s; charset=%s", isset(self::$types[$type]) ? self::$types[$type] : self::$types['html'], $character);
         header($charset);
     }
     
@@ -244,7 +244,7 @@ class ResponseHeader{
 		// 需要缓存到什么时间
 		$cache_time = $current_time + $time;
 		$cache_date = gmdate('r', $cache_time);
-		
+
         $http_if_modified_since = !empty($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false;
 
         if(!empty($http_if_modified_since)){

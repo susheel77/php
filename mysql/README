@@ -1,0 +1,30 @@
+# a unique index must include all columns in the table's partition function
+# 所有需要分区的数据表, 只要有唯一索引, 包括主键, 都必须存在在分区的条件中 see partition by 
+
+
+# create partition table, the rule is mod(id, 10)
+
+create table think_logs(
+	id int unsigned not null auto_increment comment '日志自增ID',
+	message text not null comment '日志内容',
+	created_time timestamp not null default current_timestamp comment '日志创建时间',
+	primary key (id),
+	key(created_time)
+)engine = innodb default charset utf8 comment '日志表'
+partition by hash(id) partitions 10(
+	partition p0,
+	partition p1,
+	partition p2,
+	partition p3,
+	partition p4,
+	partition p5,
+	partition p6,
+	partition p7,
+	partition p8,
+	partition p9
+);
+
+
+# create a procedure to insert data to the table
+
+create procedure 

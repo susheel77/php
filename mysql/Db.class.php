@@ -56,7 +56,7 @@ class Db{
     
     // 设置字符集
     private function setCharset(){
-        $this->mysqli->set_charset($this->dbconf['char']);
+        $this->excute("set names " . $this->dbconf['char']);
     }
     
     // 设置debug
