@@ -27,4 +27,28 @@ partition by hash(id) partitions 10(
 
 # create a procedure to insert data to the table
 
-create procedure 
+drop procedure log_data;
+
+delimiter //
+
+create procedure log_data(in params_message text)
+begin
+    declare num int default 5000000;
+    declare log_message text;
+
+    truncate table think_logs;
+
+    while num > 0 do
+        set log_message = concat(params_message , ' ' , num, ' ', params_message);
+        insert into think_logs set message = log_message;
+        set num = num - 1;
+    end while;
+end
+//
+
+delimiter ;
+
+call log_data('think');
+
+
+# then mysql partition is completed
