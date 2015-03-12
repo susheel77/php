@@ -214,7 +214,7 @@ class ResponseHeader{
         }
         $header_content_type = self::$types[$extension];
         header("Content-type: $header_content_type");
-        header("Content-Disposion: attachment; filename='" . $filename . "'");
+        header("Content-Disposition: attachment; filename=" . $filename);
         readfile($path);
     }
     
