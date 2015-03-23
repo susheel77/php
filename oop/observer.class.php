@@ -1,60 +1,80 @@
 <?php
 /**
  * @author zhanglei <zhanglei19881228@sina.com>
- * @date 2014-06-12 16:00
- * @brief 观察者模式, 先将注册观察者, 状态发生改变后, 由主题通知众多的观察者
+ * @date 2015-03-23 10:25
+ * @brief 观察者模式, 被观察者中注册观察者, 当被观察者出现变化, 告诉观察者
  */
-interface ObserverInterface{
-   
-    public function addObserver($observer);
-    
-    public function notity($message);
-}
 
-class Observer implements ObserverInterface{
-    
-    private $_observer = array();
+// 被观察者抽象类
+abstract class Observed{
     
     // 注册观察者
-    public function addObserver($observer){
-        $this->_observer[] = $observer;
+    abstract public function register($object);
+    
+    // 通知观察者
+    abstract public function notice();
+    
+}
+
+// 观察者抽象类
+abstract class Observer{
+    
+    abstract public function logger($object);
+    
+}
+
+// 被观察者
+class Linux extends Observed{
+    
+    private $_observers = array();
+    private $_message   = null;
+    
+    //  注册观察者
+    public function register($observer){
+        $this->_observers[] = $observer;
     }
     
-    // 主题状态发生改变, 通知已经注册的观察者
-    public function notity($message){
-        if(isset($this->_observer) && !empty($this->_observer) && is_array($this->_observer)){
-            foreach($this->_observer as $observer){
-                $observer->logger($message);
+    // 通知观察者
+    public function notice(){
+        if(!empty($this->_observers)){
+            foreach($this->_observers as $observer){
+                $observer->logger($this);
             }
         }
     }
     
-}
-
-interface Web{
+    // 被观察者发生变化
+    public function shutdown(){
+        $this->_message = 'linux will be shutdown';
+    }
     
-    public function logger($message);
-    
-}
-
-class Apache implements Web{
-
-    public function logger($message){
-        echo get_class() . ": " . $message . "<br />";
+    public function getMessage(){
+        return $this->_message;
     }
 }
 
-class Nginx implements Web{
+// 观察者
+class Nginx extends Observer{
     
-    public function logger($message){
-        echo get_class() . ": " . $message . "<br />";
+    public function logger($observed){
+        echo sprintf("Nginx will not be used, cause %s <br />", $observed->getMessage());
     }
     
 }
 
-/* 以下测试 */
-$observer = new Observer;
-$observer->addObserver(new Apache);
-$observer->addObserver(new Nginx);
-$observer->notity('design pattern');
-?>
+// 观察者
+class Apache extends Observer{
+    
+    public function logger($observed){
+        echo sprintf("Apache will not be used, cause %s <br />", $observed->getMessage());
+    }
+    
+}
+
+$linux = new Linux();
+
+$linux->register(new Nginx);
+$linux->register(new Apache);
+
+$linux->shutdown();
+$linux->notice();
