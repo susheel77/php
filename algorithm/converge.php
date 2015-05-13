@@ -62,6 +62,7 @@ function convergelog($apache_line_number = 0, $nginx_line_number = 0, $nginx_sta
             break;
         }
     }
+
     $apache_line_number = $apache_line_number + 1;
 
     writelog($converge_log, $strings . $apache_line);
