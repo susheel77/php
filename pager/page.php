@@ -1,5 +1,5 @@
 <style>
-#page{font:12px/16px arial}
+#page{font:12px/16px arial;}
 #page span{float:left;margin:0px 3px;}
 #page a{float:left;margin:0 3px;border:1px solid #ddd;padding:3px 7px; text-decoration:none;color:#666}
 #page a.now_page,#page a:hover{color:#fff;background:#05c}

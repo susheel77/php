@@ -9,13 +9,16 @@ class Loader{
     private static $_classDir = array();
     private static $_folder = "D:/webdev/www/php";
     
-    private static function getFolders(){
-        $handle = opendir(self::$_folder);
+    private static function getFolders($dir = ''){
+		$folder = empty($dir) ? self::$_folder : $dir;
+
+        $handle = empty($dir) ? opendir($folder) : opendir($dir);
         while(false !== ($file = readdir($handle))){
             if($file != '.' && $file != '..'){
-                $dir = self::$_folder . DIRECTORY_SEPARATOR . $file;
+                $dir = $folder . DIRECTORY_SEPARATOR . $file;
                 if(is_dir($dir)){
                     self::$_classDir[] = $dir;
+					self::getFolders($dir);
                 }
             }
         }
