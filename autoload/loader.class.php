@@ -10,7 +10,7 @@ class Loader{
     private static $_folder = "D:/webdev/www/php";
     
     private static function getFolders($dir = ''){
-		$folder = empty($dir) ? self::$_folder : $dir;
+        $folder = empty($dir) ? self::$_folder : $dir;
 
         $handle = empty($dir) ? opendir($folder) : opendir($dir);
         while(false !== ($file = readdir($handle))){
