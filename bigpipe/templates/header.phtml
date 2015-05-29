@@ -1,78 +1,20 @@
-<div class="row">
-	<div class="columns large-12">
-		<div class="row header-inner">
-			<div class="columns large-4 small-12"> <a href="index.html"><img src="../images/logo.png" alt="" class="logo"></a> </div>
-			<div class="columns large-8">
-				<nav>
-					<section>
-						<ul class="sf-menu large-12">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="about.html">About us</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li class="has-dropdown"><a href="services.html">Services</a>
-								<ul class="dropdown">
-									<li class="has-dropdown"><a href="#">Dropdown Level 1a</a>
-										<ul class="dropdown">
-											<li><a href="#">Dropdown Level 2a</a></li>
-											<li><a href="#">Dropdown Level 2b</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Dropdown Level 1b</a></li>
-									<li><a href="#">Dropdown Level 1c</a></li>
-									<li><a href="#">Dropdown Level 1d</a></li>
-									<li><a href="#">See all &rarr;</a></li>
-								</ul>
-							</li>
-							<li><a href="contact.html">Contact Us</a></li>
-						</ul>
-					</section>
-				</nav>
-			</div>
-		</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li><a href="http://www.865171.cn/" class="first">Home</a></li>
+			<li class="current_page_item"><a href="http://www.865171.cn/">Blog</a></li>
+			<li><a href="http://www.865171.cn/">About</a></li>
+			<li><a href="http://www.865171.cn/">Contact</a></li>
+		</ul>
 	</div>
-</div>
-
-<div class="row">
-	<div class="columns large-12 small-top-menu">
-		<div class="row">
-			<div class="columns large-12 plr0 top-nav">
-				<form name="dropdown" class="dropdown" action="#">
-					<nav>
-						<section>
-							<select name="selected" id="target" accesskey="E" onChange="goToNewPage(document.dropdown.selected)">
-								<option value="index.html">home</option>
-								<option value="about.html">about us</option>
-								<option value="blog.html">blog</option>
-								<option value="gallery.html">gallery</option>
-								<option value="services.html">services</option>
-								<option value="contact.html">contact us</option>
-							</select>
-						</section>
-					</nav>
-				</form>
-			</div>
-		</div>
+	<!-- end #menu -->
+	<div id="search">
+		<form method="get" action="">
+			<fieldset>
+				<input type="text" name="s" id="search-text" size="15" />
+				<input type="submit" id="search-submit" value="GO" />
+			</fieldset>
+		</form>
 	</div>
-</div>
-
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" title="网站模板">网站模板</a></div>
-
-<div class="slider">
-	<div class="row">
-		<div class="columns large-12">
-			<div class="row flexslider-row">
-				<div class="columns large-12">
-					<div class="flexslider">
-						<ul class="slides">
-							<li> <img src="../images/slide1.jpg" alt=""> </li>
-							<li> <img src="../images/slide2.jpg" alt=""> </li>
-							<li> <img src="../images/slide1.jpg" alt=""> </li>
-							<li> <img src="../images/slide2.jpg" alt=""> </li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- end #search -->
 </div>

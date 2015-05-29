@@ -12,7 +12,12 @@ if (!file_exists('../autoload/loader.class.php'))
 include_once('../autoload/loader.class.php');
 spl_autoload_register(array('Loader', 'loadClass'));
 
+// 实例化渲染类
 $render		= new Render();
+
+// 实例化大骨架类 
 $pagelet	= new pageletSkeleton();
+
+// 渲染
 $render->renderPage($pagelet);
 

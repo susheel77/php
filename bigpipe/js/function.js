@@ -1,25 +1,5 @@
-Modernizr.load({
-    test: Modernizr.placeholder,
-    nope: 'js/placeholder.min.js'
-});
-function goToNewPage() {
-    if (document.getElementById('target').value) {
-        window.location.href = document.getElementById('target').value;
-    }
+function viewer(data){
+	var domid	= data.domid;
+	var html	= data.html;
+	$('#'+domid).html(html);
 }
-
-$(document).ready(function () {
-    $('ul.sf-menu').superfish({
-        animation: {
-            height: 'show'
-        },
-        delay: 400
-    });
-    $("img.scrollToTop").click(function () {
-        $("html, body").animate({
-            scrollTop: 0
-        }, "slow");
-    });
-    $('.flexslider').flexslider();
-    $('.flexcar').flexslider();
-});

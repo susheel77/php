@@ -10,6 +10,8 @@
  */
 abstract class Pagelet
 {
+    const       PREFIX      = 'pagelet';
+
     // 配置文件内容, 只第一次加载
     private     $_configs   = array();
     
@@ -25,15 +27,17 @@ abstract class Pagelet
     // 骨架下所有的pagelets
     private     $_children  = array();
     
-    // 每个pagelet(包括骨架)所需要准备的数据
+    // see $this->setValue() $this->getValue()
     private     $_data      = array();
 
     /**
      * 负责加载配置文件
+     * 同时将pagelet加载到$this->_children中去
      */
     public function __construct()
     {
         $this->_configure();
+        $this->createChildren();
     }
     
     /**
@@ -45,20 +49,64 @@ abstract class Pagelet
         {
             $configs = include_once(CONFIG . DS . 'config.php');
             // 如果是骨架, 并且在配置中存在, 则将配置文件有关$this->name的信息记录到$this->_configs中
-            if ($this->getSkeleton() && isset($configs[$this->name]))
+            if ($this->getSkeleton())
             {
-                $this->configs = $configs[$this->name];
+                $this->_configs = $configs;
             }
             else
             {
-                $this->configs = array();
+                $this->_configs = array();
             }
         }
     }
     
-    public function getPagelet()
+    /**
+     * 返回模板文件路径
+     * @return type
+     */
+    public function getTemplate()
     {
+        return $this->tpl;
+    }
+    
+    /**
+     * 将所有的pagelet放在$this->_children中去
+     * @return type
+     */
+    public function createChildren()
+    {
+        if (!$this->getSkeleton())
+        {
+            return array();
+        }
         
+        if ($this->name && !empty($this->_configs))
+        {
+            $this->_children = isset($this->_configs[$this->name]) ? $this->_configs[$this->name] : array();
+        }
+    }
+    
+    /**
+     * 返回所有的pagelet
+     * @return type array()
+     */
+    public function getChildren()
+    {
+        return $this->_children;
+    }
+    
+    /**
+     * 通过名称, 得到pagelet类的实例化
+     * @param type $name
+     */
+    public function getPagelet($name)
+    {
+        $classname = self::PREFIX . ucwords(strtolower($name));
+        if (!class_exists($classname))
+        {
+            throw new Exception(sprintf("%s类不存在", $classname));
+        }
+        return new $classname;
     }
     
     /**
@@ -70,7 +118,18 @@ abstract class Pagelet
         return $this->skeleton;
     }
     
-    public function prepareData();
+    // 准备输出的数据
+    abstract public function prepareData();
     
+    
+    public function setValue($name, $value)
+    {
+        $this->_data[$name] = $value;
+    }
+    
+    public function getValue($name)
+    {
+        return isset($this->_data[$name]) ? $this->_data[$name] : '';
+    }
     
 }
