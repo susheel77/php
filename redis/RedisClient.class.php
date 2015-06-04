@@ -15,17 +15,19 @@ class RedisClient{
         if($this->checkConf($conf)){
             throw new Exception('redis conf is error');
         }
-		if($this->connection === null){
-			$this->connection = new redis();
-			$this->connection->connect($conf['host'], $conf['port']);
-            
+        
+        if($this->connection === null){
+            $this->connection = new redis();
+            $this->connection->connect($conf['host'], $conf['port']);
+
             if(isset($conf['password']) && !empty($conf['password'])){
                 $this->connection->auth($conf['password']);
             }
+            
             if(isset($conf['dbname']) && is_int($conf['dbname'])){
                 $this->selectDB($conf['dbname']);
             }
-		}
+        }
     }
     
     // 检查传入的conf是否正确
@@ -139,10 +141,10 @@ class RedisClient{
         return $this->connection->lindex($this->keyprefix . $key, $index);
     }
 
-	// 清空所有过期的key
-	public function persist(){
-		return $this->connection->persist();
-	}
+    // 清空所有过期的key
+    public function persist(){
+        return $this->connection->persist();
+    }
     
     // 得到符合正则表达式的所有key
     public function keys($regexp){
