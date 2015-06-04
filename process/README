@@ -8,4 +8,104 @@ pcntl_fork() 执行一次, 返回两次
 
 至于demo里面变量$exit的值, 在于研究子进程执行完之后, 退不退出的不同. 如果退出, 则子进程不再去执行for循环, 如果不退出, 子进程需要执行for循环
 
-输出结果如下:
+
+以下对结果进行简单分析, 为了在README里面看清晰, 暂时把代码放到README中去
+
+function demo($exit = false)
+{
+    global $max, $format;
+    for ($i = 0; $i < $max; $i++)
+    {
+        // fork子进程, 返回值阅读readme
+        $s_pid  = pcntl_fork();
+
+        // 当前进程的父进程ID
+        $ppid   = posix_getppid();
+
+        // 当前进程的ID
+        $pid    = getmypid();
+
+        if ($s_pid < 0) 
+        {
+            // fork子进程出错
+            die('fork error');
+        }
+        elseif ($s_pid)
+        {
+            // 当前进程执行段
+            echo sprintf($format, 'parent', $i, $ppid, $pid, $s_pid) . PHP_EOL;
+        }
+        else
+        {
+            // fork后的子进程执行段
+            echo sprintf($format, 'son', $i, $ppid, $pid, $s_pid) . PHP_EOL;
+
+            // 子进程执行完是否退出
+            if ($exit) 
+            {
+                exit;
+            }
+        }
+    }
+    return ;
+}
+在linux下执行php demo.php, 结果如下 (切忌windows不支持posix和pcntl函数)
+
+
+
+子进程退出时, 输出结果如下:
+type	i	ppid	pid	return
+parent	0	17515	1078	1079
+parent	1	17515	1078	1080
+son		1	1078	1080	0
+son		0	1078	1079	0
+
+第一步: 
+	父进程第一次循环, 便fork了一个子进程, 此时当前进程就变成了父进程
+	前面说过fork的返回值有两个, 父进程返回的是子进程的ID, 子进程返回的是0 看下父进程的输出结果
+		第一次循环
+		父进程: type = parent, i = 0, ppid = 17515(父进程), pid = 1078(当前的ID) return = 1079(第一次fork的子进程ID)	此进程为P1078进程
+		子进程: type = son, i = 0, ppid = 1078(fork自己的父进程ID), pid = 1079, return = 0								次进程为P1079进程
+
+第二步:
+	父进程第二次循环, 又fork一个子进程
+		第二次循环
+		父进程: type = parent, i = 1, ppid = 17515, pid = 1078, return = 1080(第二次fork的子进程ID)						此进程为P1078进程
+		子进程: type = son, i = 1, ppid = 1078, pid = 1080, return = 0													此进程为P1080进程
+
+没有进一步, 因为子进程执行完之后就退出了
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+子进程不退出时, 输出结果如下:
+type	i	ppid	pid	return
+parent	0	17515	1026	1027
+parent	1	17515	1026	1028
+son		0	1026	1027	0
+parent	1	1026	1027	1029
+son		1	1026	1028	0
+son		1	1027	1029	0
+
+第一步:
+	P1026进程第一次循环
+	1. 父进程 type = parent, i = 0, ppid = 17515, pid = 1026, return = 1027(被父进程fork出来子进程的ID)			此进程为P1026进程
+	3. 子进程 type = son, i = 0, ppid = 1026(我是被楼上fork出来滴), pid = 1027, return = 0	(未完待续)			此进程为P1027进程
+
+第二步
+	P1026进程第二次循环, 此时 i = 1
+	2. 父进程 type = parent, i = 1, ppid = 17515, pid = 1026, return = 1028(P1026循环中第二次fork出来子进程ID)	此进程为P1026进程
+	5. 子进程 type = son, i = 1, ppid = 1026(我也是被楼上fork出来滴), pid = 1028, return = 0 (结束, 下面解释)	此进程为P1028进程
+
+第三步
+	P1026父进程循环两遍后结束了, 但被它fork出来的子进程还未结束, 子进程在fork的那一步之后与父进程执行同样的代码
+	子进程P1027(还记得我吧, 我在上面, 我的i = 0, 上面还写着呢, 未完待续, 结果我就来了)
+	P1027循环第一次, 此时i = 1, P1027进程也会执行pcntl_fork, 那么此时P1027就是父进程啦
+	4. 父进程 type = parent, i = 1, ppid = 1026, pid = 1027, return = 1029(我也fork了一个子进程, 1028被占用啦)	此进程为P1027进程
+	6. 子进程 type = son, i = 1, ppid = 1027(我被楼上fork出来的), pid = 1029, return = 0 (结束, 下面解释)		此进程为P1029进程
+
+解释:
+	至于P1028和P1029进程结束的原因, 在此解释, 因为当这两个进程被fork出来之后, i = 1, 执行if else的语句后, 就不在循环了, 故结束了
+
+
