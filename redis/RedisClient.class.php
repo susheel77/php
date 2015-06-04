@@ -74,14 +74,14 @@ class RedisClient{
         return false;
     }
     
-    // 得到key的生存时间
+	// 得到key的生存时间
 	public function ttl($key){
 		if($this->connection->exists($this->keyprefix . $key)){
-            return $this->connection->ttl($this->keyprefix . $key);
-        }
+			return $this->connection->ttl($this->keyprefix . $key);
+		}
 	}
-    
-    // 给多个key赋值
+
+	// 给多个key赋值
 	public function mset($data){
 		return $this->connection->mset($data);
 	}
@@ -204,5 +204,3 @@ class RedisClient{
     }
     
 }
-
-?>

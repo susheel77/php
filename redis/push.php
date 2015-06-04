@@ -17,4 +17,3 @@ for($i = 0; $i < $num; $i++){
 }
 
 echo json_encode(array('status' => 1));die;
-?>
