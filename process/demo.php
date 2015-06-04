@@ -1,6 +1,6 @@
 <?php
 // 最大进程数
-$max = 3;
+$max = 2;
 
 // 输出的header头
 echo "type\ti\tppid\tpid\treturn" . PHP_EOL;
@@ -31,13 +31,17 @@ function demo($exit = false)
         {
             // 当前进程执行段
             echo sprintf($format, 'parent', $i, $ppid, $pid, $s_pid) . PHP_EOL;
-            echo $exit ? 'exit' : '';
         }
         else
         {
             // fork后的子进程执行段
             echo sprintf($format, 'son', $i, $ppid, $pid, $s_pid) . PHP_EOL;
-            echo $exit ? 'exit' : '';
+
+            // 子进程执行完是否退出
+            if ($exit) 
+            {
+                exit;
+            }
         }
     }
     return ;
@@ -46,7 +50,6 @@ function demo($exit = false)
 // fork的子进程不退出
 demo();
 
-echo '华丽的分割线 ------------------------- 华丽的分割线';
 
 // fork的子进程执行完退出
 demo(true);
