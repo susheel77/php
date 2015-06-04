@@ -11,6 +11,7 @@ $format = "%s\t%u\t%u\t%u\t%u";
 function demo($exit = false)
 {
     global $max, $format;
+    
     for ($i = 0; $i < $max; $i++)
     {
         // fork子进程, 返回值阅读readme
@@ -48,8 +49,7 @@ function demo($exit = false)
 }
 
 // fork的子进程不退出
-demo();
-
+//demo();
 
 // fork的子进程执行完退出
 demo(true);
