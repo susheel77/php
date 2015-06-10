@@ -1,11 +1,12 @@
 <?php
-if (file_exists('../autoload/loader.class.php'))
+$load_files = dirname(dirname(__FILE__)) . '/autoload/loader.class.php';
+if (file_exists($load_files))
 {
-    include_once('../autoload/loader.class.php');
+    include_once($load_files);
 }
 else
 {
-    throw new Exception('自动加载文件不存在', 100002);
+    throw new Exception('自动加载文件不存在');
 }
 
 spl_autoload_register(array('Loader', 'loadClass'));
