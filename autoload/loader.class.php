@@ -7,7 +7,7 @@
 class Loader{
     
     private static $_classDir = array();
-    private static $_folder = "D:/webdev/www/github";
+    private static $_folder = "";
     
     private static function getFolders($dir = ''){
         $folder = empty($dir) ? self::$_folder : $dir;
@@ -24,7 +24,14 @@ class Loader{
         }
     }
     
+    // 防止linux windows以及其他人的目录不一致, 用相对于__FILE__的路径设置self::$_folders
+    public static function setFolders()
+    {
+        self::$_folders = dirname(dirname(__FILE__));
+    }
+    
     public static function loadClass($classname){
+        self::setFolders();
         self::getFolders();
         if(is_array(self::$_classDir) && !empty(self::$_classDir)){
             foreach(self::$_classDir as $dir){
