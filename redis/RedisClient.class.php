@@ -6,35 +6,50 @@
 
 class RedisClient{
     
-    private static $class = null;       // 实例化对象
-    private $connection = null;         // redis连接对象
-    private $keyprefix = 'redis_';      // 存储key前缀
+    private static $class   = null;         // 实例化对象
+    private $connection     = null;         // redis连接对象
+    private $keyprefix      = 'redis_';     // 存储key前缀
+    private static $conf    = array();      // 配置信息
     
     // 构造函数
-    private function __construct($conf){
-        if($this->checkConf($conf)){
+    private function __construct(){
+        if(empty(self::$conf)){
+            $this->getConf();
+        }
+        if(!$this->checkConf()){
             throw new Exception('redis conf is error');
         }
         
         if($this->connection === null){
             $this->connection = new redis();
-            $this->connection->connect($conf['host'], $conf['port']);
+            $this->connection->connect(self::$conf['host'], self::$conf['port']);
 
-            if(isset($conf['password']) && !empty($conf['password'])){
-                $this->connection->auth($conf['password']);
+            if(!empty(self::$conf['pass'])){
+                $this->connection->auth(self::$conf['pass']);
             }
             
-            if(isset($conf['dbname']) && is_int($conf['dbname'])){
-                $this->selectDB($conf['dbname']);
+            if(isset(self::$conf['name'])){
+                $this->selectDB(self::$conf['name']);
             }
         }
     }
     
+    // 如果不传入conf配置信息, 则看./config/config.php
+    public function getConf(){
+        $config = dirname(__FILE__) . '/config.php';
+        if(!file_exists($config)){
+            throw new Exception('读取配置不存在');
+        }
+        include_once($config);
+        self::$conf = $conf;
+    }
+    
     // 检查传入的conf是否正确
-    private function checkConf($conf){
-        if(!$conf || !is_array($conf) || !isset($conf['host']) || !isset($conf['port'])){
+    private function checkConf(){
+        if(empty(self::$conf) || !is_array(self::$conf) || !isset(self::$conf['host']) || !isset(self::$conf['port'])){
             return false;
         }
+        return true;
     }
     
     // 选择数据库
@@ -196,9 +211,10 @@ class RedisClient{
     }
 
     // 实例化类
-    public static function getInstance($conf){
+    public static function getInstance($conf = array()){
         if(self::$class === null){
-            self::$class = new RedisClient($conf);
+            self::$conf = $conf;
+            self::$class = new RedisClient();
         }
         return self::$class;
     }

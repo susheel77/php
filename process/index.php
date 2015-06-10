@@ -13,8 +13,8 @@ spl_autoload_register(array('Loader', 'loadClass'));
 
 $conf = array(
     'class'     => 'RedisClient',
-    'method'    => 'exists',
-    'params'    => '111',
+    'method'    => 'set',
+    'params'    => array('key' => 'name', 'value' => 'zhanglei'),
     'counts'    => 3
 );
 

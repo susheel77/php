@@ -22,7 +22,8 @@ class Multidaemon
         'system'    => array('code' => 100002, 'msg' => '系统错误'),
         'params'    => array('code' => 100003, 'msg' => '参数错误'),
         'class'     => array('code' => 100004, 'msg' => '类不存在'),
-        'method'    => array('code' => 100005, 'msg' => '方法不存在')
+        'method'    => array('code' => 100005, 'msg' => '方法不存在'),
+        'fork'      => array('code' => 100006, 'msg' => 'fork方法出错')
     );
     
     // 实例化
@@ -30,6 +31,8 @@ class Multidaemon
     {
         $this->_conf = $conf;
         $this->_checkConf();
+        
+        // 执行fork过程
         $this->_execute();
     }
     
@@ -60,10 +63,16 @@ class Multidaemon
         throw new Exception($errors['msg'], $errors['code']);
     }
     
+    /**
+     * 执行
+     * @return boolean
+     */
     private function _execute()
     {
+        // 利用php反射机制, 调用$this->_conf传过来的方法
         $reflection_class   = new ReflectionClass($this->_conf['class']);
         
+        // 实例化传过来的类
         if ($reflection_class->hasMethod('getInstance'))
         {
             $_m = $reflection_class->getMethod('getInstance');
@@ -74,19 +83,38 @@ class Multidaemon
             $object = $reflection_class->newInstance($reflection_class);
         }
         
+        // 验证类文件以及方法是否存在
         if (!is_object($reflection_class))
         {
             $this->_throw_error('class');
         }
-        
-
         if (!$reflection_class->hasMethod($this->_conf['method']))
         {
             $this->_throw_error('method');
         }
         
-        $method = $reflection_class->getMethod($this->_conf['method']);
-        $method->invokeArgs($object , array('key' => 'a'));
+        // fork子进程处理数据
+        for ($i = 0; $i < $this->_conf['counts']; $i++)
+        {
+            $pid = pcntl_fork();
+            
+            if ($pid < 0)
+            {
+                $this->_throw_error('fork');
+            }
+            elseif ($pid == 0)
+            {
+                // 父进程 do nothing
+            }
+            else
+            {
+                // 子进程, 执行完子进程立刻exit, 参照readme
+                $method = $reflection_class->getMethod($this->_conf['method']);
+                $method->invokeArgs($object , $this->_conf['params']);
+                exit;
+            }
+        }
+        
         return true;
     }
     
