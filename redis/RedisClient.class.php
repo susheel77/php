@@ -22,7 +22,7 @@ class RedisClient{
         
         if($this->connection === null){
             $this->connection = new redis();
-            $this->connection->connect(self::$conf['host'], self::$conf['port']);
+            $this->connection->pconnect(self::$conf['host'], self::$conf['port']);
 
             if(!empty(self::$conf['pass'])){
                 $this->connection->auth(self::$conf['pass']);

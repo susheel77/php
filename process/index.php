@@ -16,7 +16,7 @@ class Push
     {
         $key = $multi ? $this->_multi_key : $this->_single_key;
         
-        $num = 500000;
+        $num = $multi ? 50000 : 500000;
         for($i = 0; $i < $num; $i++)
         {
            $data = sprintf($this->_url, $i);
@@ -39,30 +39,24 @@ else
 
 spl_autoload_register(array('Loader', 'loadClass'));
 
-$act = isset($_GET['act']) ? $_GET['act'] : false;
+$act = isset($argv[1]) ? $argv[1] : false;
 
 if($act == 'multi')
 {
-    try {
-        // 多进程执行
-        $multi_start_time = microtime('sec');
+    // 多进程执行
+    $multi_start_time = microtime('sec');
 
-        $multi_conf = array(
-            'class'     => 'Push',
-            'method'    => 'lpush',
-            'params'    => array('multi' => true),
-            'counts'    => 10
-        );
-        $daemon = Multidaemon::getInstance($conf);
-        $daemon->execute();
+    $multi_conf = array(
+        'class'     => 'Push',
+        'method'    => 'lpush',
+        'params'    => array('multi' => true),
+        'counts'    => 10
+    );
+    $daemon = Multidaemon::getInstance($multi_conf);
+    $daemon->execute();
 
-        $multi_end_time = microtime('sec');
-        echo $multi_end_time - $multi_start_time . PHP_EOL;
-
-        
-    } catch (Exception $e) {
-        echo $e->getCode() . "\t" . $e->getMessage();
-    }
+    $multi_end_time = microtime('sec');
+    echo $multi_end_time - $multi_start_time . PHP_EOL;
 }
 else
 {
