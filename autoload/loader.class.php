@@ -27,7 +27,7 @@ class Loader{
     // 防止linux windows以及其他人的目录不一致, 用相对于__FILE__的路径设置self::$_folders
     public static function setFolders()
     {
-        self::$_folders = dirname(dirname(__FILE__));
+        self::$_folder = dirname(dirname(__FILE__));
     }
     
     public static function loadClass($classname){
