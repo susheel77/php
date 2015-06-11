@@ -31,9 +31,6 @@ class Multidaemon
     {
         $this->_conf = $conf;
         $this->_checkConf();
-        
-        // 执行fork过程
-        $this->_execute();
     }
     
     /**
@@ -67,7 +64,7 @@ class Multidaemon
      * 执行
      * @return boolean
      */
-    private function _execute()
+    public function execute()
     {
         // 利用php反射机制, 调用$this->_conf传过来的方法
         $reflection_class   = new ReflectionClass($this->_conf['class']);
