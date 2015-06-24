@@ -2,12 +2,12 @@
 error_reporting(E_ALL);
 set_time_limit(36000);
 
-
 if(file_exists(dirname(dirname(__FILE__)) . "/autoload/loader.class.php")){
 	include_once(dirname(dirname(__FILE__)) . "/autoload/loader.class.php");
 }else{
 	throw new Exception('autoload class is not exists');
 }
+
 spl_autoload_register(array('loader', 'loadClass'));
 
 // 配置选项, 主机， 端口, redis的数据库
