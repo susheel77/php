@@ -6,7 +6,7 @@ class Consistent_Hash{
     private $_nodes             = array();
 
     // 单例
-    public function getInstance($nodes = array()){
+    public static function getInstance($nodes = array()){
         if(empty($nodes) || !is_array($nodes)){
             throw new Exception('传入参数错误');
         }
@@ -65,17 +65,3 @@ class Consistent_Hash{
     }
 
 }
-
-$redis_config = array(
-    'server_1' => array('hosts' => '127.0.0.1', 'port' => 6379),
-    'server_2' => array('hosts' => '127.0.0.1', 'port' => 6380),
-    'server_3' => array('hosts' => '127.0.0.1', 'port' => 6381)
-);
-
-$key = 'email';
-$consistent_hash    = Consistent_Hash::getInstance($redis_config);
-$redis_config       = $consistent_hash->getRedisServerConfig($key);
-print_r($consistent_hash->getNodes());
-echo PHP_EOL;
-echo $consistent_hash->getHash($key) . PHP_EOL;
-echo $redis_config . PHP_EOL;
